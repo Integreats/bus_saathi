@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "836383345512",
+    "project_id": "bus-saathi",
+    "storage_bucket": "bus-saathi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836383345512:android:4c014d149e39bc6f6c64dd",
+        "android_client_info": {
+          "package_name": "com.example.bus_saathi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrtabgkpQdFEAo9jWgGqmxdf2N2k-NhUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836383345512:android:196d693041294e8f6c64dd",
+        "android_client_info": {
+          "package_name": "com.example.bus_saathi_partner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrtabgkpQdFEAo9jWgGqmxdf2N2k-NhUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
