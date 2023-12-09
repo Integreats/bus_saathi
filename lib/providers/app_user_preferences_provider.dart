@@ -1,49 +1,81 @@
-import 'package:bus_saathi/locale/locale.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../locale/locale.dart';
 import '../models/app_user_preferences.dart';
+import '../themes/theme_mode_extension.dart';
 
 final appUserPreferencesProvider =
-    StateNotifierProvider<AppUserPreferencesProvider, AppUserPreferences>(
-        (ref) {
-  return AppUserPreferencesProvider(const AppUserPreferences(
-    locale: Locale('en'),
-    isFingerprintLockEnabled: false,
-    themeMode: ThemeMode.system,
-  ));
-});
+    AsyncNotifierProvider<AppUserPreferencesNotifier, AppUserPreferences>(
+        AppUserPreferencesNotifier.new);
 
-class AppUserPreferencesProvider extends StateNotifier<AppUserPreferences> {
-  AppUserPreferencesProvider(AppUserPreferences appUserPreferences)
-      : super(appUserPreferences);
+class AppUserPreferencesNotifier extends AsyncNotifier<AppUserPreferences> {
+  late final Box box;
 
-  Future<void> updateLocale(Locale locale) async {
-    state = state.copyWith(locale: locale);
-    await localeLogic.loadIfChanged(locale);
-    await Hive.openBox('app_user_preferences').then(
-      (value) async => await value.put('locale', locale.toLanguageTag()),
+  final boxName = 'appUserPreferences';
+
+  @override
+  Future<AppUserPreferences> build() async {
+    final isBoxOpen = Hive.isBoxOpen(boxName);
+    if (!isBoxOpen) {
+      box = await Hive.openBox(boxName);
+    } else {
+      box = Hive.box(boxName);
+    }
+
+    final locale = Locale.fromSubtags(
+      languageCode: box.get('locale', defaultValue: 'en'),
+    );
+    await localeLogic.load(locale);
+
+    final themeMode = ThemeModeExtension.themeModeFromName(
+      box.get('theme', defaultValue: 'light'),
+    );
+
+    return AppUserPreferences(
+      themeMode: themeMode,
+      isFingerprintLockEnabled: false,
+      locale: locale,
     );
   }
 
   Future<void> updateThemeMode(ThemeMode mode) async {
-    state = state.copyWith(themeMode: mode);
-    await Hive.openBox('app_user_preferences').then(
-      (value) async => await value.put('theme', mode.name),
-    );
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      await box.put('theme', mode.name);
+
+      return state.value!.copyWith(themeMode: mode);
+    });
+  }
+
+  Future<void> updateFingerprintAuthStatus(bool isEnabled) async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      await box.put('fpa', isEnabled);
+      return state.value!.copyWith(isFingerprintLockEnabled: isEnabled);
+    });
+  }
+
+  Future<void> updateLocale(Locale locale) async {
+    state = await AsyncValue.guard(() async {
+      await localeLogic.loadIfChanged(locale);
+      await box.put('locale', locale.toLanguageTag());
+      return state.value!.copyWith(locale: locale);
+    });
   }
 
   Future<void> reset() async {
-    state = const AppUserPreferences(
-      locale: Locale('en'),
-      isFingerprintLockEnabled: false,
-      themeMode: ThemeMode.system,
-    );
-    await Hive.openBox('app_user_preferences').then(
-      (value) async {
-        await value.put('locale', const Locale('en').toLanguageTag());
-      },
-    );
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      await box.put('theme', ThemeMode.light.name);
+      await box.put('fpa', false);
+      await box.put('locale', const Locale('en').toLanguageTag());
+      return const AppUserPreferences(
+        isFingerprintLockEnabled: false,
+        themeMode: ThemeMode.light,
+        locale: Locale('en'),
+      );
+    });
   }
 }

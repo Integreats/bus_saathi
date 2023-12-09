@@ -8,7 +8,11 @@ import '../services/trip_json_parser.dart';
 import 'trip_repository.dart';
 
 class FirebaseTripRepository extends TripRepository {
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  FirebaseTripRepository({
+    required FirebaseFirestore? firestore,
+  }) : firestore = firestore ?? FirebaseFirestore.instance;
+
+  final FirebaseFirestore firestore;
 
   @override
   Future<Trip> createTrip(Trip trip) async {
@@ -32,7 +36,6 @@ class FirebaseTripRepository extends TripRepository {
 
   @override
   Future<List<Trip>> getTrips(Conductor conductor) async {
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
     final conuductorTripsQuery = firestore
         .collection('trips')
         .where('conductor.id', isEqualTo: conductor.id);

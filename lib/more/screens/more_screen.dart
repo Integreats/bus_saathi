@@ -1,11 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:bus_saathi/authentication/providers/authentication_controller_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../locale/locale.dart';
 import '../../providers/app_user_preferences_provider.dart';
-import '../../providers/app_user_provider.dart';
 import '../../widgets/selectors/language_selector.dart';
 import '../../widgets/theme_switcher.dart';
 import '../../widgets/tile_layout.dart';
@@ -38,7 +37,8 @@ class MoreScreen extends HookConsumerWidget {
                 context: context,
                 builder: (context) {
                   return LanguagePickerDialog(
-                    initialLocale: ref.read(appUserPreferencesProvider).locale,
+                    initialLocale:
+                        ref.read(appUserPreferencesProvider).value!.locale,
                     onLocaleSelected: (locale) async {
                       await ref
                           .read(appUserPreferencesProvider.notifier)
@@ -71,7 +71,7 @@ class MoreScreen extends HookConsumerWidget {
 
   Future<void> signOut(WidgetRef ref) async {
     await ref.read(appUserPreferencesProvider.notifier).reset();
-    await FirebaseAuth.instance.signOut();
-    ref.read(appUserProvider.notifier).signOutUser();
+
+    await ref.read(authenticationControllerProvider.notifier).signOut();
   }
 }

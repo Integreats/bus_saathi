@@ -10,7 +10,6 @@ import '../models/tracking_mode.dart';
 import '../providers/app_user_preferences_provider.dart';
 import '../providers/conductor_provider.dart';
 import '../providers/current_trip_provider.dart';
-import '../router/router.dart';
 import '../trip_management/models/trip.dart';
 import '../user_management/conductor/models/conductor.dart';
 import 'bus_number_textfield.dart';
@@ -171,7 +170,7 @@ class _TrackFormState extends ConsumerState<TrackForm> {
       //     );
       // }
       if (mounted) {
-        context.go('${ScreenPaths.homeScreen}/${ScreenPaths.trackBus}');
+        context.go('/trackBus');
       }
     } else {
       if (mounted) {
@@ -197,7 +196,7 @@ class LanguageSelectorButton extends StatelessWidget {
       child: HookConsumer(
         builder: (context, ref, _) {
           String localeName = ref.watch(appUserPreferencesProvider
-                      .select((value) => value.locale)) ==
+                      .select((value) => value.value!.locale)) ==
                   const Locale('en')
               ? "English"
               : "ಕನ್ನಡ";
@@ -207,7 +206,8 @@ class LanguageSelectorButton extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return LanguagePickerDialog(
-                    initialLocale: ref.read(appUserPreferencesProvider).locale,
+                    initialLocale:
+                        ref.read(appUserPreferencesProvider).value!.locale,
                     onLocaleSelected: (locale) async {
                       await ref
                           .read(appUserPreferencesProvider.notifier)
