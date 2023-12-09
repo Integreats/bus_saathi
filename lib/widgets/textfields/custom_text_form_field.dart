@@ -12,6 +12,8 @@ class CustomTextFormField extends StatelessWidget {
     this.maxLength,
     this.minLines,
     this.maxLines = 1,
+    this.minHeight,
+    this.maxHeight,
     this.controller,
     this.validator,
     this.autofocus = false,
@@ -46,6 +48,9 @@ class CustomTextFormField extends StatelessWidget {
   final int? minLines;
   final int? maxLines;
 
+  final double? minHeight;
+  final double? maxHeight;
+
   final bool autofocus;
   final FocusNode? focusNode;
   final EdgeInsets scrollPadding;
@@ -79,7 +84,10 @@ class CustomTextFormField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: 36, maxHeight: 72),
+        constraints: BoxConstraints(
+          minHeight: minHeight ?? 36,
+          maxHeight: maxHeight ?? 72,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -146,7 +154,8 @@ class CustomTextFormField extends StatelessWidget {
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(
-                      color: theme.colorScheme.onSurfaceVariant.withOpacity(0.2),
+                      color:
+                          theme.colorScheme.onSurfaceVariant.withOpacity(0.2),
                       width: 1,
                     ),
                   ),

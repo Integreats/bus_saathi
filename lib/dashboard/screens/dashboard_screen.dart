@@ -1,8 +1,10 @@
+import 'package:bus_saathi/dashboard/widgets/bus_stops_displayer_map_view.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../locale/locale.dart';
+import '../../widgets/buttons/elevated_loader_button.dart';
 
 class DashboardScreen extends ConsumerWidget {
   const DashboardScreen({super.key});
@@ -30,26 +32,19 @@ class DashboardScreen extends ConsumerWidget {
                   const SizedBox(
                     height: 24,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      'Hi!',
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            fontSize: 40,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, bottom: 30),
-                    child: Text(
-                      //TODO: Add name here
-                      r"$Name",
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            fontSize: 27,
-                          ),
-                    ),
-                  ),
+                  const BusStopsDisplayerMapView()
                 ],
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedLoaderButton(
+                onPressed: () {
+                  context.go('/busReview');
+                },
+                label: const Text('Check In'),
               ),
             ),
           ),
@@ -58,5 +53,3 @@ class DashboardScreen extends ConsumerWidget {
     );
   }
 }
-
-

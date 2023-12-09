@@ -78,6 +78,13 @@ dependencies:
   email_validator: ^2.1.17
   firebase_crashlytics: ^3.4.8
   rive: ^0.12.3
+  flutter_rating_bar: ^4.0.1
+  camera: ^0.10.5+6
+  path_provider: ^2.1.1
+  path: ^1.8.2
+  video_player: ^2.2.10
+  gap: ^3.0.1
+  flutter_hooks: ^0.20.3
 
 dev_dependencies:
   flutter_test:

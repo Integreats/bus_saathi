@@ -7,6 +7,7 @@ import '../authentication/providers/authentication_controller_provider.dart';
 import '../authentication/screens/sign_in_screen.dart';
 import '../authentication/screens/sign_up_screen.dart';
 import '../bottom_navigation_screen.dart';
+import '../bus_review/screens/bus_review_screen.dart';
 import '../onboarding/onboarding_screen.dart';
 import '../trackbus/track_bus_screen.dart';
 
@@ -123,7 +124,17 @@ class RouterNotifier extends ChangeNotifier {
                   transitionsBuilder: rightToLeftFadeTransition,
                 );
               },
-            )
+            ),
+            GoRoute(
+              path: 'busReview',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                  key: state.pageKey,
+                  child: const BusReviewScreen(),
+                  transitionsBuilder: bottomToUpFadeTransition,
+                );
+              },
+            ),
           ],
         ),
       ];
@@ -145,6 +156,30 @@ Widget rightToLeftFadeTransition(
       child: SlideTransition(
         position: Tween<Offset>(
           begin: const Offset(1, 0),
+          end: Offset.zero,
+        ).animate(animation),
+        child: child,
+      ),
+    ),
+  );
+}
+
+Widget bottomToUpFadeTransition(
+  BuildContext context,
+  Animation<double> animation,
+  Animation<double> secondaryAnimation,
+  Widget child,
+) {
+  return SlideTransition(
+    position: Tween<Offset>(
+      begin: const Offset(0, 1),
+      end: Offset.zero,
+    ).animate(animation),
+    child: FadeTransition(
+      opacity: animation,
+      child: SlideTransition(
+        position: Tween<Offset>(
+          begin: const Offset(0, 1),
           end: Offset.zero,
         ).animate(animation),
         child: child,
