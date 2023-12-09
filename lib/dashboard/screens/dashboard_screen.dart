@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../locale/locale.dart';
-import '../../widgets/track_form.dart';
 
 class DashboardScreen extends ConsumerWidget {
   const DashboardScreen({super.key});
@@ -49,7 +49,6 @@ class DashboardScreen extends ConsumerWidget {
                           ),
                     ),
                   ),
-                  const TrackForm()
                 ],
               ),
             ),
@@ -59,3 +58,5 @@ class DashboardScreen extends ConsumerWidget {
     );
   }
 }
+
+
