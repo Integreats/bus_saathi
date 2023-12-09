@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 import '../locale/locale.dart';
-import '../router/router.dart';
 import 'tile_layout.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -35,7 +33,7 @@ class AppDrawer extends StatelessWidget {
                 TileLayout(
                   onTap: () {
                     Navigator.of(context).pop();
-                    GoRouter.of(context).go(ScreenPaths.homeScreen);
+                    GoRouter.of(context).go('/');
                   },
                   listTile: ListTile(
                     title: Text(
@@ -49,8 +47,7 @@ class AppDrawer extends StatelessWidget {
                 TileLayout(
                   onTap: () {
                     Navigator.of(context).pop();
-                    GoRouter.of(context).go(
-                        '${ScreenPaths.homeScreen}/${ScreenPaths.trackBus}');
+                    GoRouter.of(context).go('/trackBus');
                   },
                   listTile: ListTile(
                     title: Text(

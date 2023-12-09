@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../helpers/route_firestore_helper.dart';
 import '../models/bus_route.dart';
 import '../models/bus_stop.dart';
 import '../services/route_json_parser.dart';
@@ -8,16 +7,20 @@ import 'route_management_repository.dart';
 
 class FirebaseRouteManagementRepository extends RouteManagementRepository {
   FirebaseRouteManagementRepository({
-    FirebaseFirestore? firebaseFirestore,
-  }) {
-    firestore = firebaseFirestore ?? FirebaseFirestore.instance;
+    required FirebaseFirestore? firestore,
+  }) : firestore = firestore ?? FirebaseFirestore.instance {
     initialize();
   }
 
   late final FirebaseFirestore firestore;
 
+  CollectionReference<Map<String, dynamic>> get busRoutesCollection =>
+      firestore.collection('busRoutes');
+  CollectionReference<Map<String, dynamic>> get busStopsCollection =>
+      firestore.collection('busStops');
+
   Future<void> initialize() async {
-    FirebaseFirestore.instance.settings = const Settings(
+    firestore.settings = const Settings(
       persistenceEnabled: true,
       cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
     );
@@ -26,9 +29,7 @@ class FirebaseRouteManagementRepository extends RouteManagementRepository {
   @override
   Future<void> addRoute(BusRoute busRoute) async {
     final rawBusRoute = RouteJsonParsers.parseBusRouteToRawBusRoute(busRoute);
-    await RouteFirestoreHelper.busRoutesCollection
-        .doc(rawBusRoute.id)
-        .set(rawBusRoute.toJson());
+    await busRoutesCollection.doc(rawBusRoute.id).set(rawBusRoute.toJson());
   }
 
   @override
@@ -37,21 +38,19 @@ class FirebaseRouteManagementRepository extends RouteManagementRepository {
       updatedAt: DateTime.now(),
     );
     final rawBusRoute = RouteJsonParsers.parseBusRouteToRawBusRoute(busRoute);
-    await RouteFirestoreHelper.busRoutesCollection
+    await busRoutesCollection
         .doc(rawBusRoute.id)
         .update(rawBusRoute.copyWith(updatedAt: DateTime.now()).toJson());
   }
 
   @override
   Future<void> deleteRoute(BusRoute busRoute) async {
-    await RouteFirestoreHelper.busRoutesCollection.doc(busRoute.id).delete();
+    await busRoutesCollection.doc(busRoute.id).delete();
   }
 
   @override
   Future<void> addStop(BusStop busStop) async {
-    await RouteFirestoreHelper.busStopsCollection
-        .doc(busStop.id)
-        .set(busStop.toJson());
+    await busStopsCollection.doc(busStop.id).set(busStop.toJson());
   }
 
   @override
@@ -59,20 +58,18 @@ class FirebaseRouteManagementRepository extends RouteManagementRepository {
     busStop = busStop.copyWith(
       updatedAt: DateTime.now(),
     );
-    await RouteFirestoreHelper.busStopsCollection
-        .doc(busStop.id)
-        .update(busStop.toJson());
+    await busStopsCollection.doc(busStop.id).update(busStop.toJson());
   }
 
   @override
   Future<void> deleteStop(BusStop busStop) async {
     await deleteBusStopFromBusRoute(busStop);
-    await RouteFirestoreHelper.busStopsCollection.doc(busStop.id).delete();
+    await busStopsCollection.doc(busStop.id).delete();
   }
 
   Future<void> deleteBusStopFromBusRoute(BusStop busStop) async {
-    final busRouteCollection = RouteFirestoreHelper.busRoutesCollection;
-    final WriteBatch batch = FirebaseFirestore.instance.batch();
+    final busRouteCollection = busRoutesCollection;
+    final WriteBatch batch = firestore.batch();
 
     final QuerySnapshot stopListSnapshot = await busRouteCollection
         .where('stops', arrayContains: busStop.id)

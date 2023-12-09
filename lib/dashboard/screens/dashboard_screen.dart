@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../locale/locale.dart';
-import '../../providers/app_user_provider.dart';
 import '../../widgets/track_form.dart';
 
 class DashboardScreen extends ConsumerWidget {
@@ -43,7 +42,8 @@ class DashboardScreen extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0, bottom: 30),
                     child: Text(
-                      ref.read(appUserProvider)!.name,
+                      //TODO: Add name here
+                      r"$Name",
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontSize: 27,
                           ),

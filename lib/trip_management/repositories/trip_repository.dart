@@ -1,12 +1,17 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../providers/firebase_providers/firestore_provider.dart';
 import '../../user_management/conductor/models/conductor.dart';
 import '../models/bus_stop_crossed.dart';
 import '../models/trip.dart';
 import 'firebase_trip_repostiory.dart';
 
 final tripRepositoryProvider = Provider<TripRepository>((ref) {
-  return FirebaseTripRepository();
+  final firestore = ref.watch(firestoreProvider);
+
+  return FirebaseTripRepository(
+    firestore: firestore,
+  );
 });
 
 abstract class TripRepository {

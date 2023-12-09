@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -22,36 +21,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(
+            const Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                     flex: 4,
-                    child:
-                        LottieBuilder.asset('animations/security_shield.json'),
+                    child: SizedBox(),
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: Column(
-                        children: [
-                          const Icon(
-                            Icons.lock_outline,
-                            size: 24,
-                          ),
-                          Text(
-                            'Secrets? Secured.',
-                            textAlign: TextAlign.center,
-                            style: theme.textTheme.displaySmall!.copyWith(
-                              color: theme.colorScheme.onBackground,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),

@@ -14,8 +14,8 @@ class ThemeSwitcher extends StatelessWidget {
     return HookConsumer(
       builder: (context, ref, _) {
         return AestheticThemePickerTabBar(
-          initialThemeMode: ref.watch(
-              appUserPreferencesProvider.select((value) => value.themeMode)),
+          initialThemeMode: ref.watch(appUserPreferencesProvider
+              .select((value) => value.value!.themeMode)),
           onChanged:
               ref.read(appUserPreferencesProvider.notifier).updateThemeMode,
         );

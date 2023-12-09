@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../app_user/providers/app_user_controller_provider.dart';
+import '../authentication/providers/authentication_controller_provider.dart';
 import '../authentication/screens/sign_in_screen.dart';
 import '../authentication/screens/sign_up_screen.dart';
+<<<<<<< HEAD
 // import '../bottom_navigation_screen.dart';
 import '../bus_review/screens/bus_review_screen.dart';
 import '../models/app_user.dart';
+=======
+import '../bottom_navigation_screen.dart';
+>>>>>>> 3e9c0df3533098c8dbb2fa74435d5b5bc1b3f3df
 import '../onboarding/onboarding_screen.dart';
-import '../providers/app_user_provider.dart';
 import '../trackbus/track_bus_screen.dart';
-
-class ScreenPaths {
-  static String homeScreen = '/homeScreen';
-  static String trackForm = 'trackForm';
-  static String trackBus = 'trackBus';
-}
 
 /// Caches and Exposes a [GoRouter]
 final routerProvider = Provider<GoRouter>((ref) {
@@ -40,29 +39,40 @@ final routerProvider = Provider<GoRouter>((ref) {
 /// There are other approaches to solve this, and they can
 /// be found in the `/others` folder.
 class RouterNotifier extends ChangeNotifier {
-  final Ref ref;
+  final Ref _ref;
 
   /// This implementation exploits `ref.listen()` to add a simple callback that
   /// calls `notifyListeners()` whenever there's change onto a desider provider.
-  RouterNotifier(this.ref) {
-    // _ref.listen<User?>(
-    //   userProvider, // In our case, we're interested in the log in / log out events.
-    //   (_, __) => notifyListeners(), // Obviously more logic can be added here
-    // );
+  RouterNotifier(this._ref) {
+    _ref.listen(
+      authenticationControllerProvider, // In our case, we're interested in the log in / log out events.
+      (_, __) => notifyListeners(), // Obviously more logic can be added here
+    );
+    _ref.listen(
+      appUserControllerProvider, // In our case, we're interested in the log in / log out events.
+      (_, __) => notifyListeners(), // Obviously more logic can be added here
+    );
   }
 
   /// IMPORTANT: conceptually, we want to use `ref.read` to read providers, here.
   /// GoRouter is already aware of state changes through `refreshListenable`
   /// We don't want to trigger a rebuild of the surrounding provider.
   String? _redirectLogic(BuildContext context, GoRouterState state) {
-    AppUser? user = ref.watch(appUserProvider);
-    final areWeLoggingIn =
-        state.uri.toString() == '/' || state.uri.toString().contains('/verify');
-    if (user == null) {
-      return areWeLoggingIn ? null : '/';
+    final firebaseUser = _ref.read(authenticationControllerProvider).value;
+
+    // From here we can use the state and implement our custom logic
+    final areWeLoggingIn = (state.fullPath == '/onboarding/signin' ||
+        state.fullPath == '/onboarding/signup' ||
+        state.fullPath == '/onboarding');
+
+    if (firebaseUser == null) {
+      // We're not logged in
+      // So, IF we aren't in the login page, go there.
+
+      return areWeLoggingIn ? null : '/onboarding';
     }
     if (areWeLoggingIn) {
-      return ScreenPaths.homeScreen;
+      return '/';
     }
     return null;
   }
@@ -101,7 +111,7 @@ class RouterNotifier extends ChangeNotifier {
           ],
         ),
         GoRoute(
-          path: ScreenPaths.homeScreen,
+          path: '/',
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
@@ -111,7 +121,7 @@ class RouterNotifier extends ChangeNotifier {
           },
           routes: [
             GoRoute(
-              path: ScreenPaths.trackBus,
+              path: 'trackBus',
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                   key: state.pageKey,

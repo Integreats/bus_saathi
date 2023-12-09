@@ -1,15 +1,19 @@
+import 'package:bus_saathi/providers/firebase_providers/firestore_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../user_management/conductor/models/conductor.dart';
-import '../helpers/trip_firestore_helper.dart';
 import '../models/trip.dart';
 import '../services/trip_json_parser.dart';
 
 final conductorCompletedTripsListProvider =
     StreamProvider.family<List<Trip>, Conductor>((ref, conductor) async* {
-  final fetchedTrips = TripFirestoreHelper.getConductorCompletedTripsStream(
-      conductor.phoneNumber);
+  final firestore = ref.watch(firestoreProvider);
+  final fetchedTrips = firestore
+      .collection('trips')
+      .where('conductor.phoneNumber', isEqualTo: conductor.phoneNumber)
+      .where('isEnded', isEqualTo: true)
+      .snapshots();
   await for (final trip in fetchedTrips) {
     final parsedConductorTrip = await compute(
       TripJsonParsers.parseTrips,

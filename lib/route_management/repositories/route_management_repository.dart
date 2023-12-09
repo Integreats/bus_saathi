@@ -1,12 +1,16 @@
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../providers/firebase_providers/firestore_provider.dart';
 import '../models/bus_route.dart';
 import '../models/bus_stop.dart';
 import 'firebase_route_management_repository.dart';
 
 final routeManagementRepositoryProvider =
     Provider<RouteManagementRepository>((ref) {
-  return FirebaseRouteManagementRepository();
+  final firestore = ref.watch(firestoreProvider);
+  return FirebaseRouteManagementRepository(
+    firestore: firestore,
+  );
 });
 
 abstract class RouteManagementRepository {

@@ -1,12 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../helpers/trip_firestore_helper.dart';
+import '../../providers/firebase_providers/firestore_provider.dart';
 import '../models/trip.dart';
 import '../services/trip_json_parser.dart';
 
 final completedTripsProvider = StreamProvider<List<Trip>>((ref) async* {
-  final fetchedCompletedTrips = TripFirestoreHelper.getCompletedTripsStream();
+  final firestore = ref.watch(firestoreProvider);
+  final fetchedCompletedTrips = firestore
+      .collection('trips')
+      .where('isEnded', isEqualTo: true)
+      .snapshots();
 
   await for (final completedTrips in fetchedCompletedTrips) {
     final parsedAllActiveTrips = await compute(

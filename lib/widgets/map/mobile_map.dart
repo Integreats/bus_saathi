@@ -1,3 +1,4 @@
+import 'package:bus_saathi/providers/firebase_providers/firestore_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -29,7 +30,7 @@ class MobileMap extends StatefulHookConsumerWidget {
 class _MobileMapState extends ConsumerState<MobileMap> {
   GoogleMapController? googleMapController;
   late LiveLocation currentPosition;
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  FirebaseFirestore get firestore => ref.read(firestoreProvider);
 
   Trip? currentTrip;
   late Set<Polyline> polylines;

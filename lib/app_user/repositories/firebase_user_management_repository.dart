@@ -7,8 +7,8 @@ import 'user_repository.dart';
 
 class FirebaseUserManagementRepository extends UserRepository {
   FirebaseUserManagementRepository({
-    FirebaseFirestore? firestore,
-    FirebaseStorage? storage,
+    required FirebaseFirestore? firestore,
+    required FirebaseStorage? storage,
   })  : firestore = firestore ?? FirebaseFirestore.instance,
         storage = storage ?? FirebaseStorage.instance;
 
