@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../authentication/screens/sign_in_screen.dart';
 import '../authentication/screens/sign_up_screen.dart';
 import '../bottom_navigation_screen.dart';
+import '../bus_review/screens/bus_review_screen.dart';
 import '../models/app_user.dart';
 import '../onboarding/onboarding_screen.dart';
 import '../providers/app_user_provider.dart';
@@ -105,7 +106,7 @@ class RouterNotifier extends ChangeNotifier {
             return CustomTransitionPage(
               key: state.pageKey,
               transitionsBuilder: rightToLeftFadeTransition,
-              child: const BottomNavigationScreen(),
+              child: const BusReviewScreen(),
             );
           },
           routes: [
