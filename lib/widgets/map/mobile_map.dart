@@ -8,10 +8,10 @@ import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../bus_stops/models/bus_stop.dart';
 import '../../extenstions.dart';
 import '../../providers/current_trip_stream_provider.dart';
 import '../../providers/trip_status_provider.dart';
-import '../../route_management/models/bus_stop.dart';
 import '../../services/google_maps_services.dart';
 import '../../themes/custom_colors.dart';
 import '../../trip_management/models/live_location.dart';
@@ -178,7 +178,7 @@ class _MobileMapState extends ConsumerState<MobileMap> {
     for (BusStop busStop in busRoute.stops) {
       LatLng coordinate = LatLng(busStop.latitude, busStop.longitude);
       coordinates.add(coordinate);
-      markers.add(MapMarker.getStopMarker(busStop));
+      markers.add(MapMarker.getBusStopMarker(busStop));
     }
     coordinates.add(
         LatLng(busRoute.destination.latitude, busRoute.destination.longitude));

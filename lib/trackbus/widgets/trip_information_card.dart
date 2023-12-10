@@ -4,9 +4,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../../providers/trip_status_provider.dart';
+import '../../bus_routes/models/bus_details.dart';
 import '../../locale/locale.dart';
 import '../../providers/current_trip_provider.dart';
-import '../../route_management/models/bus_details.dart';
 import '../../trip_management/models/trip.dart';
 import '../../user_management/conductor/models/conductor.dart';
 import 'blinking_dot_animation.dart';

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../route_management/models/bus_stop.dart';
-import '../../route_management/models/raw_bus_route.dart';
+import '../../bus_routes/models/raw_bus_route.dart';
+import '../../bus_stops/models/bus_stop.dart';
 import '../models/trip.dart';
 
 class TripJsonParsers {

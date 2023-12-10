@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 
-import '../route_management/models/bus_stop.dart';
+import '../bus_stops/models/bus_stop.dart';
 import '../trip_management/models/live_location.dart';
 import '../trip_management/models/trip_route.dart';
 
@@ -156,7 +156,7 @@ class MapMarker {
     );
   }
 
-  static Marker getStopMarker(BusStop busStop) {
+  static Marker getBusStopMarker(BusStop busStop) {
     return Marker(
       markerId: MarkerId(busStop.id),
       icon: blueBusStopMarkerIcon,

@@ -85,6 +85,9 @@ dependencies:
   video_player: ^2.2.10
   gap: ^3.0.1
   flutter_hooks: ^0.20.3
+  geoflutterfire2: ^2.3.15
+  dart_geohash: ^2.0.2
+  geolocator: ^10.1.0
 
 dev_dependencies:
   flutter_test:
@@ -115,6 +118,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - images/
+    - images/illustrations/
+    - images/lottie/
+    - images/markers/
     - animations/
     - icons/
     - icons/auth_logo/

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../route_management/models/bus_stop.dart';
+import '../../bus_stops/models/bus_stop.dart';
 import '../json_converters/date_time_json_converter.dart';
 
 part 'bus_stop_crossed.freezed.dart';

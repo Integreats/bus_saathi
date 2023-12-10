@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../route_management/models/bus_stop.dart';
+import '../../bus_stops/models/bus_stop.dart';
 
 part 'trip_route.freezed.dart';
 part 'trip_route.g.dart';
