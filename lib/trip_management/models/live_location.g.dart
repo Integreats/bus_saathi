@@ -10,6 +10,7 @@ _$LiveLocationImpl _$$LiveLocationImplFromJson(Map<String, dynamic> json) =>
     _$LiveLocationImpl(
       latitude: (json['latitude'] as num).toDouble(),
       longitude: (json['longitude'] as num).toDouble(),
+      geohash: json['geohash'] as String,
       accuracy: (json['accuracy'] as num).toDouble(),
       heading: (json['heading'] as num).toDouble(),
       altitude: (json['altitude'] as num).toDouble(),
@@ -23,6 +24,7 @@ Map<String, dynamic> _$$LiveLocationImplToJson(_$LiveLocationImpl instance) =>
     <String, dynamic>{
       'latitude': instance.latitude,
       'longitude': instance.longitude,
+      'geohash': instance.geohash,
       'accuracy': instance.accuracy,
       'heading': instance.heading,
       'altitude': instance.altitude,

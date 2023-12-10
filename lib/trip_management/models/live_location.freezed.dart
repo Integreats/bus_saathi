@@ -27,6 +27,7 @@ mixin _$LiveLocation {
   /// The longitude of the position in degrees normalized to the interval -180
   /// (exclusive) to +180 (inclusive).
   double get longitude => throw _privateConstructorUsedError;
+  String get geohash => throw _privateConstructorUsedError;
 
   /// The estimated horizontal accuracy of the position in meters.
   ///
@@ -78,6 +79,7 @@ abstract class $LiveLocationCopyWith<$Res> {
   $Res call(
       {double latitude,
       double longitude,
+      String geohash,
       double accuracy,
       double heading,
       double altitude,
@@ -101,6 +103,7 @@ class _$LiveLocationCopyWithImpl<$Res, $Val extends LiveLocation>
   $Res call({
     Object? latitude = null,
     Object? longitude = null,
+    Object? geohash = null,
     Object? accuracy = null,
     Object? heading = null,
     Object? altitude = null,
@@ -117,6 +120,10 @@ class _$LiveLocationCopyWithImpl<$Res, $Val extends LiveLocation>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
+      geohash: null == geohash
+          ? _value.geohash
+          : geohash // ignore: cast_nullable_to_non_nullable
+              as String,
       accuracy: null == accuracy
           ? _value.accuracy
           : accuracy // ignore: cast_nullable_to_non_nullable
@@ -156,6 +163,7 @@ abstract class _$$LiveLocationImplCopyWith<$Res>
   $Res call(
       {double latitude,
       double longitude,
+      String geohash,
       double accuracy,
       double heading,
       double altitude,
@@ -177,6 +185,7 @@ class __$$LiveLocationImplCopyWithImpl<$Res>
   $Res call({
     Object? latitude = null,
     Object? longitude = null,
+    Object? geohash = null,
     Object? accuracy = null,
     Object? heading = null,
     Object? altitude = null,
@@ -193,6 +202,10 @@ class __$$LiveLocationImplCopyWithImpl<$Res>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
+      geohash: null == geohash
+          ? _value.geohash
+          : geohash // ignore: cast_nullable_to_non_nullable
+              as String,
       accuracy: null == accuracy
           ? _value.accuracy
           : accuracy // ignore: cast_nullable_to_non_nullable
@@ -227,6 +240,7 @@ class _$LiveLocationImpl implements _LiveLocation {
   const _$LiveLocationImpl(
       {required this.latitude,
       required this.longitude,
+      required this.geohash,
       required this.accuracy,
       required this.heading,
       required this.altitude,
@@ -246,6 +260,8 @@ class _$LiveLocationImpl implements _LiveLocation {
   /// (exclusive) to +180 (inclusive).
   @override
   final double longitude;
+  @override
+  final String geohash;
 
   /// The estimated horizontal accuracy of the position in meters.
   ///
@@ -290,7 +306,7 @@ class _$LiveLocationImpl implements _LiveLocation {
 
   @override
   String toString() {
-    return 'LiveLocation(latitude: $latitude, longitude: $longitude, accuracy: $accuracy, heading: $heading, altitude: $altitude, speed: $speed, speedAccuracy: $speedAccuracy, timestamp: $timestamp)';
+    return 'LiveLocation(latitude: $latitude, longitude: $longitude, geohash: $geohash, accuracy: $accuracy, heading: $heading, altitude: $altitude, speed: $speed, speedAccuracy: $speedAccuracy, timestamp: $timestamp)';
   }
 
   @override
@@ -302,6 +318,7 @@ class _$LiveLocationImpl implements _LiveLocation {
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
+            (identical(other.geohash, geohash) || other.geohash == geohash) &&
             (identical(other.accuracy, accuracy) ||
                 other.accuracy == accuracy) &&
             (identical(other.heading, heading) || other.heading == heading) &&
@@ -316,8 +333,8 @@ class _$LiveLocationImpl implements _LiveLocation {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, latitude, longitude, accuracy,
-      heading, altitude, speed, speedAccuracy, timestamp);
+  int get hashCode => Object.hash(runtimeType, latitude, longitude, geohash,
+      accuracy, heading, altitude, speed, speedAccuracy, timestamp);
 
   @JsonKey(ignore: true)
   @override
@@ -337,6 +354,7 @@ abstract class _LiveLocation implements LiveLocation {
   const factory _LiveLocation(
           {required final double latitude,
           required final double longitude,
+          required final String geohash,
           required final double accuracy,
           required final double heading,
           required final double altitude,
@@ -358,6 +376,8 @@ abstract class _LiveLocation implements LiveLocation {
   /// The longitude of the position in degrees normalized to the interval -180
   /// (exclusive) to +180 (inclusive).
   double get longitude;
+  @override
+  String get geohash;
   @override
 
   /// The estimated horizontal accuracy of the position in meters.

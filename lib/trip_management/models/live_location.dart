@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:geoflutterfire2/geoflutterfire2.dart';
 
 import '../json_converters/date_time_json_converter.dart';
 
@@ -16,6 +17,7 @@ class LiveLocation with _$LiveLocation {
     /// The longitude of the position in degrees normalized to the interval -180
     /// (exclusive) to +180 (inclusive).
     required double longitude,
+    required String geohash,
 
     /// The estimated horizontal accuracy of the position in meters.
     ///
@@ -56,9 +58,11 @@ class LiveLocation with _$LiveLocation {
       _$LiveLocationFromJson(json);
 
   factory LiveLocation.empty() {
+    GeoFirePoint geoFirePoint = GeoFirePoint(0, 0);
     return LiveLocation(
       latitude: 0,
       longitude: 0,
+      geohash: geoFirePoint.hash,
       accuracy: 0,
       heading: 0,
       altitude: 0,
