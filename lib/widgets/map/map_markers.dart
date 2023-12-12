@@ -6,9 +6,9 @@ import '../../bus_stops/models/bus_stop.dart';
 import '../../trip/models/live_location.dart';
 import '../../trip/models/trip_route.dart';
 
-
 class MapMarkers {
   static late BitmapDescriptor markerIcon;
+  static late BitmapDescriptor busMarkerIcon;
 
   static late BitmapDescriptor greenMarkerIcon;
   static late BitmapDescriptor redMarkerIcon;
@@ -21,6 +21,12 @@ class MapMarkers {
     markerIcon = await BitmapDescriptor.fromAssetImage(
       const ImageConfiguration(),
       "images/markers/marker.png",
+    );
+    busMarkerIcon = await BitmapDescriptor.fromAssetImage(
+      const ImageConfiguration(
+
+      ),
+      "images/markers/bus_marker.png",
     );
     greenMarkerIcon = await BitmapDescriptor.fromAssetImage(
       const ImageConfiguration(),
@@ -56,6 +62,28 @@ class MapMarkers {
       visible: true,
       infoWindow: InfoWindow(
         title: "Latitude: ${latLng.latitude}\nLongitude: ${latLng.longitude}",
+      ),
+    );
+  }
+
+  static Marker getBusMarker(LiveLocation liveLocation) {
+    LatLng position = LatLng(
+      liveLocation.latitude,
+      liveLocation.longitude,
+    );
+    String date = DateFormat.yMMMd().format(liveLocation.timestamp);
+    String time =
+        DateFormat('HH:mm:ss', "en_US").format(liveLocation.timestamp);
+    return Marker(
+      markerId: MarkerId("${liveLocation.latitude}${liveLocation.longitude}"),
+      icon: busMarkerIcon,
+      position: position,
+      visible: true,
+      rotation: liveLocation.heading,
+      infoWindow: InfoWindow(
+        title:
+            "Latitude: ${liveLocation.latitude}\nLongitude: ${liveLocation.longitude}\n",
+        snippet: "$date\n$time",
       ),
     );
   }
@@ -126,7 +154,7 @@ class MapMarkers {
     );
   }
 
-  static Marker getStopMarker(BusStop busStop) {
+  static Marker getBusStopMarker(BusStop busStop) {
     return Marker(
       markerId: MarkerId(busStop.id),
       icon: blueBusStopMarkerIcon,

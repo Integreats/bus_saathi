@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../widgets/google_maps_marker.dart';
+import '../../../widgets/map/map_markers.dart';
 import '../../models/bus_stop.dart';
 import 'nearby_bus_stops_provider.dart';
 
@@ -11,7 +11,7 @@ final busStopsMarkerProvider =
   final nearbyBusStops = ref.watch(nearbyBusStopsProvider((geoData)));
   final busStopMarkers = <Marker>{};
   for (BusStop busStop in nearbyBusStops) {
-    busStopMarkers.add(MapMarker.getBusStopMarker(busStop));
+    busStopMarkers.add(MapMarkers.getBusStopMarker(busStop));
   }
   return busStopMarkers;
 });

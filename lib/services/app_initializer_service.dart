@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 
-import '../widgets/google_maps_marker.dart';
+import '../widgets/map/map_markers.dart';
 
 class AppInitializer {
   AppInitializer._private();
@@ -15,7 +15,7 @@ class AppInitializer {
 
     await Hive.initFlutter();
     // =============================================
-    await MapMarker.init();
+    await MapMarkers.init();
     await configureSystem();
   }
 
