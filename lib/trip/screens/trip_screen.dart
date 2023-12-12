@@ -29,7 +29,7 @@ class TripScreen extends ConsumerWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: const TripMapView(
-                      tripId: "aaed75cc-2cd6-4a5c-ba99-d8fe6e6fbc03",
+                      tripId: "06d8782e-c487-4a21-bd78-4490a8dcc935",
                     ),
                   ),
                 ),
@@ -75,7 +75,7 @@ class TripScreen extends ConsumerWidget {
               child: Consumer(
                 builder: (context, ref, child) {
                   final trip = ref.watch(tripStreamProvider(
-                      "aaed75cc-2cd6-4a5c-ba99-d8fe6e6fbc03"));
+                      "06d8782e-c487-4a21-bd78-4490a8dcc935"));
                   return trip.when(
                     skipError: true,
                     data: (data) {

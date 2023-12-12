@@ -21,7 +21,7 @@ class TripMapView extends StatefulHookConsumerWidget {
 }
 
 class _TripMapViewState extends ConsumerState<TripMapView> {
-  late final GoogleMapController googleMapController;
+  GoogleMapController? googleMapController;
   late final ValueNotifier<
           ({Set<Marker>? busStopsMarkers, Polyline? tripRoutePolyline})>
       plotsNotifier;
@@ -44,18 +44,7 @@ class _TripMapViewState extends ConsumerState<TripMapView> {
   @override
   Widget build(BuildContext context) {
     final tripStream = ref.watch(tripStreamProvider(widget.tripId));
-    ref.listen(tripStreamProvider(widget.tripId), (previous, next) {
-      googleMapController.animateCamera(
-        CameraUpdate.newCameraPosition(
-          CameraPosition(
-            target: LatLngExtension.fromPosition(
-              next.value!.liveLocation.first,
-            ),
-            zoom: currentMapZoom,
-          ),
-        ),
-      );
-    });
+
     return tripStream.when(
       skipError: true,
       skipLoadingOnRefresh: true,
@@ -73,7 +62,7 @@ class _TripMapViewState extends ConsumerState<TripMapView> {
               },
               onMapCreated: (controller) {
                 googleMapController = controller;
-                googleMapController.animateCamera(
+                googleMapController?.animateCamera(
                   CameraUpdate.newCameraPosition(
                     CameraPosition(
                       target: LatLngExtension.fromPosition(

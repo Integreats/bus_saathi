@@ -23,9 +23,7 @@ class MapMarkers {
       "images/markers/marker.png",
     );
     busMarkerIcon = await BitmapDescriptor.fromAssetImage(
-      const ImageConfiguration(
-
-      ),
+      const ImageConfiguration(),
       "images/markers/bus_marker.png",
     );
     greenMarkerIcon = await BitmapDescriptor.fromAssetImage(
@@ -71,7 +69,7 @@ class MapMarkers {
       liveLocation.latitude,
       liveLocation.longitude,
     );
-    String date = DateFormat.yMMMd().format(liveLocation.timestamp);
+    String date = DateFormat.yMMMMd().format(liveLocation.timestamp);
     String time =
         DateFormat('HH:mm:ss', "en_US").format(liveLocation.timestamp);
     return Marker(
@@ -81,9 +79,8 @@ class MapMarkers {
       visible: true,
       rotation: liveLocation.heading,
       infoWindow: InfoWindow(
-        title:
-            "Latitude: ${liveLocation.latitude}\nLongitude: ${liveLocation.longitude}\n",
-        snippet: "$date\n$time",
+        title: "Last Updated",
+        snippet: "$date at $time",
       ),
     );
   }

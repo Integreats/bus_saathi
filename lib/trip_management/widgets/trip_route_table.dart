@@ -161,7 +161,9 @@ class TripRouteTable extends StatelessWidget {
                         textAlign: TextAlign.center,
                       )
                     : Text(
-                        DateFormat('HH:mm').format(trip.endDateTime),
+                        trip.upcomingBusStop != null
+                            ? ''
+                            : DateFormat('HH:mm').format(trip.endDateTime),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: trip.upcomingBusStop == null
