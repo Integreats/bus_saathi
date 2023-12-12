@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../extenstions.dart';
-import '../../trip_management/models/live_location.dart';
+import '../../trip/models/live_location.dart';
 
 class RelocateFocusButton extends StatelessWidget {
   const RelocateFocusButton({

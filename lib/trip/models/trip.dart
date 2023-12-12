@@ -4,9 +4,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../bus/models/bus.dart';
 import '../../bus_stops/models/bus_stop.dart';
 import '../../conductor/models/conductor.dart';
-import '../../trip_management/models/live_location.dart';
 import '../json_converters/date_time_json_converter.dart';
 import 'bus_stop_crossed.dart';
+import 'live_location.dart';
 import 'trip_route.dart';
 
 part 'trip.freezed.dart';

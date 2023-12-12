@@ -1,8 +1,9 @@
-import 'package:bus_saathi/bus_stops/nearby_bus_stops/views/nearby_bus_stops_map_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../bus_stops/nearby_bus_stops/views/nearby_bus_stops_displayer_map_view.dart';
 import '../../l10n/locale.dart';
 import '../../widgets/buttons/elevated_loader_button.dart';
 

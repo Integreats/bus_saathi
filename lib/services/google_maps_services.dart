@@ -5,8 +5,8 @@ import 'package:google_polyline_algorithm/google_polyline_algorithm.dart';
 
 import '../extenstions.dart';
 import '../themes/custom_colors.dart';
+import '../trip/models/live_location.dart';
 import '../trip/models/trip.dart';
-import '../trip_management/models/live_location.dart';
 
 class GoogleMapsServices {
   static LiveLocation getCurrentPosition(Trip currentTrip) {

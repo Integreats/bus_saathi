@@ -2,9 +2,8 @@ import 'dart:math' as math;
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-
 import 'bus_stops/models/bus_stop.dart';
-import 'trip_management/models/live_location.dart';
+import 'trip/models/live_location.dart';
 
 extension LatLngExtension on LatLng {
   static LatLng fromPosition(LiveLocation position) {
