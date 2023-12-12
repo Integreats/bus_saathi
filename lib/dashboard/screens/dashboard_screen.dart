@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../locale/locale.dart';
+import '../../l10n/locale.dart';
 import '../../widgets/buttons/elevated_loader_button.dart';
 
 class DashboardScreen extends ConsumerWidget {
@@ -42,7 +42,7 @@ class DashboardScreen extends ConsumerWidget {
               padding: const EdgeInsets.all(8.0),
               child: ElevatedLoaderButton(
                 onPressed: () {
-                  context.go('/busReview');
+                  context.go('/trip/_');
                 },
                 label: const Text('Check In'),
               ),

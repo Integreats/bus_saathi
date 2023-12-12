@@ -12,7 +12,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'app_user/providers/app_user_controller_provider.dart';
 import 'authentication/providers/authentication_controller_provider.dart';
 import 'firebase_options.dart';
-import 'locale/locale.dart';
+import 'l10n/locale.dart';
 import 'providers/app_user_preferences_provider.dart';
 import 'providers/firebase_providers/firebase_app_provider.dart';
 import 'router/router.dart';

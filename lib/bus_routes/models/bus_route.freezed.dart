@@ -21,9 +21,11 @@ BusRoute _$BusRouteFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BusRoute {
   String get id => throw _privateConstructorUsedError;
+  String get routeNumber => throw _privateConstructorUsedError;
+  RouteDirection get direction => throw _privateConstructorUsedError;
   BusStop get origin => throw _privateConstructorUsedError;
-  BusStop get destination => throw _privateConstructorUsedError;
   List<BusStop> get stops => throw _privateConstructorUsedError;
+  BusStop get destination => throw _privateConstructorUsedError;
   @DateTimeJsonConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
   @DateTimeJsonConverter()
@@ -42,9 +44,11 @@ abstract class $BusRouteCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String routeNumber,
+      RouteDirection direction,
       BusStop origin,
-      BusStop destination,
       List<BusStop> stops,
+      BusStop destination,
       @DateTimeJsonConverter() DateTime createdAt,
       @DateTimeJsonConverter() DateTime updatedAt});
 
@@ -66,9 +70,11 @@ class _$BusRouteCopyWithImpl<$Res, $Val extends BusRoute>
   @override
   $Res call({
     Object? id = null,
+    Object? routeNumber = null,
+    Object? direction = null,
     Object? origin = null,
-    Object? destination = null,
     Object? stops = null,
+    Object? destination = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -77,18 +83,26 @@ class _$BusRouteCopyWithImpl<$Res, $Val extends BusRoute>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      routeNumber: null == routeNumber
+          ? _value.routeNumber
+          : routeNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      direction: null == direction
+          ? _value.direction
+          : direction // ignore: cast_nullable_to_non_nullable
+              as RouteDirection,
       origin: null == origin
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
-              as BusStop,
-      destination: null == destination
-          ? _value.destination
-          : destination // ignore: cast_nullable_to_non_nullable
               as BusStop,
       stops: null == stops
           ? _value.stops
           : stops // ignore: cast_nullable_to_non_nullable
               as List<BusStop>,
+      destination: null == destination
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as BusStop,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -127,9 +141,11 @@ abstract class _$$BusRouteImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
+      String routeNumber,
+      RouteDirection direction,
       BusStop origin,
-      BusStop destination,
       List<BusStop> stops,
+      BusStop destination,
       @DateTimeJsonConverter() DateTime createdAt,
       @DateTimeJsonConverter() DateTime updatedAt});
 
@@ -151,9 +167,11 @@ class __$$BusRouteImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? routeNumber = null,
+    Object? direction = null,
     Object? origin = null,
-    Object? destination = null,
     Object? stops = null,
+    Object? destination = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -162,18 +180,26 @@ class __$$BusRouteImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      routeNumber: null == routeNumber
+          ? _value.routeNumber
+          : routeNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      direction: null == direction
+          ? _value.direction
+          : direction // ignore: cast_nullable_to_non_nullable
+              as RouteDirection,
       origin: null == origin
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
-              as BusStop,
-      destination: null == destination
-          ? _value.destination
-          : destination // ignore: cast_nullable_to_non_nullable
               as BusStop,
       stops: null == stops
           ? _value._stops
           : stops // ignore: cast_nullable_to_non_nullable
               as List<BusStop>,
+      destination: null == destination
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as BusStop,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -191,9 +217,11 @@ class __$$BusRouteImplCopyWithImpl<$Res>
 class _$BusRouteImpl implements _BusRoute {
   _$BusRouteImpl(
       {required this.id,
+      required this.routeNumber,
+      required this.direction,
       required this.origin,
-      required this.destination,
       required final List<BusStop> stops,
+      required this.destination,
       @DateTimeJsonConverter() required this.createdAt,
       @DateTimeJsonConverter() required this.updatedAt})
       : _stops = stops;
@@ -204,9 +232,11 @@ class _$BusRouteImpl implements _BusRoute {
   @override
   final String id;
   @override
-  final BusStop origin;
+  final String routeNumber;
   @override
-  final BusStop destination;
+  final RouteDirection direction;
+  @override
+  final BusStop origin;
   final List<BusStop> _stops;
   @override
   List<BusStop> get stops {
@@ -216,6 +246,8 @@ class _$BusRouteImpl implements _BusRoute {
   }
 
   @override
+  final BusStop destination;
+  @override
   @DateTimeJsonConverter()
   final DateTime createdAt;
   @override
@@ -224,7 +256,7 @@ class _$BusRouteImpl implements _BusRoute {
 
   @override
   String toString() {
-    return 'BusRoute(id: $id, origin: $origin, destination: $destination, stops: $stops, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'BusRoute(id: $id, routeNumber: $routeNumber, direction: $direction, origin: $origin, stops: $stops, destination: $destination, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -233,10 +265,14 @@ class _$BusRouteImpl implements _BusRoute {
         (other.runtimeType == runtimeType &&
             other is _$BusRouteImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.routeNumber, routeNumber) ||
+                other.routeNumber == routeNumber) &&
+            (identical(other.direction, direction) ||
+                other.direction == direction) &&
             (identical(other.origin, origin) || other.origin == origin) &&
+            const DeepCollectionEquality().equals(other._stops, _stops) &&
             (identical(other.destination, destination) ||
                 other.destination == destination) &&
-            const DeepCollectionEquality().equals(other._stops, _stops) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -245,8 +281,16 @@ class _$BusRouteImpl implements _BusRoute {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, origin, destination,
-      const DeepCollectionEquality().hash(_stops), createdAt, updatedAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      routeNumber,
+      direction,
+      origin,
+      const DeepCollectionEquality().hash(_stops),
+      destination,
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -265,9 +309,11 @@ class _$BusRouteImpl implements _BusRoute {
 abstract class _BusRoute implements BusRoute {
   factory _BusRoute(
           {required final String id,
+          required final String routeNumber,
+          required final RouteDirection direction,
           required final BusStop origin,
-          required final BusStop destination,
           required final List<BusStop> stops,
+          required final BusStop destination,
           @DateTimeJsonConverter() required final DateTime createdAt,
           @DateTimeJsonConverter() required final DateTime updatedAt}) =
       _$BusRouteImpl;
@@ -278,11 +324,15 @@ abstract class _BusRoute implements BusRoute {
   @override
   String get id;
   @override
+  String get routeNumber;
+  @override
+  RouteDirection get direction;
+  @override
   BusStop get origin;
   @override
-  BusStop get destination;
-  @override
   List<BusStop> get stops;
+  @override
+  BusStop get destination;
   @override
   @DateTimeJsonConverter()
   DateTime get createdAt;

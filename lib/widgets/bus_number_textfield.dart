@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
-import '../locale/locale.dart';
+import '../l10n/locale.dart';
 import 'textfields/custom_text_form_field.dart';
 
 class BusNumberTextField extends StatefulWidget {

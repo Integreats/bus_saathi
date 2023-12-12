@@ -21,14 +21,16 @@ Trip _$TripFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Trip {
   String get id => throw _privateConstructorUsedError;
+  Bus get bus => throw _privateConstructorUsedError;
+  Conductor get conductor => throw _privateConstructorUsedError;
   @DateTimeJsonConverter()
   DateTime get startDateTime => throw _privateConstructorUsedError;
   @DateTimeJsonConverter()
   DateTime get endDateTime => throw _privateConstructorUsedError;
-  Conductor get conductor => throw _privateConstructorUsedError;
   List<LiveLocation> get liveLocation => throw _privateConstructorUsedError;
   bool get isEnded => throw _privateConstructorUsedError;
   TripRoute? get tripRoute => throw _privateConstructorUsedError;
+  BusStop? get upcomingBusStop => throw _privateConstructorUsedError;
   Map<String, BusStopCrossed>? get busStopsCrossed =>
       throw _privateConstructorUsedError;
 
@@ -44,16 +46,20 @@ abstract class $TripCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      Bus bus,
+      Conductor conductor,
       @DateTimeJsonConverter() DateTime startDateTime,
       @DateTimeJsonConverter() DateTime endDateTime,
-      Conductor conductor,
       List<LiveLocation> liveLocation,
       bool isEnded,
       TripRoute? tripRoute,
+      BusStop? upcomingBusStop,
       Map<String, BusStopCrossed>? busStopsCrossed});
 
+  $BusCopyWith<$Res> get bus;
   $ConductorCopyWith<$Res> get conductor;
   $TripRouteCopyWith<$Res>? get tripRoute;
+  $BusStopCopyWith<$Res>? get upcomingBusStop;
 }
 
 /// @nodoc
@@ -70,12 +76,14 @@ class _$TripCopyWithImpl<$Res, $Val extends Trip>
   @override
   $Res call({
     Object? id = null,
+    Object? bus = null,
+    Object? conductor = null,
     Object? startDateTime = null,
     Object? endDateTime = null,
-    Object? conductor = null,
     Object? liveLocation = null,
     Object? isEnded = null,
     Object? tripRoute = freezed,
+    Object? upcomingBusStop = freezed,
     Object? busStopsCrossed = freezed,
   }) {
     return _then(_value.copyWith(
@@ -83,6 +91,14 @@ class _$TripCopyWithImpl<$Res, $Val extends Trip>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      bus: null == bus
+          ? _value.bus
+          : bus // ignore: cast_nullable_to_non_nullable
+              as Bus,
+      conductor: null == conductor
+          ? _value.conductor
+          : conductor // ignore: cast_nullable_to_non_nullable
+              as Conductor,
       startDateTime: null == startDateTime
           ? _value.startDateTime
           : startDateTime // ignore: cast_nullable_to_non_nullable
@@ -91,10 +107,6 @@ class _$TripCopyWithImpl<$Res, $Val extends Trip>
           ? _value.endDateTime
           : endDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      conductor: null == conductor
-          ? _value.conductor
-          : conductor // ignore: cast_nullable_to_non_nullable
-              as Conductor,
       liveLocation: null == liveLocation
           ? _value.liveLocation
           : liveLocation // ignore: cast_nullable_to_non_nullable
@@ -107,11 +119,23 @@ class _$TripCopyWithImpl<$Res, $Val extends Trip>
           ? _value.tripRoute
           : tripRoute // ignore: cast_nullable_to_non_nullable
               as TripRoute?,
+      upcomingBusStop: freezed == upcomingBusStop
+          ? _value.upcomingBusStop
+          : upcomingBusStop // ignore: cast_nullable_to_non_nullable
+              as BusStop?,
       busStopsCrossed: freezed == busStopsCrossed
           ? _value.busStopsCrossed
           : busStopsCrossed // ignore: cast_nullable_to_non_nullable
               as Map<String, BusStopCrossed>?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BusCopyWith<$Res> get bus {
+    return $BusCopyWith<$Res>(_value.bus, (value) {
+      return _then(_value.copyWith(bus: value) as $Val);
+    });
   }
 
   @override
@@ -133,6 +157,18 @@ class _$TripCopyWithImpl<$Res, $Val extends Trip>
       return _then(_value.copyWith(tripRoute: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BusStopCopyWith<$Res>? get upcomingBusStop {
+    if (_value.upcomingBusStop == null) {
+      return null;
+    }
+
+    return $BusStopCopyWith<$Res>(_value.upcomingBusStop!, (value) {
+      return _then(_value.copyWith(upcomingBusStop: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -144,18 +180,24 @@ abstract class _$$TripImplCopyWith<$Res> implements $TripCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      Bus bus,
+      Conductor conductor,
       @DateTimeJsonConverter() DateTime startDateTime,
       @DateTimeJsonConverter() DateTime endDateTime,
-      Conductor conductor,
       List<LiveLocation> liveLocation,
       bool isEnded,
       TripRoute? tripRoute,
+      BusStop? upcomingBusStop,
       Map<String, BusStopCrossed>? busStopsCrossed});
 
+  @override
+  $BusCopyWith<$Res> get bus;
   @override
   $ConductorCopyWith<$Res> get conductor;
   @override
   $TripRouteCopyWith<$Res>? get tripRoute;
+  @override
+  $BusStopCopyWith<$Res>? get upcomingBusStop;
 }
 
 /// @nodoc
@@ -169,12 +211,14 @@ class __$$TripImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? bus = null,
+    Object? conductor = null,
     Object? startDateTime = null,
     Object? endDateTime = null,
-    Object? conductor = null,
     Object? liveLocation = null,
     Object? isEnded = null,
     Object? tripRoute = freezed,
+    Object? upcomingBusStop = freezed,
     Object? busStopsCrossed = freezed,
   }) {
     return _then(_$TripImpl(
@@ -182,6 +226,14 @@ class __$$TripImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      bus: null == bus
+          ? _value.bus
+          : bus // ignore: cast_nullable_to_non_nullable
+              as Bus,
+      conductor: null == conductor
+          ? _value.conductor
+          : conductor // ignore: cast_nullable_to_non_nullable
+              as Conductor,
       startDateTime: null == startDateTime
           ? _value.startDateTime
           : startDateTime // ignore: cast_nullable_to_non_nullable
@@ -190,10 +242,6 @@ class __$$TripImplCopyWithImpl<$Res>
           ? _value.endDateTime
           : endDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      conductor: null == conductor
-          ? _value.conductor
-          : conductor // ignore: cast_nullable_to_non_nullable
-              as Conductor,
       liveLocation: null == liveLocation
           ? _value._liveLocation
           : liveLocation // ignore: cast_nullable_to_non_nullable
@@ -206,6 +254,10 @@ class __$$TripImplCopyWithImpl<$Res>
           ? _value.tripRoute
           : tripRoute // ignore: cast_nullable_to_non_nullable
               as TripRoute?,
+      upcomingBusStop: freezed == upcomingBusStop
+          ? _value.upcomingBusStop
+          : upcomingBusStop // ignore: cast_nullable_to_non_nullable
+              as BusStop?,
       busStopsCrossed: freezed == busStopsCrossed
           ? _value._busStopsCrossed
           : busStopsCrossed // ignore: cast_nullable_to_non_nullable
@@ -219,12 +271,14 @@ class __$$TripImplCopyWithImpl<$Res>
 class _$TripImpl implements _Trip {
   const _$TripImpl(
       {required this.id,
+      required this.bus,
+      required this.conductor,
       @DateTimeJsonConverter() required this.startDateTime,
       @DateTimeJsonConverter() required this.endDateTime,
-      required this.conductor,
       required final List<LiveLocation> liveLocation,
       required this.isEnded,
       required this.tripRoute,
+      required this.upcomingBusStop,
       required final Map<String, BusStopCrossed>? busStopsCrossed})
       : _liveLocation = liveLocation,
         _busStopsCrossed = busStopsCrossed;
@@ -235,13 +289,15 @@ class _$TripImpl implements _Trip {
   @override
   final String id;
   @override
+  final Bus bus;
+  @override
+  final Conductor conductor;
+  @override
   @DateTimeJsonConverter()
   final DateTime startDateTime;
   @override
   @DateTimeJsonConverter()
   final DateTime endDateTime;
-  @override
-  final Conductor conductor;
   final List<LiveLocation> _liveLocation;
   @override
   List<LiveLocation> get liveLocation {
@@ -254,6 +310,8 @@ class _$TripImpl implements _Trip {
   final bool isEnded;
   @override
   final TripRoute? tripRoute;
+  @override
+  final BusStop? upcomingBusStop;
   final Map<String, BusStopCrossed>? _busStopsCrossed;
   @override
   Map<String, BusStopCrossed>? get busStopsCrossed {
@@ -266,7 +324,7 @@ class _$TripImpl implements _Trip {
 
   @override
   String toString() {
-    return 'Trip(id: $id, startDateTime: $startDateTime, endDateTime: $endDateTime, conductor: $conductor, liveLocation: $liveLocation, isEnded: $isEnded, tripRoute: $tripRoute, busStopsCrossed: $busStopsCrossed)';
+    return 'Trip(id: $id, bus: $bus, conductor: $conductor, startDateTime: $startDateTime, endDateTime: $endDateTime, liveLocation: $liveLocation, isEnded: $isEnded, tripRoute: $tripRoute, upcomingBusStop: $upcomingBusStop, busStopsCrossed: $busStopsCrossed)';
   }
 
   @override
@@ -275,17 +333,20 @@ class _$TripImpl implements _Trip {
         (other.runtimeType == runtimeType &&
             other is _$TripImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.bus, bus) || other.bus == bus) &&
+            (identical(other.conductor, conductor) ||
+                other.conductor == conductor) &&
             (identical(other.startDateTime, startDateTime) ||
                 other.startDateTime == startDateTime) &&
             (identical(other.endDateTime, endDateTime) ||
                 other.endDateTime == endDateTime) &&
-            (identical(other.conductor, conductor) ||
-                other.conductor == conductor) &&
             const DeepCollectionEquality()
                 .equals(other._liveLocation, _liveLocation) &&
             (identical(other.isEnded, isEnded) || other.isEnded == isEnded) &&
             (identical(other.tripRoute, tripRoute) ||
                 other.tripRoute == tripRoute) &&
+            (identical(other.upcomingBusStop, upcomingBusStop) ||
+                other.upcomingBusStop == upcomingBusStop) &&
             const DeepCollectionEquality()
                 .equals(other._busStopsCrossed, _busStopsCrossed));
   }
@@ -295,12 +356,14 @@ class _$TripImpl implements _Trip {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      bus,
+      conductor,
       startDateTime,
       endDateTime,
-      conductor,
       const DeepCollectionEquality().hash(_liveLocation),
       isEnded,
       tripRoute,
+      upcomingBusStop,
       const DeepCollectionEquality().hash(_busStopsCrossed));
 
   @JsonKey(ignore: true)
@@ -320,12 +383,14 @@ class _$TripImpl implements _Trip {
 abstract class _Trip implements Trip {
   const factory _Trip(
           {required final String id,
+          required final Bus bus,
+          required final Conductor conductor,
           @DateTimeJsonConverter() required final DateTime startDateTime,
           @DateTimeJsonConverter() required final DateTime endDateTime,
-          required final Conductor conductor,
           required final List<LiveLocation> liveLocation,
           required final bool isEnded,
           required final TripRoute? tripRoute,
+          required final BusStop? upcomingBusStop,
           required final Map<String, BusStopCrossed>? busStopsCrossed}) =
       _$TripImpl;
 
@@ -334,19 +399,23 @@ abstract class _Trip implements Trip {
   @override
   String get id;
   @override
+  Bus get bus;
+  @override
+  Conductor get conductor;
+  @override
   @DateTimeJsonConverter()
   DateTime get startDateTime;
   @override
   @DateTimeJsonConverter()
   DateTime get endDateTime;
   @override
-  Conductor get conductor;
-  @override
   List<LiveLocation> get liveLocation;
   @override
   bool get isEnded;
   @override
   TripRoute? get tripRoute;
+  @override
+  BusStop? get upcomingBusStop;
   @override
   Map<String, BusStopCrossed>? get busStopsCrossed;
   @override

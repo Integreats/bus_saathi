@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'dashboard/screens/dashboard_screen.dart';
-import 'locale/locale.dart';
+import 'l10n/locale.dart';
 import 'more/screens/more_screen.dart';
 import 'widgets/keep_alive_page.dart';
 import 'widgets/navigation/bottom_nav_bar.dart';

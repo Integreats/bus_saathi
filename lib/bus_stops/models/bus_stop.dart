@@ -24,8 +24,8 @@ class BusStop with _$BusStop {
       _$BusStopFromJson(json);
 
   factory BusStop.empty() {
+    GeoFirePoint geoFirePoint = GeoFirePoint(0, 0);
     const uuid = Uuid();
-    final geoFirePoint = GeoFirePoint(0, 0);
     return BusStop(
       id: uuid.v4(),
       name: '',

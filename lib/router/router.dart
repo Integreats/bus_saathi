@@ -1,3 +1,4 @@
+import 'package:bus_saathi/trip/screens/trip_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -9,7 +10,6 @@ import '../authentication/screens/sign_up_screen.dart';
 import '../bottom_navigation_screen.dart';
 import '../bus_review/screens/bus_review_screen.dart';
 import '../onboarding/onboarding_screen.dart';
-import '../trackbus/track_bus_screen.dart';
 
 /// Caches and Exposes a [GoRouter]
 final routerProvider = Provider<GoRouter>((ref) {
@@ -116,11 +116,11 @@ class RouterNotifier extends ChangeNotifier {
           },
           routes: [
             GoRoute(
-              path: 'trackBus',
+              path: 'trip/:tripId',
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                   key: state.pageKey,
-                  child: const TrackBusScreen(),
+                  child: const TripScreen(),
                   transitionsBuilder: rightToLeftFadeTransition,
                 );
               },

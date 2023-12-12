@@ -1,0 +1,4 @@
+enum RouteDirection {
+  forward,
+  reverse,
+}

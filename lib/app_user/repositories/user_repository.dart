@@ -1,9 +1,9 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../conductor/models/conductor.dart';
 import '../../models/app_user.dart';
 import '../../providers/firebase_providers/firebase_storage.dart';
 import '../../providers/firebase_providers/firestore_provider.dart';
-import '../../user_management/conductor/models/conductor.dart';
 import 'firebase_user_management_repository.dart';
 
 export 'firebase_user_management_repository.dart';

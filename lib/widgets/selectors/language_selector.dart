@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../locale/locale.dart';
+import '../../l10n/locale.dart';
 import '../tile_layout.dart';
 
 class LanguagePickerDialog extends StatefulWidget {

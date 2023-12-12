@@ -1,7 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../conductor/models/conductor.dart';
 import '../../providers/firebase_providers/firestore_provider.dart';
-import '../../user_management/conductor/models/conductor.dart';
 import '../models/bus_stop_crossed.dart';
 import '../models/trip.dart';
 import 'firebase_trip_repostiory.dart';

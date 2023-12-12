@@ -2,9 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../../bus_routes/models/bus_details.dart';
-import '../../json_converters/date_time_json_converter.dart';
-import '../../models/gender.dart';
+import '../../user_management/models/gender.dart';
+import '../json_converters/date_time_json_converter.dart';
 
 part 'conductor.freezed.dart';
 part 'conductor.g.dart';
@@ -13,9 +12,9 @@ part 'conductor.g.dart';
 class Conductor with _$Conductor {
   const factory Conductor({
     required String id,
+    required String busId,
     required String name,
     required int phoneNumber,
-    required BusDetails busDetails,
     required String? profilePicture,
     required Gender gender,
     @DateTimeJsonConverter() required DateTime createdAt,
@@ -32,7 +31,7 @@ class Conductor with _$Conductor {
       name: '',
       phoneNumber: 0,
       profilePicture: null,
-      busDetails: BusDetails.empty(),
+      busId: '',
       gender: Gender.male,
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),

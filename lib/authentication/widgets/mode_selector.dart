@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
 
-import '../../locale/locale.dart';
+import '../../l10n/locale.dart';
 
 class TrackingModeSelector extends StatefulWidget {
   const TrackingModeSelector({

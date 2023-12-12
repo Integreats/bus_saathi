@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../conductor/models/conductor.dart';
+import '../../conductor/models/conductor.dart';
 
 class UserJsonParsers {
 

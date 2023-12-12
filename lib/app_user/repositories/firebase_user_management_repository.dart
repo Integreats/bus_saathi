@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+import '../../conductor/models/conductor.dart';
 import '../../models/app_user.dart';
-import '../../user_management/conductor/models/conductor.dart';
+
 import 'user_repository.dart';
 
 class FirebaseUserManagementRepository extends UserRepository {

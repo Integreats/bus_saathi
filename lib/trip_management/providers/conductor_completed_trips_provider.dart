@@ -2,7 +2,7 @@ import 'package:bus_saathi/providers/firebase_providers/firestore_provider.dart'
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../user_management/conductor/models/conductor.dart';
+import '../../conductor/models/conductor.dart';
 import '../models/trip.dart';
 import '../services/trip_json_parser.dart';
 

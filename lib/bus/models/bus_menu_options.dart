@@ -1,0 +1,4 @@
+enum BusMenuOptions {
+  edit,
+  remove,
+}

@@ -1,0 +1,1 @@
+enum ConductorMenuOptions { edit, remove }

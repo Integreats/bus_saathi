@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: type=lint
+
 part of 'conductor.dart';
 
 // **************************************************************************
@@ -9,10 +11,9 @@ part of 'conductor.dart';
 _$ConductorImpl _$$ConductorImplFromJson(Map<String, dynamic> json) =>
     _$ConductorImpl(
       id: json['id'] as String,
+      busId: json['busId'] as String,
       name: json['name'] as String,
       phoneNumber: json['phoneNumber'] as int,
-      busDetails:
-          BusDetails.fromJson(json['busDetails'] as Map<String, dynamic>),
       profilePicture: json['profilePicture'] as String?,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       createdAt: const DateTimeJsonConverter()
@@ -24,9 +25,9 @@ _$ConductorImpl _$$ConductorImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ConductorImplToJson(_$ConductorImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'busId': instance.busId,
       'name': instance.name,
       'phoneNumber': instance.phoneNumber,
-      'busDetails': instance.busDetails,
       'profilePicture': instance.profilePicture,
       'gender': _$GenderEnumMap[instance.gender]!,
       'createdAt': const DateTimeJsonConverter().toJson(instance.createdAt),

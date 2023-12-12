@@ -21,9 +21,9 @@ Conductor _$ConductorFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Conductor {
   String get id => throw _privateConstructorUsedError;
+  String get busId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get phoneNumber => throw _privateConstructorUsedError;
-  BusDetails get busDetails => throw _privateConstructorUsedError;
   String? get profilePicture => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
   @DateTimeJsonConverter()
@@ -44,15 +44,13 @@ abstract class $ConductorCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String busId,
       String name,
       int phoneNumber,
-      BusDetails busDetails,
       String? profilePicture,
       Gender gender,
       @DateTimeJsonConverter() DateTime createdAt,
       @DateTimeJsonConverter() DateTime updatedAt});
-
-  $BusDetailsCopyWith<$Res> get busDetails;
 }
 
 /// @nodoc
@@ -69,9 +67,9 @@ class _$ConductorCopyWithImpl<$Res, $Val extends Conductor>
   @override
   $Res call({
     Object? id = null,
+    Object? busId = null,
     Object? name = null,
     Object? phoneNumber = null,
-    Object? busDetails = null,
     Object? profilePicture = freezed,
     Object? gender = null,
     Object? createdAt = null,
@@ -82,6 +80,10 @@ class _$ConductorCopyWithImpl<$Res, $Val extends Conductor>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      busId: null == busId
+          ? _value.busId
+          : busId // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -90,10 +92,6 @@ class _$ConductorCopyWithImpl<$Res, $Val extends Conductor>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      busDetails: null == busDetails
-          ? _value.busDetails
-          : busDetails // ignore: cast_nullable_to_non_nullable
-              as BusDetails,
       profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
@@ -112,14 +110,6 @@ class _$ConductorCopyWithImpl<$Res, $Val extends Conductor>
               as DateTime,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $BusDetailsCopyWith<$Res> get busDetails {
-    return $BusDetailsCopyWith<$Res>(_value.busDetails, (value) {
-      return _then(_value.copyWith(busDetails: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -132,16 +122,13 @@ abstract class _$$ConductorImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
+      String busId,
       String name,
       int phoneNumber,
-      BusDetails busDetails,
       String? profilePicture,
       Gender gender,
       @DateTimeJsonConverter() DateTime createdAt,
       @DateTimeJsonConverter() DateTime updatedAt});
-
-  @override
-  $BusDetailsCopyWith<$Res> get busDetails;
 }
 
 /// @nodoc
@@ -156,9 +143,9 @@ class __$$ConductorImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? busId = null,
     Object? name = null,
     Object? phoneNumber = null,
-    Object? busDetails = null,
     Object? profilePicture = freezed,
     Object? gender = null,
     Object? createdAt = null,
@@ -169,6 +156,10 @@ class __$$ConductorImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      busId: null == busId
+          ? _value.busId
+          : busId // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -177,10 +168,6 @@ class __$$ConductorImplCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      busDetails: null == busDetails
-          ? _value.busDetails
-          : busDetails // ignore: cast_nullable_to_non_nullable
-              as BusDetails,
       profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
@@ -206,9 +193,9 @@ class __$$ConductorImplCopyWithImpl<$Res>
 class _$ConductorImpl implements _Conductor {
   const _$ConductorImpl(
       {required this.id,
+      required this.busId,
       required this.name,
       required this.phoneNumber,
-      required this.busDetails,
       required this.profilePicture,
       required this.gender,
       @DateTimeJsonConverter() required this.createdAt,
@@ -220,11 +207,11 @@ class _$ConductorImpl implements _Conductor {
   @override
   final String id;
   @override
+  final String busId;
+  @override
   final String name;
   @override
   final int phoneNumber;
-  @override
-  final BusDetails busDetails;
   @override
   final String? profilePicture;
   @override
@@ -238,7 +225,7 @@ class _$ConductorImpl implements _Conductor {
 
   @override
   String toString() {
-    return 'Conductor(id: $id, name: $name, phoneNumber: $phoneNumber, busDetails: $busDetails, profilePicture: $profilePicture, gender: $gender, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Conductor(id: $id, busId: $busId, name: $name, phoneNumber: $phoneNumber, profilePicture: $profilePicture, gender: $gender, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -247,11 +234,10 @@ class _$ConductorImpl implements _Conductor {
         (other.runtimeType == runtimeType &&
             other is _$ConductorImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.busId, busId) || other.busId == busId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
-            (identical(other.busDetails, busDetails) ||
-                other.busDetails == busDetails) &&
             (identical(other.profilePicture, profilePicture) ||
                 other.profilePicture == profilePicture) &&
             (identical(other.gender, gender) || other.gender == gender) &&
@@ -263,8 +249,8 @@ class _$ConductorImpl implements _Conductor {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, phoneNumber,
-      busDetails, profilePicture, gender, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, busId, name, phoneNumber,
+      profilePicture, gender, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -283,9 +269,9 @@ class _$ConductorImpl implements _Conductor {
 abstract class _Conductor implements Conductor {
   const factory _Conductor(
           {required final String id,
+          required final String busId,
           required final String name,
           required final int phoneNumber,
-          required final BusDetails busDetails,
           required final String? profilePicture,
           required final Gender gender,
           @DateTimeJsonConverter() required final DateTime createdAt,
@@ -298,11 +284,11 @@ abstract class _Conductor implements Conductor {
   @override
   String get id;
   @override
+  String get busId;
+  @override
   String get name;
   @override
   int get phoneNumber;
-  @override
-  BusDetails get busDetails;
   @override
   String? get profilePicture;
   @override

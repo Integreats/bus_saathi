@@ -32,9 +32,11 @@ class BusRouteJsonParsers {
       }
       final convertedBusRoute = BusRoute(
         id: currentRoute.id,
+        routeNumber: currentRoute.routeNumber,
+        direction: currentRoute.direction,
         origin: stopMap[currentRoute.origin] ?? BusStop.empty(),
-        destination: stopMap[currentRoute.destination] ?? BusStop.empty(),
         stops: busStopList,
+        destination: stopMap[currentRoute.destination] ?? BusStop.empty(),
         createdAt: currentRoute.createdAt,
         updatedAt: currentRoute.updatedAt,
       );
@@ -50,9 +52,11 @@ class BusRouteJsonParsers {
     }
     return RawBusRoute(
       id: busRoute.id,
+      routeNumber: busRoute.routeNumber,
+      direction: busRoute.direction,
       origin: busRoute.origin.id,
-      destination: busRoute.destination.id,
       stops: busStopIds,
+      destination: busRoute.destination.id,
       createdAt: busRoute.createdAt,
       updatedAt: busRoute.updatedAt,
     );

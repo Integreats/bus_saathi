@@ -21,9 +21,11 @@ RawBusRoute _$RawBusRouteFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RawBusRoute {
   String get id => throw _privateConstructorUsedError;
+  String get routeNumber => throw _privateConstructorUsedError;
+  RouteDirection get direction => throw _privateConstructorUsedError;
   String get origin => throw _privateConstructorUsedError;
-  String get destination => throw _privateConstructorUsedError;
   List<String> get stops => throw _privateConstructorUsedError;
+  String get destination => throw _privateConstructorUsedError;
   @DateTimeJsonConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
   @DateTimeJsonConverter()
@@ -43,9 +45,11 @@ abstract class $RawBusRouteCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String routeNumber,
+      RouteDirection direction,
       String origin,
-      String destination,
       List<String> stops,
+      String destination,
       @DateTimeJsonConverter() DateTime createdAt,
       @DateTimeJsonConverter() DateTime updatedAt});
 }
@@ -64,9 +68,11 @@ class _$RawBusRouteCopyWithImpl<$Res, $Val extends RawBusRoute>
   @override
   $Res call({
     Object? id = null,
+    Object? routeNumber = null,
+    Object? direction = null,
     Object? origin = null,
-    Object? destination = null,
     Object? stops = null,
+    Object? destination = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -75,18 +81,26 @@ class _$RawBusRouteCopyWithImpl<$Res, $Val extends RawBusRoute>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      routeNumber: null == routeNumber
+          ? _value.routeNumber
+          : routeNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      direction: null == direction
+          ? _value.direction
+          : direction // ignore: cast_nullable_to_non_nullable
+              as RouteDirection,
       origin: null == origin
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
-              as String,
-      destination: null == destination
-          ? _value.destination
-          : destination // ignore: cast_nullable_to_non_nullable
               as String,
       stops: null == stops
           ? _value.stops
           : stops // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      destination: null == destination
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -109,9 +123,11 @@ abstract class _$$RawBusRouteImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
+      String routeNumber,
+      RouteDirection direction,
       String origin,
-      String destination,
       List<String> stops,
+      String destination,
       @DateTimeJsonConverter() DateTime createdAt,
       @DateTimeJsonConverter() DateTime updatedAt});
 }
@@ -128,9 +144,11 @@ class __$$RawBusRouteImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? routeNumber = null,
+    Object? direction = null,
     Object? origin = null,
-    Object? destination = null,
     Object? stops = null,
+    Object? destination = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -139,18 +157,26 @@ class __$$RawBusRouteImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      routeNumber: null == routeNumber
+          ? _value.routeNumber
+          : routeNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      direction: null == direction
+          ? _value.direction
+          : direction // ignore: cast_nullable_to_non_nullable
+              as RouteDirection,
       origin: null == origin
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
-              as String,
-      destination: null == destination
-          ? _value.destination
-          : destination // ignore: cast_nullable_to_non_nullable
               as String,
       stops: null == stops
           ? _value._stops
           : stops // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      destination: null == destination
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -168,9 +194,11 @@ class __$$RawBusRouteImplCopyWithImpl<$Res>
 class _$RawBusRouteImpl implements _RawBusRoute {
   _$RawBusRouteImpl(
       {required this.id,
+      required this.routeNumber,
+      required this.direction,
       required this.origin,
-      required this.destination,
       required final List<String> stops,
+      required this.destination,
       @DateTimeJsonConverter() required this.createdAt,
       @DateTimeJsonConverter() required this.updatedAt})
       : _stops = stops;
@@ -181,9 +209,11 @@ class _$RawBusRouteImpl implements _RawBusRoute {
   @override
   final String id;
   @override
-  final String origin;
+  final String routeNumber;
   @override
-  final String destination;
+  final RouteDirection direction;
+  @override
+  final String origin;
   final List<String> _stops;
   @override
   List<String> get stops {
@@ -193,6 +223,8 @@ class _$RawBusRouteImpl implements _RawBusRoute {
   }
 
   @override
+  final String destination;
+  @override
   @DateTimeJsonConverter()
   final DateTime createdAt;
   @override
@@ -201,7 +233,7 @@ class _$RawBusRouteImpl implements _RawBusRoute {
 
   @override
   String toString() {
-    return 'RawBusRoute(id: $id, origin: $origin, destination: $destination, stops: $stops, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'RawBusRoute(id: $id, routeNumber: $routeNumber, direction: $direction, origin: $origin, stops: $stops, destination: $destination, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -210,10 +242,14 @@ class _$RawBusRouteImpl implements _RawBusRoute {
         (other.runtimeType == runtimeType &&
             other is _$RawBusRouteImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.routeNumber, routeNumber) ||
+                other.routeNumber == routeNumber) &&
+            (identical(other.direction, direction) ||
+                other.direction == direction) &&
             (identical(other.origin, origin) || other.origin == origin) &&
+            const DeepCollectionEquality().equals(other._stops, _stops) &&
             (identical(other.destination, destination) ||
                 other.destination == destination) &&
-            const DeepCollectionEquality().equals(other._stops, _stops) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -222,8 +258,16 @@ class _$RawBusRouteImpl implements _RawBusRoute {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, origin, destination,
-      const DeepCollectionEquality().hash(_stops), createdAt, updatedAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      routeNumber,
+      direction,
+      origin,
+      const DeepCollectionEquality().hash(_stops),
+      destination,
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -242,9 +286,11 @@ class _$RawBusRouteImpl implements _RawBusRoute {
 abstract class _RawBusRoute implements RawBusRoute {
   factory _RawBusRoute(
           {required final String id,
+          required final String routeNumber,
+          required final RouteDirection direction,
           required final String origin,
-          required final String destination,
           required final List<String> stops,
+          required final String destination,
           @DateTimeJsonConverter() required final DateTime createdAt,
           @DateTimeJsonConverter() required final DateTime updatedAt}) =
       _$RawBusRouteImpl;
@@ -255,11 +301,15 @@ abstract class _RawBusRoute implements RawBusRoute {
   @override
   String get id;
   @override
+  String get routeNumber;
+  @override
+  RouteDirection get direction;
+  @override
   String get origin;
   @override
-  String get destination;
-  @override
   List<String> get stops;
+  @override
+  String get destination;
   @override
   @DateTimeJsonConverter()
   DateTime get createdAt;

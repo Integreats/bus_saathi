@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
-import '../locale/locale.dart';
+import '../l10n/locale.dart';
 import 'tile_layout.dart';
 
 class AppDrawer extends StatelessWidget {

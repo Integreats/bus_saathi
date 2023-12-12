@@ -9,9 +9,11 @@ part of 'raw_bus_route.dart';
 _$RawBusRouteImpl _$$RawBusRouteImplFromJson(Map<String, dynamic> json) =>
     _$RawBusRouteImpl(
       id: json['id'] as String,
+      routeNumber: json['routeNumber'] as String,
+      direction: $enumDecode(_$RouteDirectionEnumMap, json['direction']),
       origin: json['origin'] as String,
-      destination: json['destination'] as String,
       stops: (json['stops'] as List<dynamic>).map((e) => e as String).toList(),
+      destination: json['destination'] as String,
       createdAt: const DateTimeJsonConverter()
           .fromJson(json['createdAt'] as Timestamp),
       updatedAt: const DateTimeJsonConverter()
@@ -21,9 +23,16 @@ _$RawBusRouteImpl _$$RawBusRouteImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$RawBusRouteImplToJson(_$RawBusRouteImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'routeNumber': instance.routeNumber,
+      'direction': _$RouteDirectionEnumMap[instance.direction]!,
       'origin': instance.origin,
-      'destination': instance.destination,
       'stops': instance.stops,
+      'destination': instance.destination,
       'createdAt': const DateTimeJsonConverter().toJson(instance.createdAt),
       'updatedAt': const DateTimeJsonConverter().toJson(instance.updatedAt),
     };
+
+const _$RouteDirectionEnumMap = {
+  RouteDirection.forward: 'forward',
+  RouteDirection.reverse: 'reverse',
+};

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../locale/locale.dart';
+import '../l10n/locale.dart';
 import '../models/app_user_preferences.dart';
 import '../themes/theme_mode_extension.dart';
 
