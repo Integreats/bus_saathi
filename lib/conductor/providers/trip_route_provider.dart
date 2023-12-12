@@ -1,6 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../trip_management/models/trip_route.dart';
+
 
 // final tripRouteProvider = StateProvider<TripRoute?>((ref) {
 //   final busRoute =

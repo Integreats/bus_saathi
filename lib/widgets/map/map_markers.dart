@@ -3,8 +3,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 
 import '../../bus_stops/models/bus_stop.dart';
+import '../../trip/models/trip_route.dart';
 import '../../trip_management/models/live_location.dart';
-import '../../trip_management/models/trip_route.dart';
 
 class MapMarkers {
   static late BitmapDescriptor markerIcon;

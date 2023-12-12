@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../bus_routes/models/raw_bus_route.dart';
 import '../../bus_stops/models/bus_stop.dart';
-import '../models/trip.dart';
+import '../../trip/models/trip.dart';
 
 class TripJsonParsers {
   static List<RawBusRoute> parseRoutes(

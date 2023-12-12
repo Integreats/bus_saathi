@@ -1,4 +1,4 @@
-import '../trip_management/models/trip.dart';
+import '../trip/models/trip.dart';
 
 class ConductorTripsServices {
   static Trip? getCurrentTrip(List<Trip> trips) {

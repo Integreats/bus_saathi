@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../conductor/models/conductor.dart';
-import '../models/trip.dart';
+import '../../trip/models/trip.dart';
 import '../services/trip_json_parser.dart';
 
 final conductorCompletedTripsListProvider =

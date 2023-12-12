@@ -8,8 +8,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../providers/nearby_bus_stops_marker_provider.dart';
 
-class NearbyBusStopsDisplayerMapView extends StatefulHookConsumerWidget {
-  const NearbyBusStopsDisplayerMapView({super.key});
+class NearbyBusStopsMapView extends StatefulHookConsumerWidget {
+  const NearbyBusStopsMapView({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -17,7 +17,7 @@ class NearbyBusStopsDisplayerMapView extends StatefulHookConsumerWidget {
 }
 
 class _BusStopsDisplayerMapViewState
-    extends ConsumerState<NearbyBusStopsDisplayerMapView> {
+    extends ConsumerState<NearbyBusStopsMapView> {
   late final CameraPosition _initialCameraPosition;
   late GoogleMapController? googleMapController;
 

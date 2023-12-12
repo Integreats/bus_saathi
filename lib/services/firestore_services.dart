@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../conductor/models/conductor.dart';
-import '../trip_management/models/trip.dart';
-
+import '../trip/models/trip.dart';
 import 'conductor_trip_service.dart';
 
 class FirestoreServices {
