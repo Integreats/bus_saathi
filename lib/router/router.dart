@@ -11,7 +11,7 @@ import '../bottom_navigation_screen.dart';
 import '../bus_review/screens/bus_review_screen.dart';
 import '../onboarding/onboarding_screen.dart';
 import '../search/screens/search_screen.dart';
-import '../trip/screens/trips_screen.dart';
+import '../trip/screens/running_trips_screen.dart';
 
 /// Caches and Exposes a [GoRouter]
 final routerProvider = Provider<GoRouter>((ref) {
@@ -132,7 +132,10 @@ class RouterNotifier extends ChangeNotifier {
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                   key: state.pageKey,
-                  child: const TripScreen(),
+                  child: TripScreen(
+                    //TODO: WARNING
+                    tripId: state.pathParameters['tripId']!,
+                  ),
                   transitionsBuilder: rightToLeftFadeTransition,
                 );
               },
@@ -140,10 +143,9 @@ class RouterNotifier extends ChangeNotifier {
             GoRoute(
               path: 'trips/:routeNumber',
               pageBuilder: (context, state) {
-                print(state.pathParameters['routeNumber']);
                 return CustomTransitionPage(
                   key: state.pageKey,
-                  child: TripsScreen(
+                  child: RunningTripsScreen(
                     routeNumber: state.pathParameters['routeNumber']!,
                   ),
                   transitionsBuilder: rightToLeftFadeTransition,

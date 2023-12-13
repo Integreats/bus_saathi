@@ -8,7 +8,12 @@ import '../provider/trip_stream_provider.dart';
 import '../views/trip_map_view.dart';
 
 class TripScreen extends ConsumerWidget {
-  const TripScreen({super.key});
+  const TripScreen({
+    super.key,
+    required this.tripId,
+  });
+
+  final String tripId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,8 +33,8 @@ class TripScreen extends ConsumerWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
-                    child: const TripMapView(
-                      tripId: "06d8782e-c487-4a21-bd78-4490a8dcc935",
+                    child: TripMapView(
+                      tripId: tripId,
                     ),
                   ),
                 ),
@@ -75,7 +80,8 @@ class TripScreen extends ConsumerWidget {
               child: Consumer(
                 builder: (context, ref, child) {
                   final trip = ref.watch(tripStreamProvider(
-                      "06d8782e-c487-4a21-bd78-4490a8dcc935"));
+                    tripId,
+                  ));
                   return trip.when(
                     skipError: true,
                     data: (data) {

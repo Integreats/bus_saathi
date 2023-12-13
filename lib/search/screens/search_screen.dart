@@ -35,7 +35,8 @@ class SearchScreen extends HookConsumerWidget {
                         return BusRouteListTile(
                           busRoute: busRoutes[index],
                           onTap: () {
-                            context.go('/trips/${busRoutes[index].routeNumber}');
+                            context
+                                .push('/trips/${busRoutes[index].routeNumber}');
                           },
                         );
                       },

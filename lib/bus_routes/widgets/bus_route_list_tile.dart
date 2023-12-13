@@ -20,59 +20,61 @@ class BusRouteListTile extends HookConsumerWidget {
     final destination = busRoute.destination;
     return InkWell(
       onTap: onTap,
-      child: Column(children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24),
-          child: ListTile(
-            minLeadingWidth: 0,
-            minVerticalPadding: 0,
-            contentPadding: EdgeInsets.zero,
-            leading: CircleAvatar(
-              radius: 22,
-              backgroundColor: theme.colorScheme.primary.withOpacity(0.15),
-              child: Text(
-                origin.name.substring(0, 1),
-                style: TextStyle(
-                  color: theme.colorScheme.primary,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24),
+            child: ListTile(
+              minLeadingWidth: 0,
+              minVerticalPadding: 0,
+              contentPadding: EdgeInsets.zero,
+              leading: CircleAvatar(
+                radius: 22,
+                backgroundColor: theme.colorScheme.primary.withOpacity(0.15),
+                child: Text(
+                  origin.name.substring(0, 1),
+                  style: TextStyle(
+                    color: theme.colorScheme.primary,
+                  ),
                 ),
               ),
-            ),
-            title: Text(
-              busRoute.routeNumber,
-              style: theme.textTheme.titleMedium!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                Text(
-                  origin.name,
-                  style: TextStyle(
-                    color: theme.colorScheme.onBackground,
+              title: Text(
+                busRoute.routeNumber,
+                style: theme.textTheme.titleMedium!
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+              subtitle: Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  Text(
+                    origin.name,
+                    style: TextStyle(
+                      color: theme.colorScheme.onBackground,
+                    ),
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Icon(
-                    Icons.arrow_forward_rounded,
-                    size: 16,
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Icon(
+                      Icons.arrow_forward_rounded,
+                      size: 16,
+                    ),
                   ),
-                ),
-                Text(
-                  destination.name,
-                  style: TextStyle(
-                    color: theme.colorScheme.onBackground,
+                  Text(
+                    destination.name,
+                    style: TextStyle(
+                      color: theme.colorScheme.onBackground,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-        const Divider(
-          height: 1,
-          thickness: 0.05,
-        ),
-      ]),
+          const Divider(
+            height: 1,
+            thickness: 0.05,
+          ),
+        ],
+      ),
     );
   }
 }

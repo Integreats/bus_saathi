@@ -9,8 +9,8 @@ import '../../extenstions.dart';
 import '../provider/running_trips_stream_provider.dart';
 import '../services/trip_map_marker_service.dart';
 
-class TripsMapView extends StatefulHookConsumerWidget {
-  const TripsMapView({
+class RunningTripsMapView extends StatefulHookConsumerWidget {
+  const RunningTripsMapView({
     super.key,
     required this.routeNumber,
   });
@@ -18,10 +18,10 @@ class TripsMapView extends StatefulHookConsumerWidget {
   final String routeNumber;
 
   @override
-  ConsumerState<TripsMapView> createState() => _TripMapViewState();
+  ConsumerState<RunningTripsMapView> createState() => _TripMapViewState();
 }
 
-class _TripMapViewState extends ConsumerState<TripsMapView> {
+class _TripMapViewState extends ConsumerState<RunningTripsMapView> {
   GoogleMapController? googleMapController;
   late final ValueNotifier<
           ({Set<Marker>? busStopsMarkers, Polyline? tripRoutePolyline})>
