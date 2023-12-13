@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
+import '../../bus_routes/models/route_direction.dart';
 import '../../conductor/models/conductor.dart';
 import '../../trip_management/services/trip_json_parser.dart';
 import '../models/trip.dart';
@@ -27,6 +28,35 @@ class FirebaseTripRepository extends TripRepository {
       final parsedTrip = Trip.fromJson(trip.data()!);
 
       yield parsedTrip;
+    }
+  }
+
+  @override
+  Stream<List<Trip>> getTripsStream({
+    required String routeNumber,
+    required RouteDirection routeDirection,
+    bool? activeTripsOnly,
+  }) async* {
+    Query tripsStreamQuery = tripsCollection
+        .where('bus.routeNumber', isEqualTo: routeNumber.trim().toUpperCase())
+        .where(
+          'tripRoute.direction',
+          isEqualTo: routeDirection.name,
+        );
+
+    if (activeTripsOnly != null) {
+      tripsStreamQuery =
+          tripsStreamQuery.where('isEnded', isEqualTo: !activeTripsOnly);
+    }
+
+    final tripsStream = tripsStreamQuery.snapshots();
+    await for (final trips in tripsStream) {
+      final List<Trip> tripsList = [];
+      for (final trip in trips.docs) {
+        final parsedTrip = Trip.fromJson(trip.data() as Map<String, dynamic>);
+        tripsList.add(parsedTrip);
+      }
+      yield tripsList;
     }
   }
 

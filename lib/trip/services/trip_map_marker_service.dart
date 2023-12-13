@@ -10,13 +10,12 @@ class TripMapMarkerService {
     required this.trip,
   });
 
-  final Trip? trip;
+  final Trip trip;
 
-  TripRoute? get tripRoute => trip?.tripRoute;
+  TripRoute? get tripRoute => trip.tripRoute;
 
-  Marker? get busMarker {
-    if (trip == null) return null;
-    return MapMarkers.getBusMarker(trip!.liveLocation.first);
+  Marker get busMarker {
+    return MapMarkers.getBusMarker(trip.liveLocation.first);
   }
 
   ({Polyline tripRoutePolyline, Set<Marker> busStopsMarkers})

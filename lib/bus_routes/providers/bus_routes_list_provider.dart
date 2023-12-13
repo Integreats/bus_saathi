@@ -1,13 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../bus_routes/models/bus_route.dart';
 import '../../bus_stops/services/bus_stop_json_parser.dart';
 import '../../providers/firebase_providers/firestore_provider.dart';
-
+import '../models/bus_route.dart';
 import '../services/bus_route_json_parser.dart';
 
-final busRouteListProvider = StreamProvider<List<BusRoute>>((ref) async* {
+final busRoutesListProvider = StreamProvider<List<BusRoute>>((ref) async* {
   final firestore = ref.watch(firestoreProvider);
   final rawBusStream =
       firestore.collection('busRoutes').orderBy('updatedAt').snapshots();

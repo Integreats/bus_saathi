@@ -4,23 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../bus_routes/models/route_direction.dart';
 import '../../extenstions.dart';
-import '../provider/trip_stream_provider.dart';
+import '../provider/running_trips_stream_provider.dart';
 import '../services/trip_map_marker_service.dart';
 
-class TripMapView extends StatefulHookConsumerWidget {
-  const TripMapView({
+class TripsMapView extends StatefulHookConsumerWidget {
+  const TripsMapView({
     super.key,
-    required this.tripId,
+    required this.routeNumber,
   });
 
-  final String tripId;
+  final String routeNumber;
 
   @override
-  ConsumerState<TripMapView> createState() => _TripMapViewState();
+  ConsumerState<TripsMapView> createState() => _TripMapViewState();
 }
 
-class _TripMapViewState extends ConsumerState<TripMapView> {
+class _TripMapViewState extends ConsumerState<TripsMapView> {
   GoogleMapController? googleMapController;
   late final ValueNotifier<
           ({Set<Marker>? busStopsMarkers, Polyline? tripRoutePolyline})>
@@ -43,16 +44,23 @@ class _TripMapViewState extends ConsumerState<TripMapView> {
 
   @override
   Widget build(BuildContext context) {
-    final tripStream = ref.watch(tripStreamProvider(widget.tripId));
+    final runningTripsStream = ref.watch(runningTripsStreamProvider((
+      routeNumber: widget.routeNumber,
+      routeDirection: RouteDirection.forward
+    )));
 
-    return tripStream.when(
+    return runningTripsStream.when(
       skipError: true,
       skipLoadingOnRefresh: true,
       skipLoadingOnReload: true,
-      data: (data) {
-        final tripMapMarkerService = TripMapMarkerService(trip: data);
+      data: (trips) {
+        if (trips.isEmpty) return const Text("No Running Trips");
+        final tripMapMarkerService = TripMapMarkerService(trip: trips.first);
         plotsNotifier.value = tripMapMarkerService.plotRouteMarkersPolylines();
-        final busMarker = tripMapMarkerService.busMarker;
+        final busMarkers = trips.map((e) {
+          final tripMarkerService = TripMapMarkerService(trip: e);
+          return tripMarkerService.busMarker;
+        }).toSet();
         return ValueListenableBuilder(
           valueListenable: plotsNotifier,
           builder: (context, value, _) {
@@ -66,7 +74,7 @@ class _TripMapViewState extends ConsumerState<TripMapView> {
                   CameraUpdate.newCameraPosition(
                     CameraPosition(
                       target: LatLngExtension.fromPosition(
-                        data.liveLocation.first,
+                        trips.first.liveLocation.first,
                       ),
                       zoom: currentMapZoom,
                     ),
@@ -77,7 +85,7 @@ class _TripMapViewState extends ConsumerState<TripMapView> {
                 if (value.tripRoutePolyline != null) value.tripRoutePolyline!,
               },
               markers: {
-                busMarker,
+                ...busMarkers,
                 if (value.busStopsMarkers != null) ...value.busStopsMarkers!,
               },
               mapType: MapType.normal,

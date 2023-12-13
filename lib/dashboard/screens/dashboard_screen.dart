@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:unicons/unicons.dart';
 
 import '../../bus_stops/nearby_bus_stops/views/nearby_bus_stops_displayer_map_view.dart';
 import '../../l10n/locale.dart';
@@ -22,6 +22,14 @@ class DashboardScreen extends ConsumerWidget {
             ),
           ],
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.go('/search');
+            },
+            icon: const Icon(UniconsLine.search),
+          ),
+        ],
       ),
       body: CustomScrollView(
         slivers: [
