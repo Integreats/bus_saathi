@@ -38,7 +38,7 @@ class FirebaseTripRepository extends TripRepository {
     bool? activeTripsOnly,
   }) async* {
     Query tripsStreamQuery = tripsCollection
-        .where('bus.routeNumber', isEqualTo: routeNumber.trim().toUpperCase())
+        .where('tripRoute.routeNumber', isEqualTo: routeNumber.trim().toUpperCase())
         .where(
           'tripRoute.direction',
           isEqualTo: routeDirection.name,
