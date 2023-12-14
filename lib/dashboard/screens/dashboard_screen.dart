@@ -1,3 +1,4 @@
+import 'package:bus_saathi/providers/location_stream_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -67,9 +68,10 @@ class DashboardScreen extends ConsumerWidget {
           ),
           Consumer(
             builder: (context, ref, child) {
+              final location = ref.watch(locationStreamProvider).value;
               final nearbyBusRoutes = ref.watch(nearbyBusRoutesProvider((
-                latitude: 12.8896038,
-                longitude: 77.5975395,
+                latitude: location?.latitude ?? 12.9378567,
+                longitude: location?.longitude ?? 77.5990891,
               )));
               return SliverList(
                 delegate: SliverChildBuilderDelegate(
