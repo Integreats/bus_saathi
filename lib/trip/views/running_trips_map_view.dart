@@ -5,8 +5,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../bus_routes/models/route_direction.dart';
+import '../../bus_routes/providers/bus_route_by_route_number_provider.dart';
 import '../../extenstions.dart';
 import '../provider/running_trips_stream_provider.dart';
+import '../services/bus_route_map_marker_service.dart';
 import '../services/trip_map_marker_service.dart';
 
 class RunningTripsMapView extends StatefulHookConsumerWidget {
@@ -48,19 +50,29 @@ class _TripMapViewState extends ConsumerState<RunningTripsMapView> {
       routeNumber: widget.routeNumber,
       routeDirection: RouteDirection.forward
     )));
-
+    final busRoute =
+        ref.watch(busRouteByRouteNumberProvider(widget.routeNumber));
+    if (busRoute == null) return const Text("Route not found");
     return runningTripsStream.when(
       skipError: true,
       skipLoadingOnRefresh: true,
       skipLoadingOnReload: true,
       data: (trips) {
-        if (trips.isEmpty) return const Text("No Running Trips");
-        final tripMapMarkerService = TripMapMarkerService(trip: trips.first);
-        plotsNotifier.value = tripMapMarkerService.plotRouteMarkersPolylines();
-        final busMarkers = trips.map((e) {
-          final tripMarkerService = TripMapMarkerService(trip: e);
-          return tripMarkerService.busMarker;
-        }).toSet();
+        Set<Marker> busMarkers = {};
+        if (trips.isNotEmpty) {
+          final tripMapMarkerService = TripMapMarkerService(trip: trips.first);
+          plotsNotifier.value =
+              tripMapMarkerService.plotRouteMarkersPolylines();
+          busMarkers = trips.map((e) {
+            final busMarkerService = TripMapMarkerService(trip: e);
+
+            return busMarkerService.busMarker;
+          }).toSet();
+        } else {
+          final busMapMarkerService =
+              BusRouteMapMarkerService(busRoute: busRoute);
+          plotsNotifier.value = busMapMarkerService.plotRouteMarkersPolylines();
+        }
         return ValueListenableBuilder(
           valueListenable: plotsNotifier,
           builder: (context, value, _) {
