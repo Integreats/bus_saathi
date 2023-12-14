@@ -1,3 +1,4 @@
+import 'package:bus_saathi/providers/location_stream_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -43,11 +44,11 @@ class _BusStopsDisplayerMapViewState
   @override
   void initState() {
     super.initState();
-
-    _initialCameraPosition = const CameraPosition(
+    final userLocation = ref.read(locationStreamProvider).value;
+    _initialCameraPosition = CameraPosition(
       target: LatLng(
-        12.8882021,
-        77.5949057,
+        userLocation?.latitude ?? 12.8882021,
+        userLocation?.longitude ?? 77.5949057,
       ),
       zoom: 14.5,
     );
@@ -75,15 +76,30 @@ class _BusStopsDisplayerMapViewState
                   center: lastCameraPosition,
                   radius: boundedRegionCircle.radius,
                 )));
-                print(busStopMarkers.length);
+
                 return GoogleMap(
                   circles: circles,
                   myLocationButtonEnabled: true,
+                  myLocationEnabled: true,
                   zoomControlsEnabled: false,
                   initialCameraPosition: _initialCameraPosition,
                   markers: busStopMarkers,
                   onMapCreated: (controller) {
                     googleMapController = controller;
+                    final userLocation =
+                        ref.watch(locationStreamProvider).value;
+                    if (userLocation != null) {
+                      googleMapController
+                          ?.animateCamera(CameraUpdate.newCameraPosition(
+                        CameraPosition(
+                          target: LatLng(
+                            userLocation.latitude,
+                            userLocation.longitude,
+                          ),
+                          zoom: 14.5,
+                        ),
+                      ));
+                    }
                   },
                   onCameraMove: (position) {
                     circles.removeWhere((element) =>
