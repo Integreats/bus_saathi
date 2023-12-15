@@ -1,6 +1,7 @@
 import 'package:bus_saathi/providers/location_stream_provider.dart';
 import 'package:bus_saathi/trip/widgets/trip_route_table.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -73,34 +74,24 @@ class TripScreen extends ConsumerWidget {
                         },
                         label: const Text("Share Details"),
                       ),
-                      TextButton.icon(
+                      const Gap(8),
+                      ActionChip(
                         onPressed: () {
-                          context.go('/busReview');
+                          context.push('/busReview');
                         },
-                        icon: const Icon(UniconsLine.star),
+                        avatar: const Icon(UniconsLine.star),
                         label: const Text(
                           'Review Bus',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
                         ),
                       ),
-                      TextButton.icon(
+                      const Gap(8),
+                      ActionChip(
                         onPressed: () {
                           // context.go('/busReview');
                         },
-                        icon: const Icon(UniconsLine.star),
+                        avatar: const Icon(Icons.volume_up_outlined),
                         label: const Text(
                           'Announcements',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.add_alert_outlined,
                         ),
                       ),
                     ],

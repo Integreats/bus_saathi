@@ -44,15 +44,15 @@ ThemeData lightTheme() {
         color: CustomColors.blueBlack,
       ),
     ),
-    chipTheme: const ChipThemeData(
-      shape: StadiumBorder(),
+    chipTheme: ChipThemeData(
+      shape: const StadiumBorder(),
       side: BorderSide.none,
       backgroundColor: CustomColors.blueBlack,
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
         color: Colors.white,
         size: 16,
       ),
-      labelStyle: TextStyle(
+      labelStyle: GoogleFonts.raleway(
         color: Colors.white,
       ),
     ),
