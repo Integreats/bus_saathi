@@ -32,3 +32,9 @@ Map<String, dynamic> _$$LiveLocationImplToJson(_$LiveLocationImpl instance) =>
       'speedAccuracy': instance.speedAccuracy,
       'timestamp': const DateTimeJsonConverter().toJson(instance.timestamp),
     };
+
+// **************************************************************************
+// RealmObjectGenerator
+// **************************************************************************
+
+// ignore_for_file: type=lint

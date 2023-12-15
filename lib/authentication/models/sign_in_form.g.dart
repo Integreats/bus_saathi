@@ -17,3 +17,9 @@ Map<String, dynamic> _$$SignInFormImplToJson(_$SignInFormImpl instance) =>
       'emailAddress': instance.emailAddress,
       'password': instance.password,
     };
+
+// **************************************************************************
+// RealmObjectGenerator
+// **************************************************************************
+
+// ignore_for_file: type=lint

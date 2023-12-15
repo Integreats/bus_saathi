@@ -36,3 +36,9 @@ const _$RouteDirectionEnumMap = {
   RouteDirection.forward: 'forward',
   RouteDirection.reverse: 'reverse',
 };
+
+// **************************************************************************
+// RealmObjectGenerator
+// **************************************************************************
+
+// ignore_for_file: type=lint

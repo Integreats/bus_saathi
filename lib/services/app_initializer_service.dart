@@ -1,3 +1,5 @@
+import 'package:alarm/alarm.dart' as alarm;
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,6 +19,8 @@ class AppInitializer {
     // =============================================
     await MapMarkers.init();
     await configureSystem();
+    await alarm.Alarm.init();
+    await AndroidAlarmManager.initialize();
   }
 
   Future<void> configureSystem() async {

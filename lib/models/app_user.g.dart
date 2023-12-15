@@ -23,3 +23,9 @@ Map<String, dynamic> _$$AppUserImplToJson(_$AppUserImpl instance) =>
       'emailAddress': instance.emailAddress,
       'photoUrl': instance.photoUrl,
     };
+
+// **************************************************************************
+// RealmObjectGenerator
+// **************************************************************************
+
+// ignore_for_file: type=lint

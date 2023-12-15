@@ -37,3 +37,9 @@ const _$GenderEnumMap = {
   Gender.female: 'female',
   Gender.others: 'others',
 };
+
+// **************************************************************************
+// RealmObjectGenerator
+// **************************************************************************
+
+// ignore_for_file: type=lint

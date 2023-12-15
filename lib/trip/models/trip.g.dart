@@ -44,3 +44,9 @@ Map<String, dynamic> _$$TripImplToJson(_$TripImpl instance) =>
       'upcomingBusStop': instance.upcomingBusStop,
       'busStopsCrossed': instance.busStopsCrossed,
     };
+
+// **************************************************************************
+// RealmObjectGenerator
+// **************************************************************************
+
+// ignore_for_file: type=lint

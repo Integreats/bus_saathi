@@ -1,4 +1,3 @@
-import 'package:bus_saathi/trip/widgets/bus_route_table.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -7,6 +6,7 @@ import '../../bus_routes/models/route_direction.dart';
 import '../../bus_routes/providers/bus_route_by_route_number_provider.dart';
 import '../provider/running_trips_stream_provider.dart';
 import '../views/running_trips_map_view.dart';
+import '../widgets/bus_route_table.dart';
 
 class RunningTripsScreen extends ConsumerWidget {
   const RunningTripsScreen({
