@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../trip/models/trip.dart';
+import '../models/trip.dart';
 
 class TripRouteTable extends StatelessWidget {
   const TripRouteTable({

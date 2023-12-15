@@ -1,8 +1,10 @@
+import 'package:bus_saathi/trip/widgets/bus_route_table.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../bus_routes/models/route_direction.dart';
+import '../../bus_routes/providers/bus_route_by_route_number_provider.dart';
 import '../provider/running_trips_stream_provider.dart';
 import '../views/running_trips_map_view.dart';
 
@@ -38,21 +40,22 @@ class RunningTripsScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            SliverFillRemaining(
-              child: Consumer(
-                builder: (context, ref, child) {
-                  final runningTripsStream = ref.watch(
-                      runningTripsStreamProvider((
-                    routeNumber: routeNumber,
-                    routeDirection: RouteDirection.forward
-                  )));
-                  return runningTripsStream.when(
-                    skipError: true,
-                    data: (runningTrips) {
-                      if (runningTrips.isEmpty) return const SizedBox();
-                      return ListView.builder(
-                        itemCount: runningTrips.length,
-                        itemBuilder: (context, index) {
+            Consumer(
+              builder: (context, ref, child) {
+                final runningTripsStream = ref.watch(
+                    runningTripsStreamProvider((
+                  routeNumber: routeNumber,
+                  routeDirection: RouteDirection.forward
+                )));
+                return runningTripsStream.when(
+                  skipError: true,
+                  data: (runningTrips) {
+                    if (runningTrips.isEmpty) {
+                      return const SliverToBoxAdapter(child: SizedBox());
+                    }
+                    return SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
                           final runningTrip = runningTrips[index];
                           return ListTile(
                             title: Text(
@@ -67,21 +70,38 @@ class RunningTripsScreen extends ConsumerWidget {
                             ),
                           );
                         },
-                      );
-                    },
-                    loading: () {
-                      return const Center(
+                        childCount: runningTrips.length,
+                      ),
+                    );
+                  },
+                  loading: () {
+                    return const SliverToBoxAdapter(
+                      child: Center(
                         child: CircularProgressIndicator(),
-                      );
-                    },
-                    error: (error, stack) {
-                      return Center(
+                      ),
+                    );
+                  },
+                  error: (error, stack) {
+                    return SliverToBoxAdapter(
+                      child: Center(
                         child: Text(
                           error.toString(),
                           style: theme.textTheme.titleLarge,
                         ),
-                      );
-                    },
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+            SliverToBoxAdapter(
+              child: Consumer(
+                builder: (context, ref, child) {
+                  final busRoute =
+                      ref.watch(busRouteByRouteNumberProvider(routeNumber));
+                  if (busRoute == null) return const SizedBox();
+                  return BusRouteTable(
+                    busRoute: busRoute,
                   );
                 },
               ),

@@ -1,4 +1,4 @@
-import 'package:bus_saathi/trip_management/widgets/trip_route_table.dart';
+import 'package:bus_saathi/trip/widgets/trip_route_table.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
