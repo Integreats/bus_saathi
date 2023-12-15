@@ -82,16 +82,18 @@ class _TripMapViewState extends ConsumerState<RunningTripsMapView> {
               },
               onMapCreated: (controller) {
                 googleMapController = controller;
-                googleMapController?.animateCamera(
-                  CameraUpdate.newCameraPosition(
-                    CameraPosition(
-                      target: LatLngExtension.fromPosition(
-                        trips.first.liveLocation.first,
+                if (trips.isNotEmpty) {
+                  googleMapController?.animateCamera(
+                    CameraUpdate.newCameraPosition(
+                      CameraPosition(
+                        target: LatLngExtension.fromPosition(
+                          trips.first.liveLocation.first,
+                        ),
+                        zoom: currentMapZoom,
                       ),
-                      zoom: currentMapZoom,
                     ),
-                  ),
-                );
+                  );
+                }
               },
               polylines: {
                 if (value.tripRoutePolyline != null) value.tripRoutePolyline!,
