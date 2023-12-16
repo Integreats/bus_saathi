@@ -44,7 +44,7 @@ class _GpsPermissionStateCardState extends ConsumerState<GpsPermissionStateCard>
   @override
   Widget build(BuildContext context) {
     final isGpsEnabled =
-        ref.watch(appPermissionsControllerProvider).isGpsEnabled;
+        ref.watch(appPermissionsControllerProvider).value!.isGpsEnabled;
 
     return AppPermissionsCard(
       onTap: () async {

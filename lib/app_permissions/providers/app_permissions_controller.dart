@@ -7,8 +7,6 @@ import 'package:permission_handler/permission_handler.dart'
 
 import '../models/app_permissions.dart';
 
-
-
 final locationPermissionsProvider = StreamProvider<bool>((ref) async* {
   await for (final locationStream in Geolocator.getServiceStatusStream()) {
     if (locationStream == ServiceStatus.enabled) {
@@ -20,21 +18,18 @@ final locationPermissionsProvider = StreamProvider<bool>((ref) async* {
 });
 
 final appPermissionsControllerProvider =
-    StateNotifierProvider<AppPermissionsController, AppPermissions>((ref) {
-  final locationPermissions = ref.watch(locationPermissionsProvider);
-  return AppPermissionsController(
-    initialPermissions: AppPermissions.raw().copyWith(
+    AsyncNotifierProvider<AppPermissionsNotifier, AppPermissions>(
+        AppPermissionsNotifier.new);
+
+class AppPermissionsNotifier extends AsyncNotifier<AppPermissions> {
+  @override
+  Future<AppPermissions> build() async {
+    await requestPerimssions();
+    final locationPermissions = ref.watch(locationPermissionsProvider);
+    return AppPermissions.raw().copyWith(
       isGpsEnabled: locationPermissions.value ?? false,
-    ),
-  );
-});
-
-class AppPermissionsController extends StateNotifier<AppPermissions> {
-  AppPermissionsController({
-    required this.initialPermissions,
-  }) : super(initialPermissions);
-
-  final AppPermissions initialPermissions;
+    );
+  }
 
   Future<void> checkPerimssions() async {
     await isBatteryOptimizationDisabled();
@@ -43,71 +38,94 @@ class AppPermissionsController extends StateNotifier<AppPermissions> {
   }
 
   Future<void> requestPerimssions() async {
-    await requestDisableBatteryOptimization();
-
-    await requestNotificationService();
-
-    await requestLocationServices();
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      await requestDisableBatteryOptimization();
+      await requestLocationServices();
+      await requestNotificationService();
+      return state.value!;
+    });
   }
 
   Future<void> isBatteryOptimizationDisabled() async {
-    final isDisabled = await permission_handler
-        .Permission.ignoreBatteryOptimizations.isGranted;
-    state = state.copyWith(isBatteryOptimizationDisabled: isDisabled);
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      final isDisabled = await permission_handler
+          .Permission.ignoreBatteryOptimizations.isGranted;
+      return state.value!.copyWith(
+        isBatteryOptimizationDisabled: isDisabled,
+      );
+    });
   }
 
   Future<void> requestDisableBatteryOptimization() async {
-    await permission_handler.Permission.ignoreBatteryOptimizations.request();
-    final isGranted = await permission_handler
-        .Permission.ignoreBatteryOptimizations.isGranted;
-    state = state.copyWith(isBatteryOptimizationDisabled: isGranted);
+    state = const AsyncLoading();
+
+    state = await AsyncValue.guard(() async {
+      await permission_handler.Permission.ignoreBatteryOptimizations.request();
+      final isGranted = await permission_handler
+          .Permission.ignoreBatteryOptimizations.isGranted;
+      return state.value!.copyWith(isBatteryOptimizationDisabled: isGranted);
+    });
   }
 
   Future<void> isNotificationServiceEnabled() async {
-    bool isEnabled = await permission_handler.Permission.notification.isGranted;
-
-    state = state.copyWith(isAppNotificationsAllowed: isEnabled);
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      bool isEnabled =
+          await permission_handler.Permission.notification.isGranted;
+      return state.value!.copyWith(isAppNotificationsAllowed: isEnabled);
+    });
   }
 
   Future<void> requestNotificationService() async {
-    await notification_permissions.NotificationPermissions
-        .requestNotificationPermissions();
-    final isEnabled =
-        await permission_handler.Permission.notification.isGranted;
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      await notification_permissions.NotificationPermissions
+          .requestNotificationPermissions();
+      final isEnabled =
+          await permission_handler.Permission.notification.isGranted;
 
-    state = state.copyWith(isAppNotificationsAllowed: isEnabled);
+      return state.value!.copyWith(isAppNotificationsAllowed: isEnabled);
+    });
   }
 
   Future<void> isLocationServicesEnabled() async {
-    final permission = await Geolocator.checkPermission();
-    final isGranted = permission != LocationPermission.always ? false : true;
-    final isEnabled = await Geolocator.isLocationServiceEnabled();
+    state = const AsyncLoading();
 
-    state = state.copyWith(
-      isGpsEnabled: (isEnabled && isGranted),
-    );
+    state = await AsyncValue.guard(() async {
+      final permission = await Geolocator.checkPermission();
+      final isGranted = permission != LocationPermission.always ? false : true;
+      final isEnabled = await Geolocator.isLocationServiceEnabled();
+      return state.value!.copyWith(
+        isGpsEnabled: (isEnabled && isGranted),
+      );
+    });
   }
 
   /// Requests permissions based on the current state of location status which includes both permission & service status.
   /// Requests for granting permissions when permissions is false. Requests for enabling service when service status is false.
   Future<void> requestLocationServices() async {
-    await isLocationServicesEnabled();
-    if (state.isGpsEnabled) {
-      return;
-    }
-    await permission_handler.Permission.locationAlways.request();
-    final isPermissionGranted =
-        await permission_handler.Permission.locationAlways.isGranted;
-    await permission_handler.Permission.location.request();
-    final isEnabled = await permission_handler.Permission.location.isGranted;
-    final isGpsServiceEnable = (isPermissionGranted && isEnabled);
-    state = state.copyWith(isGpsEnabled: isGpsServiceEnable);
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      await isLocationServicesEnabled();
+      if (state.value!.isGpsEnabled) {
+        return state.value!;
+      }
+      await permission_handler.Permission.locationAlways.request();
+      final isPermissionGranted =
+          await permission_handler.Permission.locationAlways.isGranted;
+      await permission_handler.Permission.location.request();
+      final isEnabled = await permission_handler.Permission.location.isGranted;
+      final isGpsServiceEnable = (isPermissionGranted && isEnabled);
+      return state.value!.copyWith(isGpsEnabled: isGpsServiceEnable);
+    });
   }
 
   bool areAllServicesActive() {
-    if (state.isAppNotificationsAllowed &&
-        state.isBatteryOptimizationDisabled &&
-        state.isGpsEnabled) {
+    if (state.value!.isAppNotificationsAllowed &&
+        state.value!.isBatteryOptimizationDisabled &&
+        state.value!.isGpsEnabled) {
       return true;
     } else {
       return false;
