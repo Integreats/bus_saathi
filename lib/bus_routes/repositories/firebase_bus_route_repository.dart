@@ -11,7 +11,7 @@ class FirebaseBusRouteRepository extends BusRouteRepository {
   final FirebaseFirestore firestore;
 
   CollectionReference<Map<String, dynamic>> get busRoutesCollection =>
-      FirebaseFirestore.instance.collection('busRoutes');
+      firestore.collection('busRoutes');
 
   @override
   Stream<List<RawBusRoute>> getRawBusRoutesStream() async* {

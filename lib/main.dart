@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bus_saathi/services/app_initializer_service.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +16,7 @@ import 'l10n/locale.dart';
 import 'providers/app_user_preferences_provider.dart';
 import 'providers/firebase_providers/firebase_app_provider.dart';
 import 'router/router.dart';
+import 'services/app_initializer_service.dart';
 import 'themes/dark_theme.dart';
 import 'themes/light_theme.dart';
 
@@ -24,6 +25,9 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     final app = await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
+    );
+    await FirebaseAppCheck.instanceFor(app: app).activate(
+      androidProvider: AndroidProvider.debug,
     );
     final appInitializer = AppInitializer.instance;
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;

@@ -39,8 +39,6 @@ class AppInitializer {
       DeviceOrientation.portraitDown,
     ]);
 
-    await FirebaseAppCheck.instance.activate(
-      androidProvider: AndroidProvider.debug,
-    );
+    
   }
 }

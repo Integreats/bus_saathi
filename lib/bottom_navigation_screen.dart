@@ -6,6 +6,7 @@ import 'dashboard/screens/dashboard_screen.dart';
 import 'l10n/locale.dart';
 import 'more/screens/more_screen.dart';
 import 'providers/location_stream_provider.dart';
+import 'trip_planner/screens/trip_planner_screen.dart';
 import 'widgets/keep_alive_page.dart';
 import 'widgets/navigation/bottom_nav_bar.dart';
 
@@ -33,6 +34,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
 
   final List<Widget> destinations = const [
     KeepAlivePage(child: DashboardScreen()),
+    KeepAlivePage(child: TripPlannerScreen()),
     KeepAlivePage(child: MoreScreen()),
   ];
 
@@ -49,6 +51,10 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 BottomNavBarDestination(
                   icon: const Icon(Icons.dashboard_rounded),
                   label: $strings.dashboard,
+                ),
+                const BottomNavBarDestination(
+                  icon: Icon(Icons.route_outlined),
+                  label: "Trip Planner",
                 ),
                 BottomNavBarDestination(
                   icon: const Icon(Icons.more_horiz_rounded),
