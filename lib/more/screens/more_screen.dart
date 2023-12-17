@@ -32,6 +32,15 @@ class MoreScreen extends HookConsumerWidget {
             child: ThemeSwitcher(),
           ),
           TileLayout(
+            onTap: () {},
+            listTile: ListTile(
+              title: Text("Emergency Contacts"),
+              trailing: const Icon(
+                Icons.info_outline_rounded,
+              ),
+            ),
+          ),
+          TileLayout(
             onTap: () {
               showDialog(
                 context: context,
