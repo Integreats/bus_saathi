@@ -36,4 +36,12 @@ class FirebaseUserRepository extends UserRepository {
   Future<void> createUser(AppUser appUser) async {
     await usersCollection.doc(appUser.id).set(appUser.toJson());
   }
+
+  @override
+  Future<void> updateFcmToken(
+      {required String id, required String? fcmToken}) async {
+    await usersCollection.doc(id).update({
+      'fcmToken': fcmToken,
+    });
+  }
 }

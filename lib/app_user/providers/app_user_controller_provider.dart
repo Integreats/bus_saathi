@@ -33,4 +33,13 @@ class AppUserController extends AsyncNotifier<AppUser?> {
       return user;
     });
   }
+
+  Future<void> updateFcmToken(String fcmToken) async {
+    if (state.value != null) {
+      _userRepository.updateFcmToken(
+        id: state.value!.id,
+        fcmToken: fcmToken,
+      );
+    }
+  }
 }

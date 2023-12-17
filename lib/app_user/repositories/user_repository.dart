@@ -15,4 +15,9 @@ abstract class UserRepository {
   Future<AppUser?> getUser(String id);
   Future<void> createUser(AppUser appUser);
   Future<bool> isUserExists(String id);
+
+  Future<void> updateFcmToken({
+    required String id,
+    required String? fcmToken,
+  });
 }
