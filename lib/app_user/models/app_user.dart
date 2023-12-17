@@ -9,9 +9,10 @@ class AppUser with _$AppUser {
   const factory AppUser({
     required String id,
     required String name,
-    required int phoneNumber,
+    required int? phoneNumber,
     required String emailAddress,
     required String? photoUrl,
+    required String? fcmToken,
   }) = _AppUser;
 
   factory AppUser.fromJson(Map<String, dynamic> json) =>
@@ -25,6 +26,7 @@ class AppUser with _$AppUser {
       phoneNumber: 0,
       emailAddress: '',
       photoUrl: '',
+      fcmToken: null,
     );
   }
 }

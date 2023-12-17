@@ -10,9 +10,10 @@ _$AppUserImpl _$$AppUserImplFromJson(Map<String, dynamic> json) =>
     _$AppUserImpl(
       id: json['id'] as String,
       name: json['name'] as String,
-      phoneNumber: json['phoneNumber'] as int,
+      phoneNumber: json['phoneNumber'] as int?,
       emailAddress: json['emailAddress'] as String,
       photoUrl: json['photoUrl'] as String?,
+      fcmToken: json['fcmToken'] as String?,
     );
 
 Map<String, dynamic> _$$AppUserImplToJson(_$AppUserImpl instance) =>
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$AppUserImplToJson(_$AppUserImpl instance) =>
       'phoneNumber': instance.phoneNumber,
       'emailAddress': instance.emailAddress,
       'photoUrl': instance.photoUrl,
+      'fcmToken': instance.fcmToken,
     };
 
 // **************************************************************************

@@ -233,7 +233,7 @@ class _$BusReviewImpl implements _BusReview {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BusReviewImpl &&

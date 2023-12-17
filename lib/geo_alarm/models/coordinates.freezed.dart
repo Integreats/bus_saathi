@@ -117,7 +117,7 @@ class _$CoordinatesImpl extends _Coordinates {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CoordinatesImpl &&

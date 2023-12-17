@@ -22,9 +22,10 @@ AppUser _$AppUserFromJson(Map<String, dynamic> json) {
 mixin _$AppUser {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  int get phoneNumber => throw _privateConstructorUsedError;
+  int? get phoneNumber => throw _privateConstructorUsedError;
   String get emailAddress => throw _privateConstructorUsedError;
   String? get photoUrl => throw _privateConstructorUsedError;
+  String? get fcmToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,9 +40,10 @@ abstract class $AppUserCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      int phoneNumber,
+      int? phoneNumber,
       String emailAddress,
-      String? photoUrl});
+      String? photoUrl,
+      String? fcmToken});
 }
 
 /// @nodoc
@@ -59,9 +61,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? phoneNumber = null,
+    Object? phoneNumber = freezed,
     Object? emailAddress = null,
     Object? photoUrl = freezed,
+    Object? fcmToken = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -72,10 +75,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneNumber: null == phoneNumber
+      phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       emailAddress: null == emailAddress
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
@@ -83,6 +86,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
       photoUrl: freezed == photoUrl
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fcmToken: freezed == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -98,9 +105,10 @@ abstract class _$$AppUserImplCopyWith<$Res> implements $AppUserCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      int phoneNumber,
+      int? phoneNumber,
       String emailAddress,
-      String? photoUrl});
+      String? photoUrl,
+      String? fcmToken});
 }
 
 /// @nodoc
@@ -116,9 +124,10 @@ class __$$AppUserImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? phoneNumber = null,
+    Object? phoneNumber = freezed,
     Object? emailAddress = null,
     Object? photoUrl = freezed,
+    Object? fcmToken = freezed,
   }) {
     return _then(_$AppUserImpl(
       id: null == id
@@ -129,10 +138,10 @@ class __$$AppUserImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneNumber: null == phoneNumber
+      phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       emailAddress: null == emailAddress
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
@@ -140,6 +149,10 @@ class __$$AppUserImplCopyWithImpl<$Res>
       photoUrl: freezed == photoUrl
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fcmToken: freezed == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -153,7 +166,8 @@ class _$AppUserImpl implements _AppUser {
       required this.name,
       required this.phoneNumber,
       required this.emailAddress,
-      required this.photoUrl});
+      required this.photoUrl,
+      required this.fcmToken});
 
   factory _$AppUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppUserImplFromJson(json);
@@ -163,19 +177,21 @@ class _$AppUserImpl implements _AppUser {
   @override
   final String name;
   @override
-  final int phoneNumber;
+  final int? phoneNumber;
   @override
   final String emailAddress;
   @override
   final String? photoUrl;
+  @override
+  final String? fcmToken;
 
   @override
   String toString() {
-    return 'AppUser(id: $id, name: $name, phoneNumber: $phoneNumber, emailAddress: $emailAddress, photoUrl: $photoUrl)';
+    return 'AppUser(id: $id, name: $name, phoneNumber: $phoneNumber, emailAddress: $emailAddress, photoUrl: $photoUrl, fcmToken: $fcmToken)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppUserImpl &&
@@ -186,13 +202,15 @@ class _$AppUserImpl implements _AppUser {
             (identical(other.emailAddress, emailAddress) ||
                 other.emailAddress == emailAddress) &&
             (identical(other.photoUrl, photoUrl) ||
-                other.photoUrl == photoUrl));
+                other.photoUrl == photoUrl) &&
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, phoneNumber, emailAddress, photoUrl);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, phoneNumber, emailAddress, photoUrl, fcmToken);
 
   @JsonKey(ignore: true)
   @override
@@ -212,9 +230,10 @@ abstract class _AppUser implements AppUser {
   const factory _AppUser(
       {required final String id,
       required final String name,
-      required final int phoneNumber,
+      required final int? phoneNumber,
       required final String emailAddress,
-      required final String? photoUrl}) = _$AppUserImpl;
+      required final String? photoUrl,
+      required final String? fcmToken}) = _$AppUserImpl;
 
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$AppUserImpl.fromJson;
 
@@ -223,11 +242,13 @@ abstract class _AppUser implements AppUser {
   @override
   String get name;
   @override
-  int get phoneNumber;
+  int? get phoneNumber;
   @override
   String get emailAddress;
   @override
   String? get photoUrl;
+  @override
+  String? get fcmToken;
   @override
   @JsonKey(ignore: true)
   _$$AppUserImplCopyWith<_$AppUserImpl> get copyWith =>

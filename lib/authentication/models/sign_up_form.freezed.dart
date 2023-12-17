@@ -22,6 +22,7 @@ SignUpForm _$SignUpFormFromJson(Map<String, dynamic> json) {
 mixin _$SignUpForm {
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
+  int? get phoneNumber => throw _privateConstructorUsedError;
   String get emailAddress => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get confirmPassword => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $SignUpFormCopyWith<$Res> {
   $Res call(
       {String firstName,
       String lastName,
+      int? phoneNumber,
       String emailAddress,
       String password,
       String confirmPassword});
@@ -61,6 +63,7 @@ class _$SignUpFormCopyWithImpl<$Res, $Val extends SignUpForm>
   $Res call({
     Object? firstName = null,
     Object? lastName = null,
+    Object? phoneNumber = freezed,
     Object? emailAddress = null,
     Object? password = null,
     Object? confirmPassword = null,
@@ -74,6 +77,10 @@ class _$SignUpFormCopyWithImpl<$Res, $Val extends SignUpForm>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
       emailAddress: null == emailAddress
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
@@ -101,6 +108,7 @@ abstract class _$$SignUpFormImplCopyWith<$Res>
   $Res call(
       {String firstName,
       String lastName,
+      int? phoneNumber,
       String emailAddress,
       String password,
       String confirmPassword});
@@ -119,6 +127,7 @@ class __$$SignUpFormImplCopyWithImpl<$Res>
   $Res call({
     Object? firstName = null,
     Object? lastName = null,
+    Object? phoneNumber = freezed,
     Object? emailAddress = null,
     Object? password = null,
     Object? confirmPassword = null,
@@ -132,6 +141,10 @@ class __$$SignUpFormImplCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
       emailAddress: null == emailAddress
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
@@ -154,6 +167,7 @@ class _$SignUpFormImpl implements _SignUpForm {
   const _$SignUpFormImpl(
       {required this.firstName,
       required this.lastName,
+      required this.phoneNumber,
       required this.emailAddress,
       required this.password,
       required this.confirmPassword});
@@ -166,6 +180,8 @@ class _$SignUpFormImpl implements _SignUpForm {
   @override
   final String lastName;
   @override
+  final int? phoneNumber;
+  @override
   final String emailAddress;
   @override
   final String password;
@@ -174,11 +190,11 @@ class _$SignUpFormImpl implements _SignUpForm {
 
   @override
   String toString() {
-    return 'SignUpForm(firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, password: $password, confirmPassword: $confirmPassword)';
+    return 'SignUpForm(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, emailAddress: $emailAddress, password: $password, confirmPassword: $confirmPassword)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignUpFormImpl &&
@@ -186,6 +202,8 @@ class _$SignUpFormImpl implements _SignUpForm {
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
             (identical(other.emailAddress, emailAddress) ||
                 other.emailAddress == emailAddress) &&
             (identical(other.password, password) ||
@@ -196,7 +214,7 @@ class _$SignUpFormImpl implements _SignUpForm {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, firstName, lastName,
+  int get hashCode => Object.hash(runtimeType, firstName, lastName, phoneNumber,
       emailAddress, password, confirmPassword);
 
   @JsonKey(ignore: true)
@@ -217,6 +235,7 @@ abstract class _SignUpForm implements SignUpForm {
   const factory _SignUpForm(
       {required final String firstName,
       required final String lastName,
+      required final int? phoneNumber,
       required final String emailAddress,
       required final String password,
       required final String confirmPassword}) = _$SignUpFormImpl;
@@ -228,6 +247,8 @@ abstract class _SignUpForm implements SignUpForm {
   String get firstName;
   @override
   String get lastName;
+  @override
+  int? get phoneNumber;
   @override
   String get emailAddress;
   @override

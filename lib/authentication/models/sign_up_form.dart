@@ -8,6 +8,7 @@ class SignUpForm with _$SignUpForm {
   const factory SignUpForm({
     required String firstName,
     required String lastName,
+    required int? phoneNumber,
     required String emailAddress,
     required String password,
     required String confirmPassword,
@@ -19,6 +20,7 @@ class SignUpForm with _$SignUpForm {
   factory SignUpForm.empty() => const SignUpForm(
         firstName: '',
         lastName: '',
+        phoneNumber: null,
         emailAddress: '',
         password: '',
         confirmPassword: '',

@@ -1,7 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../authentication/providers/authentication_controller_provider.dart';
-import '../../models/app_user.dart';
+import '../models/app_user.dart';
 import '../repositories/user_repository.dart';
 
 final appUserControllerProvider =
