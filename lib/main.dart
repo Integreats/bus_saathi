@@ -122,6 +122,7 @@ class _MyBusSaathiAppState extends ConsumerState<MyBusSaathiApp> {
       supportedLocales: const [
         Locale('en', 'IN'), // English, no country code
         Locale('kn', 'IN'), // Kannada, no country code
+        Locale('te', 'IN'),
       ],
       theme: lightTheme(),
       darkTheme: darkTheme(),
