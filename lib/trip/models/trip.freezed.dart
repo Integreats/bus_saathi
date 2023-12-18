@@ -23,6 +23,10 @@ mixin _$Trip {
   String get id => throw _privateConstructorUsedError;
   Bus get bus => throw _privateConstructorUsedError;
   Conductor get conductor => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: 0.0)
+  double get distanceCovered => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: 0.0)
+  double get carbonEmission => throw _privateConstructorUsedError;
   @DateTimeJsonConverter()
   DateTime get startDateTime => throw _privateConstructorUsedError;
   @DateTimeJsonConverter()
@@ -48,6 +52,8 @@ abstract class $TripCopyWith<$Res> {
       {String id,
       Bus bus,
       Conductor conductor,
+      @JsonKey(defaultValue: 0.0) double distanceCovered,
+      @JsonKey(defaultValue: 0.0) double carbonEmission,
       @DateTimeJsonConverter() DateTime startDateTime,
       @DateTimeJsonConverter() DateTime endDateTime,
       List<LiveLocation> liveLocation,
@@ -78,6 +84,8 @@ class _$TripCopyWithImpl<$Res, $Val extends Trip>
     Object? id = null,
     Object? bus = null,
     Object? conductor = null,
+    Object? distanceCovered = null,
+    Object? carbonEmission = null,
     Object? startDateTime = null,
     Object? endDateTime = null,
     Object? liveLocation = null,
@@ -99,6 +107,14 @@ class _$TripCopyWithImpl<$Res, $Val extends Trip>
           ? _value.conductor
           : conductor // ignore: cast_nullable_to_non_nullable
               as Conductor,
+      distanceCovered: null == distanceCovered
+          ? _value.distanceCovered
+          : distanceCovered // ignore: cast_nullable_to_non_nullable
+              as double,
+      carbonEmission: null == carbonEmission
+          ? _value.carbonEmission
+          : carbonEmission // ignore: cast_nullable_to_non_nullable
+              as double,
       startDateTime: null == startDateTime
           ? _value.startDateTime
           : startDateTime // ignore: cast_nullable_to_non_nullable
@@ -182,6 +198,8 @@ abstract class _$$TripImplCopyWith<$Res> implements $TripCopyWith<$Res> {
       {String id,
       Bus bus,
       Conductor conductor,
+      @JsonKey(defaultValue: 0.0) double distanceCovered,
+      @JsonKey(defaultValue: 0.0) double carbonEmission,
       @DateTimeJsonConverter() DateTime startDateTime,
       @DateTimeJsonConverter() DateTime endDateTime,
       List<LiveLocation> liveLocation,
@@ -213,6 +231,8 @@ class __$$TripImplCopyWithImpl<$Res>
     Object? id = null,
     Object? bus = null,
     Object? conductor = null,
+    Object? distanceCovered = null,
+    Object? carbonEmission = null,
     Object? startDateTime = null,
     Object? endDateTime = null,
     Object? liveLocation = null,
@@ -234,6 +254,14 @@ class __$$TripImplCopyWithImpl<$Res>
           ? _value.conductor
           : conductor // ignore: cast_nullable_to_non_nullable
               as Conductor,
+      distanceCovered: null == distanceCovered
+          ? _value.distanceCovered
+          : distanceCovered // ignore: cast_nullable_to_non_nullable
+              as double,
+      carbonEmission: null == carbonEmission
+          ? _value.carbonEmission
+          : carbonEmission // ignore: cast_nullable_to_non_nullable
+              as double,
       startDateTime: null == startDateTime
           ? _value.startDateTime
           : startDateTime // ignore: cast_nullable_to_non_nullable
@@ -273,6 +301,8 @@ class _$TripImpl implements _Trip {
       {required this.id,
       required this.bus,
       required this.conductor,
+      @JsonKey(defaultValue: 0.0) required this.distanceCovered,
+      @JsonKey(defaultValue: 0.0) required this.carbonEmission,
       @DateTimeJsonConverter() required this.startDateTime,
       @DateTimeJsonConverter() required this.endDateTime,
       required final List<LiveLocation> liveLocation,
@@ -292,6 +322,12 @@ class _$TripImpl implements _Trip {
   final Bus bus;
   @override
   final Conductor conductor;
+  @override
+  @JsonKey(defaultValue: 0.0)
+  final double distanceCovered;
+  @override
+  @JsonKey(defaultValue: 0.0)
+  final double carbonEmission;
   @override
   @DateTimeJsonConverter()
   final DateTime startDateTime;
@@ -324,11 +360,11 @@ class _$TripImpl implements _Trip {
 
   @override
   String toString() {
-    return 'Trip(id: $id, bus: $bus, conductor: $conductor, startDateTime: $startDateTime, endDateTime: $endDateTime, liveLocation: $liveLocation, isEnded: $isEnded, tripRoute: $tripRoute, upcomingBusStop: $upcomingBusStop, busStopsCrossed: $busStopsCrossed)';
+    return 'Trip(id: $id, bus: $bus, conductor: $conductor, distanceCovered: $distanceCovered, carbonEmission: $carbonEmission, startDateTime: $startDateTime, endDateTime: $endDateTime, liveLocation: $liveLocation, isEnded: $isEnded, tripRoute: $tripRoute, upcomingBusStop: $upcomingBusStop, busStopsCrossed: $busStopsCrossed)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TripImpl &&
@@ -336,6 +372,10 @@ class _$TripImpl implements _Trip {
             (identical(other.bus, bus) || other.bus == bus) &&
             (identical(other.conductor, conductor) ||
                 other.conductor == conductor) &&
+            (identical(other.distanceCovered, distanceCovered) ||
+                other.distanceCovered == distanceCovered) &&
+            (identical(other.carbonEmission, carbonEmission) ||
+                other.carbonEmission == carbonEmission) &&
             (identical(other.startDateTime, startDateTime) ||
                 other.startDateTime == startDateTime) &&
             (identical(other.endDateTime, endDateTime) ||
@@ -358,6 +398,8 @@ class _$TripImpl implements _Trip {
       id,
       bus,
       conductor,
+      distanceCovered,
+      carbonEmission,
       startDateTime,
       endDateTime,
       const DeepCollectionEquality().hash(_liveLocation),
@@ -385,6 +427,8 @@ abstract class _Trip implements Trip {
           {required final String id,
           required final Bus bus,
           required final Conductor conductor,
+          @JsonKey(defaultValue: 0.0) required final double distanceCovered,
+          @JsonKey(defaultValue: 0.0) required final double carbonEmission,
           @DateTimeJsonConverter() required final DateTime startDateTime,
           @DateTimeJsonConverter() required final DateTime endDateTime,
           required final List<LiveLocation> liveLocation,
@@ -402,6 +446,12 @@ abstract class _Trip implements Trip {
   Bus get bus;
   @override
   Conductor get conductor;
+  @override
+  @JsonKey(defaultValue: 0.0)
+  double get distanceCovered;
+  @override
+  @JsonKey(defaultValue: 0.0)
+  double get carbonEmission;
   @override
   @DateTimeJsonConverter()
   DateTime get startDateTime;

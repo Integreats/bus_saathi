@@ -39,3 +39,9 @@ const _$EnergySourceEnumMap = {
   EnergySource.hydrogen: 'hydrogen',
   EnergySource.hybrid: 'hybrid',
 };
+
+// **************************************************************************
+// RealmObjectGenerator
+// **************************************************************************
+
+// ignore_for_file: type=lint

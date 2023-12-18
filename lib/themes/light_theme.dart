@@ -44,5 +44,17 @@ ThemeData lightTheme() {
         color: CustomColors.blueBlack,
       ),
     ),
+    chipTheme: ChipThemeData(
+      shape: const StadiumBorder(),
+      side: BorderSide.none,
+      backgroundColor: CustomColors.blueBlack,
+      iconTheme: const IconThemeData(
+        color: Colors.white,
+        size: 16,
+      ),
+      labelStyle: GoogleFonts.raleway(
+        color: Colors.white,
+      ),
+    ),
   );
 }

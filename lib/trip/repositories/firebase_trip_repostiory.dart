@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../bus_routes/models/route_direction.dart';
 import '../../conductor/models/conductor.dart';
-import '../../trip_management/services/trip_json_parser.dart';
+import 'trip_json_parser.dart';
 import '../models/trip.dart';
 import 'trip_repository.dart';
 

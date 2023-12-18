@@ -20,3 +20,9 @@ Map<String, dynamic> _$$BusStopCrossedImplToJson(
       'crossedDateTime':
           const DateTimeJsonConverter().toJson(instance.crossedDateTime),
     };
+
+// **************************************************************************
+// RealmObjectGenerator
+// **************************************************************************
+
+// ignore_for_file: type=lint

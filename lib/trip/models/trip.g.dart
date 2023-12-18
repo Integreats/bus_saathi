@@ -10,6 +10,8 @@ _$TripImpl _$$TripImplFromJson(Map<String, dynamic> json) => _$TripImpl(
       id: json['id'] as String,
       bus: Bus.fromJson(json['bus'] as Map<String, dynamic>),
       conductor: Conductor.fromJson(json['conductor'] as Map<String, dynamic>),
+      distanceCovered: (json['distanceCovered'] as num?)?.toDouble() ?? 0.0,
+      carbonEmission: (json['carbonEmission'] as num?)?.toDouble() ?? 0.0,
       startDateTime: const DateTimeJsonConverter()
           .fromJson(json['startDateTime'] as Timestamp),
       endDateTime: const DateTimeJsonConverter()
@@ -35,6 +37,8 @@ Map<String, dynamic> _$$TripImplToJson(_$TripImpl instance) =>
       'id': instance.id,
       'bus': instance.bus,
       'conductor': instance.conductor,
+      'distanceCovered': instance.distanceCovered,
+      'carbonEmission': instance.carbonEmission,
       'startDateTime':
           const DateTimeJsonConverter().toJson(instance.startDateTime),
       'endDateTime': const DateTimeJsonConverter().toJson(instance.endDateTime),
@@ -44,3 +48,9 @@ Map<String, dynamic> _$$TripImplToJson(_$TripImpl instance) =>
       'upcomingBusStop': instance.upcomingBusStop,
       'busStopsCrossed': instance.busStopsCrossed,
     };
+
+// **************************************************************************
+// RealmObjectGenerator
+// **************************************************************************
+
+// ignore_for_file: type=lint

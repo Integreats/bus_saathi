@@ -64,6 +64,18 @@ class _BusStopsDisplayerMapViewState
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(locationStreamProvider, (previous, next) {
+      if (next.value == null) return;
+      googleMapController?.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(
+            next.value!.latitude,
+            next.value!.longitude,
+          ),
+          zoom: 14.5,
+        ),
+      ));
+    });
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: SizedBox(

@@ -29,3 +29,9 @@ Map<String, dynamic> _$$BusStopImplToJson(_$BusStopImpl instance) =>
       'createdAt': const DateTimeJsonConverter().toJson(instance.createdAt),
       'updatedAt': const DateTimeJsonConverter().toJson(instance.updatedAt),
     };
+
+// **************************************************************************
+// RealmObjectGenerator
+// **************************************************************************
+
+// ignore_for_file: type=lint

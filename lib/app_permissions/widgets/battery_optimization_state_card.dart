@@ -19,13 +19,10 @@ class BatteryOptimazationStateCard extends StatefulHookConsumerWidget {
 class _BatteryOptimazationStateCardState
     extends ConsumerState<BatteryOptimazationStateCard>
     with WidgetsBindingObserver {
-  late final AppPermissionsController appPermissionsNotifier;
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    appPermissionsNotifier =
-        ref.read(appPermissionsControllerProvider.notifier);
   }
 
   @override
@@ -46,11 +43,13 @@ class _BatteryOptimazationStateCardState
   Widget build(BuildContext context) {
     final isBatteryOptimzationDisabled = ref.watch(
         appPermissionsControllerProvider
-            .select((value) => value.isBatteryOptimizationDisabled));
+            .select((value) => value.value!.isBatteryOptimizationDisabled));
 
     return AppPermissionsCard(
       onTap: () async {
-        await appPermissionsNotifier.requestDisableBatteryOptimization();
+        await ref
+            .read(appPermissionsControllerProvider.notifier)
+            .requestDisableBatteryOptimization();
         await checkBatteryOptimizationState();
       },
       state: isBatteryOptimzationDisabled,
@@ -60,6 +59,8 @@ class _BatteryOptimazationStateCardState
   }
 
   Future<void> checkBatteryOptimizationState() async {
-    await appPermissionsNotifier.isBatteryOptimizationDisabled();
+    await ref
+        .read(appPermissionsControllerProvider.notifier)
+        .isBatteryOptimizationDisabled();
   }
 }

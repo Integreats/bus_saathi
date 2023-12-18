@@ -229,7 +229,7 @@ class _$ConductorImpl implements _Conductor {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ConductorImpl &&

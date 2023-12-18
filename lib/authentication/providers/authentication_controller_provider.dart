@@ -1,9 +1,13 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../app_user/models/app_user.dart';
+import '../../app_user/providers/app_user_controller_provider.dart';
+import '../../providers/firebase_providers/firebase_messaging_provider.dart';
 import '../respositories/authentication_repository.dart';
 import 'sign_in_form_controller_provider.dart';
 import 'sign_up_form_controller.dart';
@@ -15,6 +19,9 @@ final authenticationControllerProvider =
 class AuthenticationController extends AsyncNotifier<User?> {
   AuthenticationRepository get _authenticationRepository =>
       ref.watch(authenticationRepositoryProvider);
+
+  FirebaseMessaging get _firebaseMessaging =>
+      ref.read(firebaseMessagingProvider);
 
   GlobalKey<FormState> get _signInFormKey => ref.watch(signInFormKeyProvider);
   GlobalKey<FormState> get _signUpFormKey => ref.watch(signUpFormKeyProvider);
@@ -61,6 +68,16 @@ class AuthenticationController extends AsyncNotifier<User?> {
         password: signUpForm.password,
       );
 
+      final fcmToken = await _firebaseMessaging.getToken();
+      await ref.read(appUserControllerProvider.notifier).createUser(AppUser(
+            id: user!.uid,
+            name: '${signUpForm.firstName} ${signUpForm.lastName}',
+            phoneNumber: signUpForm.phoneNumber,
+            emailAddress: signUpForm.emailAddress,
+            photoUrl: '',
+            fcmToken: fcmToken,
+          ));
+
       return user;
     });
   }
@@ -70,7 +87,15 @@ class AuthenticationController extends AsyncNotifier<User?> {
 
     state = await AsyncValue.guard(() async {
       final user = await _authenticationRepository.signInWithGoogle();
-
+      final fcmToken = await _firebaseMessaging.getToken();
+      await ref.read(appUserControllerProvider.notifier).createUser(AppUser(
+            id: user!.uid,
+            name: user.displayName ?? '',
+            phoneNumber: null,
+            emailAddress: user.email!,
+            photoUrl: '',
+            fcmToken: fcmToken,
+          ));
       return user;
     });
   }

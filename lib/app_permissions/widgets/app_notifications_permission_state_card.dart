@@ -6,7 +6,6 @@ import '../../../app_permissions/providers/app_permissions_controller.dart';
 import '../../../l10n/locale.dart';
 import 'app_permissions_card.dart';
 
-
 class AppNotificationsPermissionStateCard extends StatefulHookConsumerWidget {
   const AppNotificationsPermissionStateCard({
     Key? key,
@@ -20,14 +19,10 @@ class AppNotificationsPermissionStateCard extends StatefulHookConsumerWidget {
 class _AppNotificationsPermissionStateCardState
     extends ConsumerState<AppNotificationsPermissionStateCard>
     with WidgetsBindingObserver {
-  late final AppPermissionsController appPermissionsNotifier;
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    appPermissionsNotifier =
-        ref.read(appPermissionsControllerProvider.notifier);
   }
 
   @override
@@ -47,10 +42,12 @@ class _AppNotificationsPermissionStateCardState
   @override
   Widget build(BuildContext context) {
     final isAppNotificationsAllowed = ref.watch(appPermissionsControllerProvider
-        .select((value) => value.isAppNotificationsAllowed));
+        .select((value) => value.value!.isAppNotificationsAllowed));
     return AppPermissionsCard(
       onTap: () async {
-        await appPermissionsNotifier.requestNotificationService();
+        await ref
+            .read(appPermissionsControllerProvider.notifier)
+            .requestNotificationService();
         await checkNotificationPermissions();
       },
       state: isAppNotificationsAllowed,
@@ -61,6 +58,8 @@ class _AppNotificationsPermissionStateCardState
   }
 
   Future<void> checkNotificationPermissions() async {
-    appPermissionsNotifier.isNotificationServiceEnabled();
+    await ref
+        .read(appPermissionsControllerProvider.notifier)
+        .isNotificationServiceEnabled();
   }
 }

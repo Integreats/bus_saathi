@@ -18,6 +18,8 @@ class Trip with _$Trip {
     required String id,
     required Bus bus,
     required Conductor conductor,
+    @JsonKey(defaultValue: 0.0) required double distanceCovered,
+    @JsonKey(defaultValue: 0.0) required double carbonEmission,
     @DateTimeJsonConverter() required DateTime startDateTime,
     @DateTimeJsonConverter() required DateTime endDateTime,
     required List<LiveLocation> liveLocation,

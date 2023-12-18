@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 
 import '../../bus_stops/models/bus_stop.dart';
 import '../../trip/models/live_location.dart';
-import '../../trip/models/trip_route.dart';
 
 class MapMarkers {
   static late BitmapDescriptor markerIcon;
@@ -125,28 +124,26 @@ class MapMarkers {
     );
   }
 
-  static Marker getOriginStopMarker(TripRoute busRoute) {
-    final origin = busRoute.origin;
+  static Marker getOriginStopMarker(BusStop stop) {
     return Marker(
-      markerId: MarkerId(origin.id),
+      markerId: MarkerId(stop.id),
       icon: greenBusStopMarkerIcon,
-      position: LatLng(origin.latitude, origin.longitude),
+      position: LatLng(stop.latitude, stop.longitude),
       visible: true,
       infoWindow: InfoWindow(
-        title: origin.name,
+        title: stop.name,
       ),
     );
   }
 
-  static Marker getDestinationStopMarker(TripRoute busRoute) {
-    final destination = busRoute.destination;
+  static Marker getDestinationStopMarker(BusStop stop) {
     return Marker(
-      markerId: MarkerId(destination.id),
+      markerId: MarkerId(stop.id),
       icon: redBusStopMarkerIcon,
-      position: LatLng(destination.latitude, destination.longitude),
+      position: LatLng(stop.latitude, stop.longitude),
       visible: true,
       infoWindow: InfoWindow(
-        title: destination.name,
+        title: stop.name,
       ),
     );
   }

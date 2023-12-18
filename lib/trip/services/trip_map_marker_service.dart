@@ -40,7 +40,7 @@ class TripMapMarkerService {
     /// Adding orgin bus stop marker
     coordinates
         .add(LatLng(tripRoute!.origin.latitude, tripRoute!.origin.longitude));
-    markers.add(MapMarkers.getOriginStopMarker(tripRoute!));
+    markers.add(MapMarkers.getOriginStopMarker(tripRoute!.origin));
 
     /// Adding bus stops' markers
     for (final busStop in tripRoute!.stops) {
@@ -52,7 +52,7 @@ class TripMapMarkerService {
     // Adding destination bus stop marker
     coordinates.add(LatLng(
         tripRoute!.destination.latitude, tripRoute!.destination.longitude));
-    markers.add(MapMarkers.getDestinationStopMarker(tripRoute!));
+    markers.add(MapMarkers.getDestinationStopMarker(tripRoute!.destination));
 
     tripRouteLine = tripRouteLine.copyWith(pointsParam: coordinates);
 

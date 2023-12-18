@@ -12,7 +12,7 @@ class FirebaseBusRepository extends BusRepository {
   final FirebaseFirestore firestore;
 
   CollectionReference<Map<String, dynamic>> get busCollection =>
-      FirebaseFirestore.instance.collection('buses');
+      firestore.collection('buses');
 
   @override
   Stream<List<Bus>> fetchBusesListStream() async* {
