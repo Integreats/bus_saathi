@@ -7,7 +7,7 @@ class EmergencyContactsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Emergency Contacts"),
+        title: const Text($strings.emergencyContacts),
       ),
       body: const Column(
         children: [

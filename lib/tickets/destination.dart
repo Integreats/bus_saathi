@@ -63,7 +63,7 @@ class _CheckDestinationPageState extends State<CheckDestinationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Check Destination'),
+        title: Text($strings.checkDestination),
       ),
       body: Center(
         child: Column(
@@ -74,7 +74,7 @@ class _CheckDestinationPageState extends State<CheckDestinationPage> {
             Text('Starting Location: $startingLocation'),
             if (!gotDownAtDestination)
               Text(
-                'You did not get down at your destination. Pay the remaining balance.',
+                $strings.wrongDestination,
                 style: TextStyle(color: Colors.red),
               ),
             ElevatedButton(

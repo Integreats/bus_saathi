@@ -58,7 +58,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             onPressed: () {
                               context.push('/onboarding/signup');
                             },
-                            child: const Text('SIGN UP'),
+                            child: const Text($strings.signUp),
                           ),
                         ),
                       ),
@@ -81,7 +81,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 RoundedRectangleBorder(),
                               ),
                             ),
-                            child: const Text('SIGN IN'),
+                            child: const Text($strings.signIn),
                           ),
                         ),
                       ),
