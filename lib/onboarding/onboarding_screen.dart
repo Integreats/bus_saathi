@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../l10n/locale.dart';
+
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -58,7 +60,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             onPressed: () {
                               context.push('/onboarding/signup');
                             },
-                            child: const Text($strings.signUp),
+                            child: Text($strings.signUp),
                           ),
                         ),
                       ),
@@ -81,7 +83,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 RoundedRectangleBorder(),
                               ),
                             ),
-                            child: const Text($strings.signIn),
+                            child: Text($strings.signIn),
                           ),
                         ),
                       ),

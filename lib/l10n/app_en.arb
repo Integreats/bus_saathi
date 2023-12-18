@@ -74,6 +74,7 @@
   "seeAll": "See all",
   "selectLanguage": "Select Language",
   "signIn": "Sign In",
+  "signUp": "Sign Up",
   "signOut": "Sign Out",
   "startDate": "Start Date",
   "startTime": "Start Time",
@@ -99,5 +100,8 @@
   "verificationFailed": "Verification Failed",
   "verify": "Verify",
   "verifyPhoneNumber": "Verify Phone Number",
-  "tripPlanner": "Trip Planner"
+  "tripPlanner": "Trip Planner",
+  "checkDestination": "Check Destination",
+  "wrongDestination": "Wrong Destination",
+  "emergencyContacts": "Emergency Contacts"
 }

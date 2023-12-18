@@ -34,7 +34,7 @@ class MoreScreen extends HookConsumerWidget {
           TileLayout(
             onTap: () {},
             listTile: ListTile(
-              title: $strings.Emergency_Contacts,
+              title: Text($strings.emergencyContacts),
               trailing: const Icon(
                 Icons.info_outline_rounded,
               ),

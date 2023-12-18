@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/locale.dart';
+
 class EmergencyContactsScreen extends StatelessWidget {
   const EmergencyContactsScreen({super.key});
 
@@ -7,12 +9,10 @@ class EmergencyContactsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text($strings.emergencyContacts),
+        title: Text($strings.emergencyContacts),
       ),
       body: const Column(
-        children: [
-          
-        ],
+        children: [],
       ),
     );
   }

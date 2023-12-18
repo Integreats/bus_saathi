@@ -1,13 +1,15 @@
+import 'package:bus_saathi/tickets/payment.dart';
+import 'package:bus_saathi/tickets/ticket_booking.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:bus_saathi/tickets/ticket_booking.dart';
-import 'package:bus_saathi/tickets/payment.dart';
+
+import '../l10n/locale.dart';
 
 class CheckDestinationPage extends StatefulWidget {
   final String destination;
   final double ticketAmount;
 
-  CheckDestinationPage(this.destination, this.ticketAmount);
+  const CheckDestinationPage(this.destination, this.ticketAmount, {super.key});
 
   @override
   _CheckDestinationPageState createState() => _CheckDestinationPageState();
@@ -32,11 +34,13 @@ class _CheckDestinationPageState extends State<CheckDestinationPage> {
       // Use the position information to determine the starting location.
       // For simplicity, just showing the coordinates in this example.
       setState(() {
-        startingLocation = "Latitude: ${position.latitude}, Longitude: ${position.longitude}";
+        startingLocation =
+            "Latitude: ${position.latitude}, Longitude: ${position.longitude}";
       });
 
       // Replace this logic with your actual check for the destination arrival
-      gotDownAtDestination = _isAtDestination(position.latitude, position.longitude);
+      gotDownAtDestination =
+          _isAtDestination(position.latitude, position.longitude);
     } catch (e) {
       print("Error getting location: $e");
     }
@@ -45,9 +49,12 @@ class _CheckDestinationPageState extends State<CheckDestinationPage> {
   // Replace this with your actual logic to check if the user is at the destination
   bool _isAtDestination(double currentLatitude, double currentLongitude) {
     // Replace these coordinates with the actual coordinates of the destination bus stop
-    double destinationLatitude = 37.7749; // Example: Replace with the actual latitude of the destination
-    double destinationLongitude = -122.4194; // Example: Replace with the actual longitude of the destination
-    double distanceThreshold = 100; // Set a distance threshold for considering arrival
+    double destinationLatitude =
+        37.7749; // Example: Replace with the actual latitude of the destination
+    double destinationLongitude =
+        -122.4194; // Example: Replace with the actual longitude of the destination
+    double distanceThreshold =
+        100; // Set a distance threshold for considering arrival
 
     double distance = Geolocator.distanceBetween(
       currentLatitude,
@@ -75,7 +82,7 @@ class _CheckDestinationPageState extends State<CheckDestinationPage> {
             if (!gotDownAtDestination)
               Text(
                 $strings.wrongDestination,
-                style: TextStyle(color: Colors.red),
+                style: const TextStyle(color: Colors.red),
               ),
             ElevatedButton(
               onPressed: () {
@@ -84,7 +91,8 @@ class _CheckDestinationPageState extends State<CheckDestinationPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => PaymentPage(widget.ticketAmount, widget.destination),
+                      builder: (context) =>
+                          PaymentPage(widget.ticketAmount, widget.destination),
                     ),
                   );
                 } else {
@@ -97,7 +105,7 @@ class _CheckDestinationPageState extends State<CheckDestinationPage> {
                   );
                 }
               },
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         ),
