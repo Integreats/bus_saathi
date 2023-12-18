@@ -21,10 +21,12 @@ class _LanguagePickerDialogState extends State<LanguagePickerDialog> {
   final List<String> languagesNamesList = [
     'English',
     'ಕನ್ನಡ',
+    'తెలుగు',
   ];
   final List<Locale> languageLocales = const [
     Locale('en'), // English
     Locale('kn'), // Kannada
+    Locale('te'), // Telugu
   ];
 
   late Locale selectedLocale;
