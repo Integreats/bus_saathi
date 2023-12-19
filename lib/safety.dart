@@ -31,7 +31,7 @@ class _SafetyPageState extends State<SafetyPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Safety Tools',
+                $strings.safetyTools,
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 24),

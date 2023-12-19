@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:bus_saathi/bus/repositories/bus_repository.dart';
 import 'package:bus_saathi/bus_review/providers/bus_review_form_controller.dart';
+import 'package:bus_saathi/l10n/locale.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_extension_utilities/flutter_extension_utilities.dart';
@@ -11,6 +13,7 @@ import 'package:unicons/unicons.dart';
 
 import '../../widgets/buttons/elevated_loader_button.dart';
 import '../../widgets/textfields/custom_text_form_field.dart';
+import '../repositories/bus_review_repository.dart';
 import '../widgets/camera/screens/take_picture_screen.dart';
 
 class BusReviewScreen extends StatefulHookConsumerWidget {
@@ -56,7 +59,7 @@ class _BusReviewScreenState extends ConsumerState<BusReviewScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'How was your experience?',
+                    $strings.experience,
                     style: context.textTheme.headlineLarge!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -85,7 +88,7 @@ class _BusReviewScreenState extends ConsumerState<BusReviewScreen> {
                   ),
                   const Gap(16),
                   Text(
-                    'Write your review',
+                    $strings.review,
                     style: context.textTheme.titleMedium!.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -97,7 +100,7 @@ class _BusReviewScreenState extends ConsumerState<BusReviewScreen> {
                     maxLines: 10,
                     keyboardType: TextInputType.multiline,
                     textInputAction: TextInputAction.newline,
-                    hintText: 'Start typing here...',
+                    hintText: $strings.hintText,
                     onChanged: (value) {
                       ref
                           .read(busReviewFormControllerProvider.notifier)
@@ -119,8 +122,12 @@ class _BusReviewScreenState extends ConsumerState<BusReviewScreen> {
                 children: [
                   Expanded(
                     child: ElevatedLoaderButton(
-                      onPressed: () {},
-                      label: const Text('SUBMIT REVIEW'),
+                      onPressed: () async {
+                        await ref
+                            .read(busReviewFormControllerProvider.notifier)
+                            .save();
+                      },
+                      label: Text($strings.submitReview),
                     ),
                   ),
                 ],

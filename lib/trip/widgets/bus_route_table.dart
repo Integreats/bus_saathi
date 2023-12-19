@@ -1,3 +1,4 @@
+import 'package:bus_saathi/l10n/locale.dart';
 import 'package:flutter/material.dart';
 
 import '../../bus_routes/models/bus_route.dart';
@@ -29,12 +30,12 @@ class BusRouteTable extends StatelessWidget {
               color: theme.colorScheme.primaryContainer,
               borderRadius: BorderRadius.circular(4),
             ),
-            children: const [
+            children:  [
               SizedBox(),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
                 child: Text(
-                  "Bus Stop",
+                  $strings.busStop,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),

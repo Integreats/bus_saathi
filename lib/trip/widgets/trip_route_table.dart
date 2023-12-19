@@ -1,5 +1,3 @@
-import 'package:bus_saathi/trip/models/bus_stop_alert.dart';
-import 'package:bus_saathi/widgets/snackbars/show_successful_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +5,8 @@ import 'package:intl/intl.dart';
 
 import '../../app_user/providers/app_user_controller_provider.dart';
 import '../../widgets/list_tile/loader_list_tile.dart';
+import '../../widgets/snackbars/show_successful_snackbar.dart';
+import '../models/bus_stop_alert.dart';
 import '../models/trip.dart';
 import '../repositories/trip_repository.dart';
 
@@ -117,15 +117,17 @@ class TripRouteTable extends StatelessWidget {
                                                 busStop: currentBusStop,
                                               ),
                                             )
-                                            .then((value) {
-                                          context.pop();
-                                          showSuccessSnackbar(
-                                            context,
-                                            title: 'Alert set successfully',
-                                            message:
-                                                'You will be notified when the bus reaches ${currentBusStop.name}',
-                                          );
-                                        });
+                                            .then(
+                                          (value) {
+                                            context.pop();
+                                            showSuccessSnackbar(
+                                              context,
+                                              title: 'Alert set successfully',
+                                              message:
+                                                  'You will be notified when the bus reaches ${currentBusStop.name}',
+                                            );
+                                          },
+                                        );
                                       },
                                     ),
                                   ],

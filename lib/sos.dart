@@ -3,21 +3,26 @@ import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: EmergencyContactsScreen(),
     );
   }
 }
 
 class EmergencyContactsScreen extends StatefulWidget {
+  const EmergencyContactsScreen({super.key});
+
   @override
-  _EmergencyContactsScreenState createState() => _EmergencyContactsScreenState();
+  _EmergencyContactsScreenState createState() =>
+      _EmergencyContactsScreenState();
 }
 
 class _EmergencyContactsScreenState extends State<EmergencyContactsScreen> {
@@ -27,39 +32,40 @@ class _EmergencyContactsScreenState extends State<EmergencyContactsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Emergency Contacts'),
+        title: const Text(""),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
+            const Text(
               'Enter Emergency Contacts:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               onChanged: (value) {
                 // Parse the entered contacts and update the list
                 emergencyContacts = value.split(',');
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter comma-separated numbers',
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Save emergency contacts and navigate to the SOS screen
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SOSScreen(emergencyContacts: emergencyContacts),
+                    builder: (context) =>
+                        SOSScreen(emergencyContacts: emergencyContacts),
                   ),
                 );
               },
-              child: Text('Save and Continue'),
+              child: const Text('Save and Continue'),
             ),
           ],
         ),
@@ -71,7 +77,7 @@ class _EmergencyContactsScreenState extends State<EmergencyContactsScreen> {
 class SOSScreen extends StatefulWidget {
   final List<String> emergencyContacts;
 
-  SOSScreen({required this.emergencyContacts});
+  const SOSScreen({super.key, required this.emergencyContacts});
 
   @override
   _SOSScreenState createState() => _SOSScreenState();
@@ -84,7 +90,7 @@ class _SOSScreenState extends State<SOSScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SOS'),
+        title: const Text('SOS'),
       ),
       body: Center(
         child: ElevatedButton(
@@ -108,7 +114,7 @@ class _SOSScreenState extends State<SOSScreen> {
               print('Could not launch $url');
             }
           },
-          child: Text('Send SOS'),
+          child: const Text('Send SOS'),
         ),
       ),
     );
