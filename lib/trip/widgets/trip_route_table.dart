@@ -1,7 +1,14 @@
+import 'package:bus_saathi/trip/models/bus_stop_alert.dart';
+import 'package:bus_saathi/widgets/snackbars/show_successful_snackbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../app_user/providers/app_user_controller_provider.dart';
+import '../../widgets/list_tile/loader_list_tile.dart';
 import '../models/trip.dart';
+import '../repositories/trip_repository.dart';
 
 class TripRouteTable extends StatelessWidget {
   const TripRouteTable({
@@ -21,58 +28,36 @@ class TripRouteTable extends StatelessWidget {
     final busStops = tripRoute.stops;
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Table(
-        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-        columnWidths: const {
-          1: FractionColumnWidth(0.4),
-          2: FractionColumnWidth(0.2),
-        },
-        children: [
-          TableRow(
-            decoration: BoxDecoration(
-              color: theme.colorScheme.primaryContainer,
-              borderRadius: BorderRadius.circular(4),
+      child: DataTable(
+        dataRowMinHeight: 56,
+        dataRowMaxHeight: 72,
+        columns: const <DataColumn>[
+          DataColumn(
+            label: Expanded(
+              child: Text(
+                'Bus Stop',
+              ),
             ),
-            children: const [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-                child: Text(
-                  "Bus Stop",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-                child: Text(
-                  "Arrival Time",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
           ),
-          TableRow(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 16,
-                  left: 16.0,
-                  right: 16.0,
-                  bottom: 8,
-                ),
-                child: Text(
+          DataColumn(
+            label: Expanded(
+              child: Text(
+                'Arrival Time',
+              ),
+            ),
+          ),
+        ],
+        rows: [
+          DataRow(
+            cells: [
+              DataCell(
+                Text(
                   tripRoute.origin.name,
-                  style: theme.textTheme.titleLarge,
+                  style: theme.textTheme.titleMedium,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 16,
-                  left: 16.0,
-                  right: 16.0,
-                  bottom: 8,
-                ),
-                child: Text(
+              DataCell(
+                Text(
                   DateFormat('HH:mm').format(trip.startDateTime),
                   textAlign: TextAlign.center,
                 ),
@@ -83,28 +68,75 @@ class TripRouteTable extends StatelessWidget {
             busStops.length,
             (index) {
               final currentBusStop = busStops[index];
-              return TableRow(
-                decoration: BoxDecoration(
-                  color: currentBusStop.id == trip.upcomingBusStop?.id
-                      ? theme.colorScheme.primary
-                      : null,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Text(
+              return DataRow(
+                cells: [
+                  DataCell(
+                    Text(
                       currentBusStop.name,
-                      style: theme.textTheme.titleLarge!.copyWith(
+                      style: theme.textTheme.titleMedium!.copyWith(
                         color: currentBusStop.id == trip.upcomingBusStop?.id
-                            ? theme.colorScheme.onPrimary
+                            ? theme.colorScheme.primary
                             : null,
                       ),
                     ),
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        builder: (context) {
+                          return Consumer(
+                            builder: (context, ref, child) {
+                              return SizedBox(
+                                height: 200,
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 16,
+                                    ),
+                                    Text(
+                                      currentBusStop.name,
+                                      style: theme.textTheme.titleMedium,
+                                    ),
+                                    LoaderListTile(
+                                      title: const Text('Set an Alert'),
+                                      onTap: () async {
+                                        final appUser = ref
+                                            .read(appUserControllerProvider)
+                                            .value;
+                                        await ref
+                                            .read(tripRepositoryProvider)
+                                            .createBusStopAlert(
+                                              busStopAlert:
+                                                  BusStopAlert.empty().copyWith(
+                                                tripId: trip.id,
+                                                userId: appUser!.id,
+                                                busStop: currentBusStop,
+                                              ),
+                                            )
+                                            .then((value) {
+                                          context.pop();
+                                          showSuccessSnackbar(
+                                            context,
+                                            title: 'Alert set successfully',
+                                            message:
+                                                'You will be notified when the bus reaches ${currentBusStop.name}',
+                                          );
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
+                  DataCell(
+                    Text(
                       trip.busStopsCrossed == null
                           ? ''
                           : trip.busStopsCrossed!.containsKey(currentBusStop.id)
@@ -124,38 +156,20 @@ class TripRouteTable extends StatelessWidget {
               );
             },
           ),
-          TableRow(
-            decoration: BoxDecoration(
-              color: trip.upcomingBusStop == null
-                  ? theme.colorScheme.primary
-                  : null,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 8,
-                  left: 16.0,
-                  right: 16.0,
-                  bottom: 16,
-                ),
-                child: Text(
+          DataRow(
+            cells: [
+              DataCell(
+                Text(
                   tripRoute.destination.name,
-                  style: theme.textTheme.titleLarge!.copyWith(
+                  style: theme.textTheme.titleMedium!.copyWith(
                     color: trip.upcomingBusStop == null
-                        ? theme.colorScheme.onPrimary
+                        ? theme.colorScheme.primary
                         : null,
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 8,
-                  left: 16.0,
-                  right: 16.0,
-                  bottom: 16,
-                ),
-                child: !trip.isEnded
+              DataCell(
+                !trip.isEnded
                     ? const Text(
                         '',
                         textAlign: TextAlign.center,
@@ -167,7 +181,7 @@ class TripRouteTable extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: trip.upcomingBusStop == null
-                              ? theme.colorScheme.onPrimary
+                              ? theme.colorScheme.primary
                               : null,
                         ),
                       ),

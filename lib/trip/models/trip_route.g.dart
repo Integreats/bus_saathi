@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: type=lint
+
 part of 'trip_route.dart';
 
 // **************************************************************************
@@ -26,9 +28,9 @@ Map<String, dynamic> _$$TripRouteImplToJson(_$TripRouteImpl instance) =>
       'busRouteId': instance.busRouteId,
       'routeNumber': instance.routeNumber,
       'direction': _$RouteDirectionEnumMap[instance.direction]!,
-      'origin': instance.origin,
-      'stops': instance.stops,
-      'destination': instance.destination,
+      'origin': instance.origin.toJson(),
+      'stops': instance.stops.map((e) => e.toJson()).toList(),
+      'destination': instance.destination.toJson(),
     };
 
 const _$RouteDirectionEnumMap = {

@@ -103,5 +103,6 @@
   "tripPlanner": "Trip Planner",
   "checkDestination": "Check Destination",
   "wrongDestination": "Wrong Destination",
-  "emergencyContacts": "Emergency Contacts"
+  "emergencyContacts": "Emergency Contacts",
+  "safetyTools": "Safety Tools"
 }

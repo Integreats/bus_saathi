@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: type=lint
+
 part of 'trip_planner_form.dart';
 
 // **************************************************************************
@@ -17,8 +19,8 @@ _$TripPlannerFormImpl _$$TripPlannerFormImplFromJson(
 Map<String, dynamic> _$$TripPlannerFormImplToJson(
         _$TripPlannerFormImpl instance) =>
     <String, dynamic>{
-      'origin': instance.origin,
-      'destination': instance.destination,
+      'origin': instance.origin.toJson(),
+      'destination': instance.destination.toJson(),
     };
 
 // **************************************************************************

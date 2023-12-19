@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../bus_routes/models/route_direction.dart';
 import '../../conductor/models/conductor.dart';
 import '../../providers/firebase_providers/firestore_provider.dart';
+import '../models/bus_stop_alert.dart';
 import '../models/trip.dart';
 import 'firebase_trip_repostiory.dart';
 
@@ -27,5 +28,9 @@ abstract class TripRepository {
 
   Future<Trip?> fetchExistingTrip({
     required Conductor conductor,
+  });
+
+  Future<void> createBusStopAlert({
+    required BusStopAlert busStopAlert,
   });
 }
