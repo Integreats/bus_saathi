@@ -105,7 +105,7 @@ class _CheckDestinationPageState extends State<CheckDestinationPage> {
                   );
                 }
               },
-              child: const Text('OK'),
+              child:  Text($strings.ok),
             ),
           ],
         ),

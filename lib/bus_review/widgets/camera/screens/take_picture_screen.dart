@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bus_saathi/l10n/locale.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_extension_utilities/flutter_extension_utilities.dart';
@@ -35,7 +36,7 @@ class TakePictureScreenState extends ConsumerState<TakePictureScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Take a Photo'),
+        title:  Text($strings.photo),
       ),
       resizeToAvoidBottomInset: false,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

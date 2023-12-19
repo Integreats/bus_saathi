@@ -1,3 +1,4 @@
+import 'package:bus_saathi/l10n/locale.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarPlaceholder extends StatelessWidget {
@@ -28,7 +29,7 @@ class SearchBarPlaceholder extends StatelessWidget {
               ),
             ),
             Text(
-              'Search',
+              $strings.search,
               style: theme.textTheme.titleMedium!.copyWith(
                 color: theme.colorScheme.onSecondaryContainer,
               ),

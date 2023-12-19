@@ -1,4 +1,5 @@
 
+import 'package:bus_saathi/l10n/locale.dart';
 import 'package:flutter/material.dart';
 
 class SafetyPage extends StatefulWidget {
@@ -22,7 +23,7 @@ class _SafetyPageState extends State<SafetyPage> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Safety Tools'),
+          title: Text($strings.safetyTools),
         ),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -30,7 +31,7 @@ class _SafetyPageState extends State<SafetyPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Safety Tools',
+                $strings.safetyTools,
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 24),

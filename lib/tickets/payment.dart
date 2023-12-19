@@ -1,3 +1,4 @@
+import 'package:bus_saathi/l10n/locale.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:bus_saathi/tickets/destination.dart';
@@ -12,7 +13,7 @@ class PaymentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment'),
+        title: Text($strings.payment),
       ),
       body: Center(
         child: Column(
@@ -25,7 +26,7 @@ class PaymentPage extends StatelessWidget {
                 // Simulate payment completion
                 _showPaymentSuccessDialog(context);
               },
-              child: Text('Complete Payment'),
+              child: Text($strings.completePayment),
             ),
           ],
         ),
@@ -38,8 +39,8 @@ class PaymentPage extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Payment Success'),
-          content: Text('Payment successful!'),
+          title: Text($strings.paymentSuccess),
+          content: Text($strings.paymentSuccessful),
           actions: [
             TextButton(
               onPressed: () {
@@ -52,7 +53,7 @@ class PaymentPage extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('OK'),
+              child: Text($strings.ok),
             ),
           ],
         );

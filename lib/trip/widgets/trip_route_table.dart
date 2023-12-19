@@ -1,3 +1,4 @@
+import 'package:bus_saathi/l10n/locale.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -33,18 +34,18 @@ class TripRouteTable extends StatelessWidget {
               color: theme.colorScheme.primaryContainer,
               borderRadius: BorderRadius.circular(4),
             ),
-            children: const [
+            children:  [
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
                 child: Text(
-                  "Bus Stop",
+                  $strings.busStop,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
                 child: Text(
-                  "Arrival Time",
+                  $strings.arrival,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),

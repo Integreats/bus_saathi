@@ -1,3 +1,4 @@
+import 'package:bus_saathi/l10n/locale.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_extension_utilities/flutter_extension_utilities.dart';
@@ -41,7 +42,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
       key: scaffoldStateKey,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Sign in'),
+        title:  Text($strings.signIn),
       ),
       body: ResponsiveBuilder(
         small: const SignInFormView(),

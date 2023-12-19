@@ -1,3 +1,4 @@
+import 'package:bus_saathi/l10n/locale.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,7 +20,7 @@ class TripPlannerScreen extends ConsumerWidget {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Trip Planner'),
+        title:  Text($strings.tripPlanner),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -116,7 +117,7 @@ class TripPlannerScreen extends ConsumerWidget {
                         .read(tripPlannerControllerProvider.notifier)
                         .findBusRoutes();
                   },
-                  child: const Text('Find Route'),
+                  child:  Text($strings.findRoute),
                 ),
               ),
             ),
@@ -124,7 +125,7 @@ class TripPlannerScreen extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: Text(
-                  'Found Routes',
+                  $strings.foundRoutes,
                   style: theme.textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -148,7 +149,7 @@ class TripPlannerScreen extends ConsumerWidget {
                               ),
                             ),
                             const Gap(8),
-                            const Text("No bus routes found"),
+                             Text($strings.noBus),
                           ],
                         ),
                       );

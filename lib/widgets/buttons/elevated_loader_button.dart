@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bus_saathi/l10n/locale.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -122,7 +123,7 @@ class _ElevatedLoaderButtonState extends State<ElevatedLoaderButton> {
     } else {
       if (widget.checkConnectivity) {
         if (connectionStatus == ConnectivityResult.none) {
-          return const Text('NO INTERNET');
+          return  Text($strings.noInternet);
         } else {
           return widget.label;
         }

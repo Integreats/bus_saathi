@@ -1,3 +1,4 @@
+import 'package:bus_saathi/l10n/locale.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -52,9 +53,9 @@ class _SignInFormViewState extends ConsumerState<SignInFormView> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Email address',
-                            style: TextStyle(
+                          Text(
+                            $strings.emailAddress,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -71,16 +72,16 @@ class _SignInFormViewState extends ConsumerState<SignInFormView> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Password',
-                            style: TextStyle(
+                           Text(
+                            $strings.password,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: PasscodeTextField(
-                              labelName: 'Password',
+                              labelName: $strings.password,
                               onSaved: (value) {
                                 signInFormNotifier.updatePassword(value!);
                               },
@@ -99,16 +100,17 @@ class _SignInFormViewState extends ConsumerState<SignInFormView> {
                                   .forgotPassword();
                               if (mounted) {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
+                                   SnackBar(
                                     content: Text(
-                                      'A password reset link has been set to your email address',
+                                      $strings.passwordReset,
                                     ),
                                   ),
                                 );
                               }
                             },
-                            child: const Text(
-                              "Forgot Password?",
+                            child:  Text(
+                              $strings.forgotPassword,
+
                             ),
                           ),
                         ],
@@ -125,7 +127,7 @@ class _SignInFormViewState extends ConsumerState<SignInFormView> {
                                   isLoading: ref
                                       .watch(authenticationControllerProvider)
                                       .isLoading,
-                                  label: const Text('Sign in'),
+                                  label: Text($strings.signIn),
                                   onPressed: () async {
                                     await ref
                                         .read(authenticationControllerProvider
@@ -145,7 +147,7 @@ class _SignInFormViewState extends ConsumerState<SignInFormView> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              'Other ways to sign in',
+                              $strings.otherSignIn,
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                           ),

@@ -54,7 +54,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 ),
                 BottomNavBarDestination(
                   icon: const Icon(Icons.route_outlined),
-                  label: $strings.tripPlanner,
+                  label:$strings.tripPlanner,
                 ),
                 BottomNavBarDestination(
                   icon: const Icon(Icons.more_horiz_rounded),

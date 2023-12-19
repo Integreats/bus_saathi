@@ -1,3 +1,4 @@
+import 'package:bus_saathi/l10n/locale.dart';
 import 'package:bus_saathi/themes/light_theme.dart';
 import 'package:bus_saathi/widgets/buttons/elevated_loader_button.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bus Ticketing '),
+        title: Text($strings.busTicketing),
       ),
       body: Center(
         child: Column(
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(builder: (context) => TicketBookingPage(startingLocation)),
                 );
               },
-              label: Text('Book Ticket'),
+              label: Text($strings.bookTicket),
             ),
           ],
         ),

@@ -1,3 +1,4 @@
+import 'package:bus_saathi/l10n/locale.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -9,6 +10,8 @@ import '../providers/authentication_controller_provider.dart';
 import '../providers/sign_up_form_controller.dart';
 import '../services/validators.dart';
 import '../widgets/buttons/o_auth_buttons.dart';
+import 'package:bus_saathi/authentication/views/sign_up_form_view.dart';
+import '../../authentication/views/sign_in_form_view.dart';
 
 class SignUpFormView extends StatefulHookConsumerWidget {
   const SignUpFormView({
@@ -54,9 +57,9 @@ class _SignUpFormViewState extends ConsumerState<SignUpFormView> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Good name',
-                            style: TextStyle(
+                          Text(
+                            $strings.goodName,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -66,7 +69,7 @@ class _SignUpFormViewState extends ConsumerState<SignUpFormView> {
                               children: [
                                 Expanded(
                                   child: NameTextField(
-                                    label: "First name",
+                                    label: $strings.firstName,
                                     onSaved: (value) {
                                       final firstName = value!.trim();
                                       signUpFormNotifier
@@ -77,7 +80,7 @@ class _SignUpFormViewState extends ConsumerState<SignUpFormView> {
                                 const SizedBox(width: 8),
                                 Expanded(
                                   child: NameTextField(
-                                    label: "Last name",
+                                    label: $strings.lastName,
                                     onSaved: (value) {
                                       final lastName = value!.trim();
                                       signUpFormNotifier
@@ -93,9 +96,9 @@ class _SignUpFormViewState extends ConsumerState<SignUpFormView> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Email address',
-                            style: TextStyle(
+                          Text(
+                            $strings.emailAddress,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -113,9 +116,9 @@ class _SignUpFormViewState extends ConsumerState<SignUpFormView> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Password',
-                            style: TextStyle(
+                          Text(
+                            $strings.password,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -123,7 +126,7 @@ class _SignUpFormViewState extends ConsumerState<SignUpFormView> {
                             padding: const EdgeInsets.all(12.0),
                             child: PasscodeTextField(
                               key: const ValueKey('Password'),
-                              labelName: 'Password',
+                              labelName: $strings.password,
                               onSaved: (String? value) {
                                 final password = value!.trim();
                                 signUpFormNotifier.updatePassword(password);
@@ -137,9 +140,9 @@ class _SignUpFormViewState extends ConsumerState<SignUpFormView> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Confirm password',
-                            style: TextStyle(
+                          Text(
+                            $strings.confirmPassword,
+                            style: const TextStyle(
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -147,7 +150,7 @@ class _SignUpFormViewState extends ConsumerState<SignUpFormView> {
                             padding: const EdgeInsets.all(12.0),
                             child: PasscodeTextField(
                               key: const ValueKey('Confirm Password'),
-                              labelName: 'Confirm password',
+                              labelName: $strings.confirmPassword,
                               onSaved: (String? value) {
                                 final confirmPassword = value!.trim();
                                 signUpFormNotifier
@@ -179,7 +182,7 @@ class _SignUpFormViewState extends ConsumerState<SignUpFormView> {
                                   isLoading: ref
                                       .watch(authenticationControllerProvider)
                                       .isLoading,
-                                  label: const Text('Sign up'),
+                                  label: Text ($strings.signIn),
                                   onPressed: () async {
                                     await ref
                                         .read(authenticationControllerProvider
@@ -199,7 +202,7 @@ class _SignUpFormViewState extends ConsumerState<SignUpFormView> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              'Other ways to sign up',
+                              $strings.otherSignIn,
                               style: theme.textTheme.labelLarge,
                             ),
                           ),

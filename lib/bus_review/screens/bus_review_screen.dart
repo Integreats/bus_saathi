@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bus_saathi/bus_review/providers/bus_review_form_controller.dart';
+import 'package:bus_saathi/l10n/locale.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_extension_utilities/flutter_extension_utilities.dart';
@@ -56,7 +57,7 @@ class _BusReviewScreenState extends ConsumerState<BusReviewScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'How was your experience?',
+                    $strings.experience,
                     style: context.textTheme.headlineLarge!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -85,7 +86,7 @@ class _BusReviewScreenState extends ConsumerState<BusReviewScreen> {
                   ),
                   const Gap(16),
                   Text(
-                    'Write your review',
+                    $strings.review,
                     style: context.textTheme.titleMedium!.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -97,7 +98,7 @@ class _BusReviewScreenState extends ConsumerState<BusReviewScreen> {
                     maxLines: 10,
                     keyboardType: TextInputType.multiline,
                     textInputAction: TextInputAction.newline,
-                    hintText: 'Start typing here...',
+                    hintText:$strings.hintText,
                     onChanged: (value) {
                       ref
                           .read(busReviewFormControllerProvider.notifier)
@@ -120,7 +121,7 @@ class _BusReviewScreenState extends ConsumerState<BusReviewScreen> {
                   Expanded(
                     child: ElevatedLoaderButton(
                       onPressed: () {},
-                      label: const Text('SUBMIT REVIEW'),
+                      label:  Text($strings.submitReview),
                     ),
                   ),
                 ],
