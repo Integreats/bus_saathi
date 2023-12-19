@@ -111,6 +111,8 @@ class TripRouteTable extends StatelessWidget {
                                               busStopAlert:
                                                   BusStopAlert.empty().copyWith(
                                                 tripId: trip.id,
+                                                routeNumber:
+                                                    trip.tripRoute!.routeNumber,
                                                 userId: appUser!.id,
                                                 busStop: currentBusStop,
                                               ),

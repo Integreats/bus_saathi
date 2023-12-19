@@ -23,6 +23,7 @@ mixin _$BusStopAlert {
   String get id => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   String get tripId => throw _privateConstructorUsedError;
+  String get routeNumber => throw _privateConstructorUsedError;
   BusStop get busStop => throw _privateConstructorUsedError;
   bool get isTriggered => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $BusStopAlertCopyWith<$Res> {
       {String id,
       String userId,
       String tripId,
+      String routeNumber,
       BusStop busStop,
       bool isTriggered,
       DateTime createdAt,
@@ -68,6 +70,7 @@ class _$BusStopAlertCopyWithImpl<$Res, $Val extends BusStopAlert>
     Object? id = null,
     Object? userId = null,
     Object? tripId = null,
+    Object? routeNumber = null,
     Object? busStop = null,
     Object? isTriggered = null,
     Object? createdAt = null,
@@ -85,6 +88,10 @@ class _$BusStopAlertCopyWithImpl<$Res, $Val extends BusStopAlert>
       tripId: null == tripId
           ? _value.tripId
           : tripId // ignore: cast_nullable_to_non_nullable
+              as String,
+      routeNumber: null == routeNumber
+          ? _value.routeNumber
+          : routeNumber // ignore: cast_nullable_to_non_nullable
               as String,
       busStop: null == busStop
           ? _value.busStop
@@ -126,6 +133,7 @@ abstract class _$$BusStopAlertImplCopyWith<$Res>
       {String id,
       String userId,
       String tripId,
+      String routeNumber,
       BusStop busStop,
       bool isTriggered,
       DateTime createdAt,
@@ -149,6 +157,7 @@ class __$$BusStopAlertImplCopyWithImpl<$Res>
     Object? id = null,
     Object? userId = null,
     Object? tripId = null,
+    Object? routeNumber = null,
     Object? busStop = null,
     Object? isTriggered = null,
     Object? createdAt = null,
@@ -166,6 +175,10 @@ class __$$BusStopAlertImplCopyWithImpl<$Res>
       tripId: null == tripId
           ? _value.tripId
           : tripId // ignore: cast_nullable_to_non_nullable
+              as String,
+      routeNumber: null == routeNumber
+          ? _value.routeNumber
+          : routeNumber // ignore: cast_nullable_to_non_nullable
               as String,
       busStop: null == busStop
           ? _value.busStop
@@ -194,6 +207,7 @@ class _$BusStopAlertImpl implements _BusStopAlert {
       {required this.id,
       required this.userId,
       required this.tripId,
+      required this.routeNumber,
       required this.busStop,
       required this.isTriggered,
       required this.createdAt,
@@ -209,6 +223,8 @@ class _$BusStopAlertImpl implements _BusStopAlert {
   @override
   final String tripId;
   @override
+  final String routeNumber;
+  @override
   final BusStop busStop;
   @override
   final bool isTriggered;
@@ -219,7 +235,7 @@ class _$BusStopAlertImpl implements _BusStopAlert {
 
   @override
   String toString() {
-    return 'BusStopAlert(id: $id, userId: $userId, tripId: $tripId, busStop: $busStop, isTriggered: $isTriggered, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'BusStopAlert(id: $id, userId: $userId, tripId: $tripId, routeNumber: $routeNumber, busStop: $busStop, isTriggered: $isTriggered, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -230,6 +246,8 @@ class _$BusStopAlertImpl implements _BusStopAlert {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.tripId, tripId) || other.tripId == tripId) &&
+            (identical(other.routeNumber, routeNumber) ||
+                other.routeNumber == routeNumber) &&
             (identical(other.busStop, busStop) || other.busStop == busStop) &&
             (identical(other.isTriggered, isTriggered) ||
                 other.isTriggered == isTriggered) &&
@@ -241,8 +259,8 @@ class _$BusStopAlertImpl implements _BusStopAlert {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, tripId, busStop,
-      isTriggered, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, userId, tripId, routeNumber,
+      busStop, isTriggered, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -263,6 +281,7 @@ abstract class _BusStopAlert implements BusStopAlert {
       {required final String id,
       required final String userId,
       required final String tripId,
+      required final String routeNumber,
       required final BusStop busStop,
       required final bool isTriggered,
       required final DateTime createdAt,
@@ -277,6 +296,8 @@ abstract class _BusStopAlert implements BusStopAlert {
   String get userId;
   @override
   String get tripId;
+  @override
+  String get routeNumber;
   @override
   BusStop get busStop;
   @override
