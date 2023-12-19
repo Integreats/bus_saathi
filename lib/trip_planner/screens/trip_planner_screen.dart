@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import '../../bus_routes/widgets/bus_route_list_tile.dart';
 import '../../bus_stops/models/bus_stop.dart';
 import '../../bus_stops/providers/bus_stops_list_provider.dart';
+import '../../providers/firebase_providers/firebase_analytics_provider.dart';
 import '../../speech_to_text/speech_recognition_screen.dart';
 import '../../widgets/textfields/custom_text_form_field.dart';
 import '../controller/trip_planner_controller_provider.dart';
@@ -53,9 +54,16 @@ class TripPlannerScreen extends ConsumerWidget {
                       .contains(textEditingValue.text.toLowerCase()));
                 },
                 displayStringForOption: (option) => option.name,
-                onSelected: ref
-                    .read(tripPlannerFormControllerProvider.notifier)
-                    .setOrigin,
+                onSelected: (value) async {
+                  ref
+                      .read(tripPlannerFormControllerProvider.notifier)
+                      .setOrigin(value);
+
+                  await ref.read(firebaseAnalyticsProvider).logSearch(
+                        searchTerm: value.name,
+                        origin: value.name,
+                      );
+                },
                 fieldViewBuilder: (context, textEditingController, focusNode,
                     onFieldSubmitted) {
                   return CustomTextFormField(
@@ -82,7 +90,7 @@ class TripPlannerScreen extends ConsumerWidget {
             ),
             SliverToBoxAdapter(
               child: Autocomplete<BusStop>(
-                key: const ValueKey('Origin'),
+                key: const ValueKey('Destination'),
                 optionsBuilder: (textEditingValue) {
                   final busStops = ref.watch(busStopsListProvider).value ?? [];
 
@@ -93,9 +101,15 @@ class TripPlannerScreen extends ConsumerWidget {
                       .toLowerCase()
                       .contains(textEditingValue.text.toLowerCase()));
                 },
-                onSelected: ref
-                    .read(tripPlannerFormControllerProvider.notifier)
-                    .setDestination,
+                onSelected: (value) async {
+                  ref
+                      .read(tripPlannerFormControllerProvider.notifier)
+                      .setDestination(value);
+                  await ref.read(firebaseAnalyticsProvider).logSearch(
+                        searchTerm: value.name,
+                        destination: value.name,
+                      );
+                },
                 displayStringForOption: (option) => option.name,
                 fieldViewBuilder: (context, textEditingController, focusNode,
                     onFieldSubmitted) {

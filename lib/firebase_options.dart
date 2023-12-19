@@ -45,12 +45,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyCjo7d9UxDoIjVjphzof-ZLbw2mINCUFpQ',
-    appId: '1:836383345512:web:5b9bf3bafe8f4e726c64dd',
+    appId: '1:836383345512:web:350aa5ef3302705e6c64dd',
     messagingSenderId: '836383345512',
     projectId: 'bus-saathi',
     authDomain: 'bus-saathi.firebaseapp.com',
     storageBucket: 'bus-saathi.appspot.com',
-    measurementId: 'G-P28J3LPHYR',
+    measurementId: 'G-Y7TSLSF93W',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -67,6 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '836383345512',
     projectId: 'bus-saathi',
     storageBucket: 'bus-saathi.appspot.com',
+    androidClientId: '836383345512-bilr45ag38c3g6bmtae3g5vcr54gqped.apps.googleusercontent.com',
+    iosClientId: '836383345512-qv0bqgis2sainc2jvir4lrdg1jj6nmpf.apps.googleusercontent.com',
     iosBundleId: 'com.example.busSaathi',
   );
 
@@ -76,6 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '836383345512',
     projectId: 'bus-saathi',
     storageBucket: 'bus-saathi.appspot.com',
+    androidClientId: '836383345512-bilr45ag38c3g6bmtae3g5vcr54gqped.apps.googleusercontent.com',
+    iosClientId: '836383345512-ql7ou03t58fov4feooegjgdbkbc04p38.apps.googleusercontent.com',
     iosBundleId: 'com.example.busSaathi.RunnerTests',
   );
 }

@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:bus_saathi/providers/firebase_providers/firebase_analytics_provider.dart';
 import 'package:bus_saathi/providers/firebase_providers/firebase_messaging_provider.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -31,7 +33,8 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   _app = await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  await FirebaseAnalytics.instanceFor(app: _app)
+      .setAnalyticsCollectionEnabled(true);
   print("Handling a background message: ${message.mutableContent}");
 }
 
@@ -42,6 +45,7 @@ void main() async {
     _app = await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+
     await FirebaseMessaging.instance.requestPermission();
     await FirebaseAppCheck.instanceFor(app: _app).activate(
       androidProvider: AndroidProvider.debug,
@@ -85,6 +89,10 @@ class _MyBusSaathiAppState extends ConsumerState<MyBusSaathiApp> {
     ref.read(firebaseMessagingProvider).getToken().then((value) async {
       if (value == null) return;
       await ref.read(appUserControllerProvider.notifier).updateFcmToken(value);
+    });
+
+    ref.read(firebaseAnalyticsProvider).logAppOpen().then((value) {
+      print("Logged app open");
     });
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {

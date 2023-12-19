@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../bus_routes/providers/bus_routes_list_provider.dart';
 import '../../bus_routes/widgets/bus_route_list_tile.dart';
+import '../../providers/firebase_providers/firebase_analytics_provider.dart';
 
 class SearchScreen extends HookConsumerWidget {
   const SearchScreen({super.key});
@@ -16,6 +17,11 @@ class SearchScreen extends HookConsumerWidget {
       appBar: AppBar(
         title: TextField(
           controller: searchQueryTextController,
+          onSubmitted: (value) {
+            ref.read(firebaseAnalyticsProvider).logSearch(
+                  searchTerm: "value",
+                );
+          },
           decoration: const InputDecoration(
             hintText: 'Search',
             border: InputBorder.none,

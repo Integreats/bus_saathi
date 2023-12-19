@@ -12,7 +12,20 @@
           "package_name": "com.example.bus_saathi"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "836383345512-bilr45ag38c3g6bmtae3g5vcr54gqped.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bus_saathi",
+            "certificate_hash": "73f580680c0b9682fbea8273075b29ee7662d553"
+          }
+        },
+        {
+          "client_id": "836383345512-86n2i8e7obdl2k4t831j44re31f5fi34.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDrtabgkpQdFEAo9jWgGqmxdf2N2k-NhUA"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836383345512-86n2i8e7obdl2k4t831j44re31f5fi34.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "836383345512-d4qcse8ib9ct7f7lgrfoua983hqlfrmj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.busSaathiPartner.RunnerTests"
+              }
+            }
+          ]
         }
       }
     },
@@ -31,7 +56,20 @@
           "package_name": "com.example.bus_saathi_partner"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "836383345512-elg0ndvel2o8b2kqkk2v5htt8r15036r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bus_saathi_partner",
+            "certificate_hash": "73f580680c0b9682fbea8273075b29ee7662d553"
+          }
+        },
+        {
+          "client_id": "836383345512-86n2i8e7obdl2k4t831j44re31f5fi34.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDrtabgkpQdFEAo9jWgGqmxdf2N2k-NhUA"
@@ -39,7 +77,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836383345512-86n2i8e7obdl2k4t831j44re31f5fi34.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "836383345512-d4qcse8ib9ct7f7lgrfoua983hqlfrmj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.busSaathiPartner.RunnerTests"
+              }
+            }
+          ]
         }
       }
     }
