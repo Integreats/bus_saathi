@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: type=lint
+
 part of 'trip.dart';
 
 // **************************************************************************
@@ -35,18 +37,19 @@ _$TripImpl _$$TripImplFromJson(Map<String, dynamic> json) => _$TripImpl(
 Map<String, dynamic> _$$TripImplToJson(_$TripImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'bus': instance.bus,
-      'conductor': instance.conductor,
+      'bus': instance.bus.toJson(),
+      'conductor': instance.conductor.toJson(),
       'distanceCovered': instance.distanceCovered,
       'carbonEmission': instance.carbonEmission,
       'startDateTime':
           const DateTimeJsonConverter().toJson(instance.startDateTime),
       'endDateTime': const DateTimeJsonConverter().toJson(instance.endDateTime),
-      'liveLocation': instance.liveLocation,
+      'liveLocation': instance.liveLocation.map((e) => e.toJson()).toList(),
       'isEnded': instance.isEnded,
-      'tripRoute': instance.tripRoute,
-      'upcomingBusStop': instance.upcomingBusStop,
-      'busStopsCrossed': instance.busStopsCrossed,
+      'tripRoute': instance.tripRoute?.toJson(),
+      'upcomingBusStop': instance.upcomingBusStop?.toJson(),
+      'busStopsCrossed':
+          instance.busStopsCrossed?.map((k, e) => MapEntry(k, e.toJson())),
     };
 
 // **************************************************************************

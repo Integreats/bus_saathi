@@ -3,8 +3,9 @@ import 'package:flutter/foundation.dart';
 
 import '../../bus_routes/models/route_direction.dart';
 import '../../conductor/models/conductor.dart';
-import 'trip_json_parser.dart';
+import '../models/bus_stop_alert.dart';
 import '../models/trip.dart';
+import 'trip_json_parser.dart';
 import 'trip_repository.dart';
 
 class FirebaseTripRepository extends TripRepository {
@@ -38,7 +39,8 @@ class FirebaseTripRepository extends TripRepository {
     bool? activeTripsOnly,
   }) async* {
     Query tripsStreamQuery = tripsCollection
-        .where('tripRoute.routeNumber', isEqualTo: routeNumber.trim().toUpperCase())
+        .where('tripRoute.routeNumber',
+            isEqualTo: routeNumber.trim().toUpperCase())
         .where(
           'tripRoute.direction',
           isEqualTo: routeDirection.name,
@@ -84,5 +86,12 @@ class FirebaseTripRepository extends TripRepository {
       }
     });
     return trip;
+  }
+
+  @override
+  Future<void> createBusStopAlert({required BusStopAlert busStopAlert}) async {
+    await firestore.collection("busStopAlerts").doc(busStopAlert.id).set(
+          busStopAlert.toJson(),
+        );
   }
 }
