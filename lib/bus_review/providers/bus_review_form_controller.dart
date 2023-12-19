@@ -1,3 +1,4 @@
+import 'package:bus_saathi/bus_review/repositories/bus_review_repository.dart';
 import 'package:bus_saathi/bus_review/widgets/camera/controller/camera_controller.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +10,8 @@ final busReviewFormControllerProvider =
         BusReviewFormNotifier.new);
 
 class BusReviewFormNotifier extends AutoDisposeNotifier<BusReviewForm> {
+  BusReviewRepository get _busReviewRepository =>
+      ref.read(busReviewRepositoryProvider);
   @override
   build() {
     final images =
@@ -30,5 +33,9 @@ class BusReviewFormNotifier extends AutoDisposeNotifier<BusReviewForm> {
     state = state.copyWith(
       images: images.map((e) => e.path).toList(),
     );
+  }
+
+  Future<void> save() async {
+    await _busReviewRepository.saveBusReview(state);
   }
 }
