@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import '../../bus_routes/widgets/bus_route_list_tile.dart';
 import '../../bus_stops/models/bus_stop.dart';
 import '../../bus_stops/providers/bus_stops_list_provider.dart';
+import '../../speech_to_text/speech_recognition_screen.dart';
 import '../../widgets/textfields/custom_text_form_field.dart';
 import '../controller/trip_planner_controller_provider.dart';
 import '../controller/trip_planner_form_controller.dart';
@@ -20,6 +21,18 @@ class TripPlannerScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Trip Planner'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return const SpeechDetectionScreen();
+                },
+              ));
+            },
+            icon: const Icon(FeatherIcons.mic),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

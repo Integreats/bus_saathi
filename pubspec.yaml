@@ -97,6 +97,7 @@ dependencies:
   android_alarm_manager_plus: ^3.0.4
   realm: ^1.6.0
   share_plus: ^7.2.1
+  speech_to_text: ^6.5.1
 
 dev_dependencies:
   analyzer: ^6.1.0
