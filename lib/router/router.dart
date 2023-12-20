@@ -9,6 +9,7 @@ import '../authentication/screens/sign_in_screen.dart';
 import '../authentication/screens/sign_up_screen.dart';
 import '../bottom_navigation_screen.dart';
 import '../bus_review/screens/bus_review_screen.dart';
+import '../bus_tickets/screens/bus_ticket_screen.dart';
 import '../models/form_type.dart';
 import '../onboarding/onboarding_screen.dart';
 import '../search/screens/search_screen.dart';
@@ -166,6 +167,16 @@ class RouterNotifier extends ChangeNotifier {
                 );
               },
             ),
+            // GoRoute(
+            //   path: 'ticket/:ticketId',
+            //   pageBuilder: (context, state) {
+            //     return CustomTransitionPage(
+            //       key: state.pageKey,
+            //       child: const BusTicketScreen(busTicket: null,),
+            //       transitionsBuilder: bottomToUpFadeTransition,
+            //     );
+            //   },
+            // ),
             GoRoute(
               path: 'emergencyContacts',
               pageBuilder: (context, state) {

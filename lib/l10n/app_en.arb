@@ -149,5 +149,6 @@
   "emergencyContactRemoved": "Emergency Contact Removed",
   "addEmergencyContact": "Add Emergency Contact",
   "saveEmergencyContact": "Save Emergency Contact",
-  "emergencyContactsAddedWillAppearHere": "Emergency Contacts added will appear here"
+  "emergencyContactsAddedWillAppearHere": "Emergency Contacts added will appear here",
+  "tickets": "Tickets"
 }

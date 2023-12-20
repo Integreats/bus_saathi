@@ -54,5 +54,6 @@ Map<String, dynamic> _$$TripImplToJson(_$TripImpl instance) =>
 
 // **************************************************************************
 // RealmObjectGenerator
+// **************************************************************************
 
 // ignore_for_file: type=lint

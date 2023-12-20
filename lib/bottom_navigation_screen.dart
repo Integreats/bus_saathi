@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app_permissions/providers/app_permissions_controller.dart';
+import 'bus_tickets/screens/bus_tickets_screen.dart';
 import 'dashboard/screens/dashboard_screen.dart';
 import 'l10n/locale.dart';
 import 'more/screens/more_screen.dart';
@@ -35,6 +36,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   final List<Widget> destinations = const [
     KeepAlivePage(child: DashboardScreen()),
     KeepAlivePage(child: TripPlannerScreen()),
+    KeepAlivePage(child: BusTicketsScreen()),
     KeepAlivePage(child: MoreScreen()),
   ];
 
@@ -54,7 +56,11 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 ),
                 BottomNavBarDestination(
                   icon: const Icon(Icons.route_outlined),
-                  label:$strings.tripPlanner,
+                  label: $strings.tripPlanner,
+                ),
+                BottomNavBarDestination(
+                  icon: const Icon(Icons.airplane_ticket_outlined),
+                  label: $strings.tickets,
                 ),
                 BottomNavBarDestination(
                   icon: const Icon(Icons.more_horiz_rounded),
