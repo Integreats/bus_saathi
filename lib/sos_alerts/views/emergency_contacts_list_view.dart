@@ -45,7 +45,7 @@ class EmergencyContactsListView extends HookConsumerWidget {
                           emergencyContact: currentEmergencyContacts,
                           onTap: () {
                             context.go(
-                              '${GoRouterState.of(context).uri.toString()}/conductor/read/${currentEmergencyContacts.id}',
+                              '${GoRouterState.of(context).uri.toString()}/read/${currentEmergencyContacts.id}',
                               extra: currentEmergencyContacts,
                             );
                           },

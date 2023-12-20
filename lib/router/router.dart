@@ -13,7 +13,7 @@ import '../models/form_type.dart';
 import '../onboarding/onboarding_screen.dart';
 import '../search/screens/search_screen.dart';
 import '../sos_alerts/models/emergency_contact.dart';
-import '../sos_alerts/screens/emergency_contacts_form_screen.dart';
+import '../sos_alerts/screens/emergency_contact_form_screen.dart';
 import '../sos_alerts/screens/emergency_contacts_screen.dart';
 import '../trip/screens/running_trips_screen.dart';
 

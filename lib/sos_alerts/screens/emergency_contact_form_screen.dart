@@ -1,10 +1,8 @@
-import 'package:bus_saathi/widgets/textfields/email_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:unicons/unicons.dart';
 
 import '../../l10n/locale.dart';
 import '../../models/form_type.dart';
@@ -12,6 +10,7 @@ import '../../widgets/buttons/elevated_loader_button.dart';
 import '../../widgets/form_tile.dart';
 import '../../widgets/popups/show_discard_changes_popup.dart';
 import '../../widgets/snackbars/show_successful_snackbar.dart';
+import '../../widgets/textfields/email_textfield.dart';
 import '../../widgets/textfields/full_name_text_field.dart';
 import '../../widgets/textfields/phone_number_text_field.dart';
 import '../models/emergency_contact.dart';
@@ -151,19 +150,6 @@ class _EmergencyContactFormState extends ConsumerState<EmergencyContactForm> {
                       appBarTitle(),
                     ),
                     actions: [
-                      widget.emergencyContactFormType != FormType.create
-                          ? IconButton(
-                              onPressed: () {
-                                final emergencyContact = ref.read(
-                                    emergencyContactFormControllerProvider);
-                                context.push(
-                                  '${GoRouterState.of(context).uri.toString()}/trips',
-                                  extra: emergencyContact,
-                                );
-                              },
-                              icon: const Icon(UniconsLine.map),
-                            )
-                          : const SizedBox.shrink(),
                       widget.emergencyContactFormType != FormType.create
                           ? IconButton(
                               onPressed: () async {

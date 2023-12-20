@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../app_user/models/app_user.dart';
 import '../../models/form_type.dart';
 import '../../router/router.dart';
-import '../screens/emergency_contacts_form_screen.dart';
+import '../screens/emergency_contact_form_screen.dart';
 
 final emergencyContactFormControllerProvider =
     NotifierProvider<EmergencyContactFormNotifier, EmergencyContact>(
