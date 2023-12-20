@@ -1,6 +1,7 @@
 import 'package:bus_saathi/authentication/providers/authentication_controller_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../l10n/locale.dart';
@@ -32,7 +33,9 @@ class MoreScreen extends HookConsumerWidget {
             child: ThemeSwitcher(),
           ),
           TileLayout(
-            onTap: () {},
+            onTap: () {
+              context.go('/emergencyContacts');
+            },
             listTile: ListTile(
               title: Text($strings.emergencyContacts),
               trailing: const Icon(

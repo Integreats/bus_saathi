@@ -443,7 +443,7 @@ packages:
     source: hosted
     version: "2.1.17"
   extension_utilities:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: extension_utilities
       sha256: "33c47f07c7f1b789b8899edd95392b44832632ee88a20376704dcf1030dee8d7"

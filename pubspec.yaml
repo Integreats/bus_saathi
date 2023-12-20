@@ -98,6 +98,7 @@ dependencies:
   realm: ^1.6.0
   share_plus: ^7.2.1
   speech_to_text: ^6.5.1
+  extension_utilities: ^1.1.0
 
 dev_dependencies:
   analyzer: ^6.1.0

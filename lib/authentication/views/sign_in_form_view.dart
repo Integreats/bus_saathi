@@ -62,7 +62,8 @@ class _SignInFormViewState extends ConsumerState<SignInFormView> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: EmailTextField(
-                              onSaved: (value) {
+                              readOnly: false,
+                              onChanged: (value) {
                                 signInFormNotifier.updateEmail(value!);
                               },
                             ),
@@ -72,7 +73,7 @@ class _SignInFormViewState extends ConsumerState<SignInFormView> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                           Text(
+                          Text(
                             $strings.password,
                             style: const TextStyle(
                               fontWeight: FontWeight.w600,
@@ -100,7 +101,7 @@ class _SignInFormViewState extends ConsumerState<SignInFormView> {
                                   .forgotPassword();
                               if (mounted) {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                   SnackBar(
+                                  SnackBar(
                                     content: Text(
                                       $strings.passwordReset,
                                     ),
@@ -108,9 +109,8 @@ class _SignInFormViewState extends ConsumerState<SignInFormView> {
                                 );
                               }
                             },
-                            child:  Text(
+                            child: Text(
                               $strings.forgotPassword,
-
                             ),
                           ),
                         ],

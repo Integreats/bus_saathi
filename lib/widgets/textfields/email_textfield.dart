@@ -6,20 +6,26 @@ import 'custom_text_form_field.dart';
 class EmailTextField extends StatelessWidget {
   const EmailTextField({
     Key? key,
-    this.onSaved,
+    this.onChanged,
+    this.initialValue,
+    required this.readOnly,
   }) : super(key: key);
 
-  final void Function(String? value)? onSaved;
+  final String? initialValue;
+  final bool readOnly;
+  final void Function(String? value)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
+      readOnly: readOnly,
       key: const ValueKey('email'),
+      initialValue: initialValue,
       textInputAction: TextInputAction.next,
       autofillHints: const [AutofillHints.email],
       enableSuggestions: true,
       autocorrect: false,
-      onSaved: onSaved,
+      onChanged: onChanged,
       keyboardType: TextInputType.emailAddress,
       textCapitalization: TextCapitalization.none,
       label: 'abc@xyz.com',

@@ -106,6 +106,7 @@ class FirebaseSosRepository implements SosRepository {
 
   @override
   Stream<List<EmergencyContact>> getEmergencyContactsList() async* {
+    print(appUser!.id);
     final contactsStream = emergencyContactsCollection
         .where('userId', isEqualTo: appUser!.id)
         .snapshots();

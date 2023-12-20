@@ -27,7 +27,7 @@ class TripScreen extends ConsumerWidget {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-             SliverAppBar.medium(
+            SliverAppBar.medium(
               title: Text($strings.trip),
               pinned: false,
             ),
@@ -73,7 +73,7 @@ class TripScreen extends ConsumerWidget {
                             'Hi, I am travelling in bus ${trip.bus.licensePlateNumber} on route ${trip.bus.routeNumber} which is from ${trip.tripRoute!.origin.name} to ${trip.tripRoute!.destination.name} on ${DateFormat.yMMMMd().format(trip.startDateTime)} at ${DateFormat.jm().format(trip.startDateTime)}.\nMy current location is \nhttp://www.google.com/maps/place/${userLocation.latitude},${userLocation.longitude} \nConductor details are:\nName: ${trip.conductor.name}\nPhone Number: ${trip.conductor.phoneNumber}',
                           );
                         },
-                        label:  Text($strings.shareDetails),
+                        label: Text($strings.shareDetails),
                       ),
                       const Gap(8),
                       ActionChip(
@@ -81,7 +81,7 @@ class TripScreen extends ConsumerWidget {
                           context.push('/busReview');
                         },
                         avatar: const Icon(UniconsLine.star),
-                        label:  Text(
+                        label: Text(
                           $strings.reviewBus,
                         ),
                       ),
@@ -89,6 +89,7 @@ class TripScreen extends ConsumerWidget {
                       ActionChip(
                         onPressed: () {
                           // context.go('/busReview');
+                          
                         },
                         avatar: const Icon(Icons.volume_up_outlined),
                         label: Text(

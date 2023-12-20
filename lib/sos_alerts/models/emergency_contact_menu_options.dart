@@ -1,0 +1,1 @@
+enum EmergencyContactMenuOptions { edit, remove }

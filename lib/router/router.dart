@@ -9,8 +9,12 @@ import '../authentication/screens/sign_in_screen.dart';
 import '../authentication/screens/sign_up_screen.dart';
 import '../bottom_navigation_screen.dart';
 import '../bus_review/screens/bus_review_screen.dart';
+import '../models/form_type.dart';
 import '../onboarding/onboarding_screen.dart';
 import '../search/screens/search_screen.dart';
+import '../sos_alerts/models/emergency_contact.dart';
+import '../sos_alerts/screens/emergency_contacts_form_screen.dart';
+import '../sos_alerts/screens/emergency_contacts_screen.dart';
 import '../trip/screens/running_trips_screen.dart';
 
 /// Caches and Exposes a [GoRouter]
@@ -161,6 +165,34 @@ class RouterNotifier extends ChangeNotifier {
                   transitionsBuilder: bottomToUpFadeTransition,
                 );
               },
+            ),
+            GoRoute(
+              path: 'emergencyContacts',
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                  key: state.pageKey,
+                  child: const EmergencyContactsScreen(),
+                  transitionsBuilder: bottomToUpFadeTransition,
+                );
+              },
+              routes: [
+                GoRoute(
+                  path: ':operation/:emerygencyContactId',
+                  pageBuilder: (context, state) {
+                    return CustomTransitionPage(
+                      key: state.pageKey,
+                      child: EmergencyContactFormScreen(
+                        emergencyContactFormType: FormTypeExt.fromString(
+                            state.pathParameters['operation'].toString()),
+                        emergencyContact: state.extra == null
+                            ? EmergencyContact.empty()
+                            : state.extra as EmergencyContact,
+                      ),
+                      transitionsBuilder: bottomToUpFadeTransition,
+                    );
+                  },
+                ),
+              ],
             ),
           ],
         ),

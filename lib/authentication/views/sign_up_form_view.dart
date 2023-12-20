@@ -10,8 +10,6 @@ import '../providers/authentication_controller_provider.dart';
 import '../providers/sign_up_form_controller.dart';
 import '../services/validators.dart';
 import '../widgets/buttons/o_auth_buttons.dart';
-import 'package:bus_saathi/authentication/views/sign_up_form_view.dart';
-import '../../authentication/views/sign_in_form_view.dart';
 
 class SignUpFormView extends StatefulHookConsumerWidget {
   const SignUpFormView({
@@ -105,7 +103,8 @@ class _SignUpFormViewState extends ConsumerState<SignUpFormView> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: EmailTextField(
-                              onSaved: (value) {
+                              readOnly: false,
+                              onChanged: (value) {
                                 final email = value!.trim();
                                 signUpFormNotifier.updateEmail(email);
                               },
@@ -182,7 +181,7 @@ class _SignUpFormViewState extends ConsumerState<SignUpFormView> {
                                   isLoading: ref
                                       .watch(authenticationControllerProvider)
                                       .isLoading,
-                                  label: Text ($strings.signIn),
+                                  label: Text($strings.signIn),
                                   onPressed: () async {
                                     await ref
                                         .read(authenticationControllerProvider
