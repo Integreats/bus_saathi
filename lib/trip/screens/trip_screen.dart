@@ -1,6 +1,3 @@
-import 'package:bus_saathi/l10n/locale.dart';
-import 'package:bus_saathi/providers/location_stream_provider.dart';
-import 'package:bus_saathi/trip/widgets/trip_route_table.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -9,8 +6,12 @@ import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:unicons/unicons.dart';
 
+import '../../l10n/locale.dart';
+import '../../providers/location_stream_provider.dart';
+import '../../providers/shake_detector_provider.dart';
 import '../provider/trip_stream_provider.dart';
 import '../views/trip_map_view.dart';
+import '../widgets/trip_route_table.dart';
 
 class TripScreen extends ConsumerWidget {
   const TripScreen({
@@ -22,6 +23,7 @@ class TripScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(shakeDetectorProvider); 
     final theme = Theme.of(context);
     return Scaffold(
       body: SafeArea(
@@ -89,7 +91,6 @@ class TripScreen extends ConsumerWidget {
                       ActionChip(
                         onPressed: () {
                           // context.go('/busReview');
-                          
                         },
                         avatar: const Icon(Icons.volume_up_outlined),
                         label: Text(

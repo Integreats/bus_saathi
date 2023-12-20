@@ -99,6 +99,8 @@ dependencies:
   share_plus: ^7.2.1
   speech_to_text: ^6.5.1
   extension_utilities: ^1.1.0
+  vibration: ^1.8.4
+  sensors_plus: ^4.0.2
 
 dev_dependencies:
   analyzer: ^6.1.0
