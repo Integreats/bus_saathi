@@ -23,7 +23,7 @@ class TripScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(shakeDetectorProvider); 
+    ref.watch(shakeDetectorProvider);
     final theme = Theme.of(context);
     return Scaffold(
       body: SafeArea(
@@ -32,6 +32,36 @@ class TripScreen extends ConsumerWidget {
             SliverAppBar.medium(
               title: Text($strings.trip),
               pinned: false,
+              actions: [
+                Consumer(
+                  builder: (context, ref, child) {
+                    const count = 10;
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Row(
+                          children: [
+                            const Gap(8),
+                            const Icon(
+                              UniconsLine.users_alt,
+                              size: 16,
+                            ),
+                            const Gap(8),
+                            Text(
+                              '$count',
+                              style: theme.textTheme.titleMedium,
+                            ),
+                            const Gap(8),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
             SliverToBoxAdapter(
               child: SizedBox(

@@ -1,3 +1,4 @@
+import 'package:bus_saathi/trip/models/crowd.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -23,6 +24,7 @@ class Trip with _$Trip {
     @DateTimeJsonConverter() required DateTime startDateTime,
     @DateTimeJsonConverter() required DateTime endDateTime,
     required List<LiveLocation> liveLocation,
+    required Crowd? crowd,
     required bool isEnded,
     required TripRoute? tripRoute,
     required BusStop? upcomingBusStop,

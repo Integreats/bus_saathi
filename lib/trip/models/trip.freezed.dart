@@ -32,6 +32,7 @@ mixin _$Trip {
   @DateTimeJsonConverter()
   DateTime get endDateTime => throw _privateConstructorUsedError;
   List<LiveLocation> get liveLocation => throw _privateConstructorUsedError;
+  Crowd? get crowd => throw _privateConstructorUsedError;
   bool get isEnded => throw _privateConstructorUsedError;
   TripRoute? get tripRoute => throw _privateConstructorUsedError;
   BusStop? get upcomingBusStop => throw _privateConstructorUsedError;
@@ -57,6 +58,7 @@ abstract class $TripCopyWith<$Res> {
       @DateTimeJsonConverter() DateTime startDateTime,
       @DateTimeJsonConverter() DateTime endDateTime,
       List<LiveLocation> liveLocation,
+      Crowd? crowd,
       bool isEnded,
       TripRoute? tripRoute,
       BusStop? upcomingBusStop,
@@ -64,6 +66,7 @@ abstract class $TripCopyWith<$Res> {
 
   $BusCopyWith<$Res> get bus;
   $ConductorCopyWith<$Res> get conductor;
+  $CrowdCopyWith<$Res>? get crowd;
   $TripRouteCopyWith<$Res>? get tripRoute;
   $BusStopCopyWith<$Res>? get upcomingBusStop;
 }
@@ -89,6 +92,7 @@ class _$TripCopyWithImpl<$Res, $Val extends Trip>
     Object? startDateTime = null,
     Object? endDateTime = null,
     Object? liveLocation = null,
+    Object? crowd = freezed,
     Object? isEnded = null,
     Object? tripRoute = freezed,
     Object? upcomingBusStop = freezed,
@@ -127,6 +131,10 @@ class _$TripCopyWithImpl<$Res, $Val extends Trip>
           ? _value.liveLocation
           : liveLocation // ignore: cast_nullable_to_non_nullable
               as List<LiveLocation>,
+      crowd: freezed == crowd
+          ? _value.crowd
+          : crowd // ignore: cast_nullable_to_non_nullable
+              as Crowd?,
       isEnded: null == isEnded
           ? _value.isEnded
           : isEnded // ignore: cast_nullable_to_non_nullable
@@ -159,6 +167,18 @@ class _$TripCopyWithImpl<$Res, $Val extends Trip>
   $ConductorCopyWith<$Res> get conductor {
     return $ConductorCopyWith<$Res>(_value.conductor, (value) {
       return _then(_value.copyWith(conductor: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CrowdCopyWith<$Res>? get crowd {
+    if (_value.crowd == null) {
+      return null;
+    }
+
+    return $CrowdCopyWith<$Res>(_value.crowd!, (value) {
+      return _then(_value.copyWith(crowd: value) as $Val);
     });
   }
 
@@ -203,6 +223,7 @@ abstract class _$$TripImplCopyWith<$Res> implements $TripCopyWith<$Res> {
       @DateTimeJsonConverter() DateTime startDateTime,
       @DateTimeJsonConverter() DateTime endDateTime,
       List<LiveLocation> liveLocation,
+      Crowd? crowd,
       bool isEnded,
       TripRoute? tripRoute,
       BusStop? upcomingBusStop,
@@ -212,6 +233,8 @@ abstract class _$$TripImplCopyWith<$Res> implements $TripCopyWith<$Res> {
   $BusCopyWith<$Res> get bus;
   @override
   $ConductorCopyWith<$Res> get conductor;
+  @override
+  $CrowdCopyWith<$Res>? get crowd;
   @override
   $TripRouteCopyWith<$Res>? get tripRoute;
   @override
@@ -236,6 +259,7 @@ class __$$TripImplCopyWithImpl<$Res>
     Object? startDateTime = null,
     Object? endDateTime = null,
     Object? liveLocation = null,
+    Object? crowd = freezed,
     Object? isEnded = null,
     Object? tripRoute = freezed,
     Object? upcomingBusStop = freezed,
@@ -274,6 +298,10 @@ class __$$TripImplCopyWithImpl<$Res>
           ? _value._liveLocation
           : liveLocation // ignore: cast_nullable_to_non_nullable
               as List<LiveLocation>,
+      crowd: freezed == crowd
+          ? _value.crowd
+          : crowd // ignore: cast_nullable_to_non_nullable
+              as Crowd?,
       isEnded: null == isEnded
           ? _value.isEnded
           : isEnded // ignore: cast_nullable_to_non_nullable
@@ -306,6 +334,7 @@ class _$TripImpl implements _Trip {
       @DateTimeJsonConverter() required this.startDateTime,
       @DateTimeJsonConverter() required this.endDateTime,
       required final List<LiveLocation> liveLocation,
+      required this.crowd,
       required this.isEnded,
       required this.tripRoute,
       required this.upcomingBusStop,
@@ -343,6 +372,8 @@ class _$TripImpl implements _Trip {
   }
 
   @override
+  final Crowd? crowd;
+  @override
   final bool isEnded;
   @override
   final TripRoute? tripRoute;
@@ -360,7 +391,7 @@ class _$TripImpl implements _Trip {
 
   @override
   String toString() {
-    return 'Trip(id: $id, bus: $bus, conductor: $conductor, distanceCovered: $distanceCovered, carbonEmission: $carbonEmission, startDateTime: $startDateTime, endDateTime: $endDateTime, liveLocation: $liveLocation, isEnded: $isEnded, tripRoute: $tripRoute, upcomingBusStop: $upcomingBusStop, busStopsCrossed: $busStopsCrossed)';
+    return 'Trip(id: $id, bus: $bus, conductor: $conductor, distanceCovered: $distanceCovered, carbonEmission: $carbonEmission, startDateTime: $startDateTime, endDateTime: $endDateTime, liveLocation: $liveLocation, crowd: $crowd, isEnded: $isEnded, tripRoute: $tripRoute, upcomingBusStop: $upcomingBusStop, busStopsCrossed: $busStopsCrossed)';
   }
 
   @override
@@ -382,6 +413,7 @@ class _$TripImpl implements _Trip {
                 other.endDateTime == endDateTime) &&
             const DeepCollectionEquality()
                 .equals(other._liveLocation, _liveLocation) &&
+            (identical(other.crowd, crowd) || other.crowd == crowd) &&
             (identical(other.isEnded, isEnded) || other.isEnded == isEnded) &&
             (identical(other.tripRoute, tripRoute) ||
                 other.tripRoute == tripRoute) &&
@@ -403,6 +435,7 @@ class _$TripImpl implements _Trip {
       startDateTime,
       endDateTime,
       const DeepCollectionEquality().hash(_liveLocation),
+      crowd,
       isEnded,
       tripRoute,
       upcomingBusStop,
@@ -432,6 +465,7 @@ abstract class _Trip implements Trip {
           @DateTimeJsonConverter() required final DateTime startDateTime,
           @DateTimeJsonConverter() required final DateTime endDateTime,
           required final List<LiveLocation> liveLocation,
+          required final Crowd? crowd,
           required final bool isEnded,
           required final TripRoute? tripRoute,
           required final BusStop? upcomingBusStop,
@@ -460,6 +494,8 @@ abstract class _Trip implements Trip {
   DateTime get endDateTime;
   @override
   List<LiveLocation> get liveLocation;
+  @override
+  Crowd? get crowd;
   @override
   bool get isEnded;
   @override

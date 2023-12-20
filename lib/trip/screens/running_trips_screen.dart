@@ -1,6 +1,9 @@
+import 'package:bus_saathi/widgets/tile_layout.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:unicons/unicons.dart';
 
 import '../../bus_routes/models/route_direction.dart';
 import '../../bus_routes/providers/bus_route_by_route_number_provider.dart';
@@ -57,16 +60,51 @@ class RunningTripsScreen extends ConsumerWidget {
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
                           final runningTrip = runningTrips[index];
-                          return ListTile(
-                            title: Text(
-                              runningTrip.bus.licensePlateNumber,
-                              style: theme.textTheme.titleLarge,
-                            ),
-                            trailing: ElevatedButton(
-                              onPressed: () {
-                                context.go('/trip/${runningTrips.first.id}');
-                              },
-                              child: const Text("Check In"),
+                          return TileLayout(
+                            listTile: ListTile(
+                              title: Text(
+                                runningTrip.bus.licensePlateNumber,
+                                style: theme.textTheme.titleLarge,
+                              ),
+                              subtitle: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Row(
+                                  children: [
+                                    const Icon(
+                                      UniconsLine.users_alt,
+                                      size: 16,
+                                    ),
+                                    const Gap(8),
+                                    Text(
+                                      runningTrip.crowd?.personCount
+                                              .toString() ??
+                                          '0',
+                                      style: theme.textTheme.titleMedium,
+                                    ),
+                                    const Gap(8),
+                                    const CircleAvatar(
+                                      radius: 4,
+                                      backgroundColor: Colors.green,
+                                    ),
+                                    const Gap(8),
+                                    Text(
+                                      (runningTrip.crowd?.personCount ?? 0) >
+                                              runningTrip.bus.capacity
+                                          ? 'Highly Crowded'
+                                          : 'Underly Crowded',
+                                      style: theme.textTheme.titleMedium,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              trailing: ElevatedButton(
+                                onPressed: () {
+                                  context.go('/trip/${runningTrips.first.id}');
+                                },
+                                child: const Text("Check In"),
+                              ),
                             ),
                           );
                         },

@@ -21,6 +21,9 @@ _$TripImpl _$$TripImplFromJson(Map<String, dynamic> json) => _$TripImpl(
       liveLocation: (json['liveLocation'] as List<dynamic>)
           .map((e) => LiveLocation.fromJson(e as Map<String, dynamic>))
           .toList(),
+      crowd: json['crowd'] == null
+          ? null
+          : Crowd.fromJson(json['crowd'] as Map<String, dynamic>),
       isEnded: json['isEnded'] as bool,
       tripRoute: json['tripRoute'] == null
           ? null
@@ -45,6 +48,7 @@ Map<String, dynamic> _$$TripImplToJson(_$TripImpl instance) =>
           const DateTimeJsonConverter().toJson(instance.startDateTime),
       'endDateTime': const DateTimeJsonConverter().toJson(instance.endDateTime),
       'liveLocation': instance.liveLocation.map((e) => e.toJson()).toList(),
+      'crowd': instance.crowd?.toJson(),
       'isEnded': instance.isEnded,
       'tripRoute': instance.tripRoute?.toJson(),
       'upcomingBusStop': instance.upcomingBusStop?.toJson(),
