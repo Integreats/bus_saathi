@@ -22,6 +22,7 @@ BusStopAlert _$BusStopAlertFromJson(Map<String, dynamic> json) {
 mixin _$BusStopAlert {
   String get id => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
+  String? get fcmToken => throw _privateConstructorUsedError;
   String get tripId => throw _privateConstructorUsedError;
   String get routeNumber => throw _privateConstructorUsedError;
   BusStop get busStop => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $BusStopAlertCopyWith<$Res> {
   $Res call(
       {String id,
       String userId,
+      String? fcmToken,
       String tripId,
       String routeNumber,
       BusStop busStop,
@@ -69,6 +71,7 @@ class _$BusStopAlertCopyWithImpl<$Res, $Val extends BusStopAlert>
   $Res call({
     Object? id = null,
     Object? userId = null,
+    Object? fcmToken = freezed,
     Object? tripId = null,
     Object? routeNumber = null,
     Object? busStop = null,
@@ -85,6 +88,10 @@ class _$BusStopAlertCopyWithImpl<$Res, $Val extends BusStopAlert>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      fcmToken: freezed == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String?,
       tripId: null == tripId
           ? _value.tripId
           : tripId // ignore: cast_nullable_to_non_nullable
@@ -132,6 +139,7 @@ abstract class _$$BusStopAlertImplCopyWith<$Res>
   $Res call(
       {String id,
       String userId,
+      String? fcmToken,
       String tripId,
       String routeNumber,
       BusStop busStop,
@@ -156,6 +164,7 @@ class __$$BusStopAlertImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? userId = null,
+    Object? fcmToken = freezed,
     Object? tripId = null,
     Object? routeNumber = null,
     Object? busStop = null,
@@ -172,6 +181,10 @@ class __$$BusStopAlertImplCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      fcmToken: freezed == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String?,
       tripId: null == tripId
           ? _value.tripId
           : tripId // ignore: cast_nullable_to_non_nullable
@@ -206,6 +219,7 @@ class _$BusStopAlertImpl implements _BusStopAlert {
   _$BusStopAlertImpl(
       {required this.id,
       required this.userId,
+      required this.fcmToken,
       required this.tripId,
       required this.routeNumber,
       required this.busStop,
@@ -221,6 +235,8 @@ class _$BusStopAlertImpl implements _BusStopAlert {
   @override
   final String userId;
   @override
+  final String? fcmToken;
+  @override
   final String tripId;
   @override
   final String routeNumber;
@@ -235,7 +251,7 @@ class _$BusStopAlertImpl implements _BusStopAlert {
 
   @override
   String toString() {
-    return 'BusStopAlert(id: $id, userId: $userId, tripId: $tripId, routeNumber: $routeNumber, busStop: $busStop, isTriggered: $isTriggered, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'BusStopAlert(id: $id, userId: $userId, fcmToken: $fcmToken, tripId: $tripId, routeNumber: $routeNumber, busStop: $busStop, isTriggered: $isTriggered, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -245,6 +261,8 @@ class _$BusStopAlertImpl implements _BusStopAlert {
             other is _$BusStopAlertImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken) &&
             (identical(other.tripId, tripId) || other.tripId == tripId) &&
             (identical(other.routeNumber, routeNumber) ||
                 other.routeNumber == routeNumber) &&
@@ -259,8 +277,8 @@ class _$BusStopAlertImpl implements _BusStopAlert {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, tripId, routeNumber,
-      busStop, isTriggered, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, userId, fcmToken, tripId,
+      routeNumber, busStop, isTriggered, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -280,6 +298,7 @@ abstract class _BusStopAlert implements BusStopAlert {
   factory _BusStopAlert(
       {required final String id,
       required final String userId,
+      required final String? fcmToken,
       required final String tripId,
       required final String routeNumber,
       required final BusStop busStop,
@@ -294,6 +313,8 @@ abstract class _BusStopAlert implements BusStopAlert {
   String get id;
   @override
   String get userId;
+  @override
+  String? get fcmToken;
   @override
   String get tripId;
   @override

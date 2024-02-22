@@ -12,6 +12,7 @@ _$BusStopAlertImpl _$$BusStopAlertImplFromJson(Map<String, dynamic> json) =>
     _$BusStopAlertImpl(
       id: json['id'] as String,
       userId: json['userId'] as String,
+      fcmToken: json['fcmToken'] as String?,
       tripId: json['tripId'] as String,
       routeNumber: json['routeNumber'] as String,
       busStop: BusStop.fromJson(json['busStop'] as Map<String, dynamic>),
@@ -24,6 +25,7 @@ Map<String, dynamic> _$$BusStopAlertImplToJson(_$BusStopAlertImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
+      'fcmToken': instance.fcmToken,
       'tripId': instance.tripId,
       'routeNumber': instance.routeNumber,
       'busStop': instance.busStop.toJson(),

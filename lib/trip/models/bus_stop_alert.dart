@@ -11,6 +11,7 @@ class BusStopAlert with _$BusStopAlert {
   factory BusStopAlert({
     required String id,
     required String userId,
+    required String? fcmToken,
     required String tripId,
     required String routeNumber,
     required BusStop busStop,
@@ -28,6 +29,7 @@ class BusStopAlert with _$BusStopAlert {
       id: uuid.v4(),
       userId: '',
       tripId: '',
+      fcmToken: null,
       routeNumber: '',
       busStop: BusStop.empty(),
       isTriggered: false,
