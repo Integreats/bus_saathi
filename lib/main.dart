@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bus_saathi/providers/firebase_providers/firebase_analytics_provider.dart';
 import 'package:bus_saathi/providers/firebase_providers/firebase_messaging_provider.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
